@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.moonlight.moonlighttools": {
+      "version": "https://gitlab.com/moonlight2862933/moonlighttools.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "7329d2e39c7d0d4d9ddcc66d39efff984c2aaee7"
+    },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
       "depth": 0,
