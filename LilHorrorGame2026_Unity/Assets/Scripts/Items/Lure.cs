@@ -8,26 +8,31 @@ public class Lure : MonoBehaviour
 {
     private static readonly List<Lure> s_lures = new();
     private static readonly HashSet<Lure> s_broadcastingLures = new();
-    public static Action BroadcastingLuresChanged;
+    public static event Action BroadcastingLuresChanged;
 
-    [SerializeField] private float m_maxRange;
+    [Header("Lure Components")]   
+    [SerializeField] protected Animator m_animator;
     
-    private bool m_isBroadcasting;
+    [Header("Lure Settings")]
+    [SerializeField] private float m_maxRange;
+    [SerializeField] private string m_activeAnimationParam;
+    
+    public bool IsBroadcasting { get; private set; }
     
     // ======== Unity Events ========
 
-    private void Awake()
+    protected virtual void Awake()
     {
         s_lures.Add(this);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         s_lures.Remove(this);
         s_broadcastingLures.Remove(this);
     }
     
-    private void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.magenta;
         GizmoUtils.DrawCircle(transform.position, m_maxRange);
@@ -53,7 +58,7 @@ public class Lure : MonoBehaviour
     
     // ======== Effects ========
 
-    public void Broadcast(bool active)
+    public virtual void Broadcast(bool active)
     {
         if (active)
         {
@@ -64,7 +69,9 @@ public class Lure : MonoBehaviour
             s_broadcastingLures.Remove(this);
         }
 
-        m_isBroadcasting = active;
+        IsBroadcasting = active;
+        m_animator.SetBool(m_activeAnimationParam, active);
+        
         BroadcastingLuresChanged?.Invoke();
     }
 }

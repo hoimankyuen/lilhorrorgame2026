@@ -6,26 +6,31 @@ using UnityEngine;
 public class Provoker : MonoBehaviour
 {
     private static readonly List<Provoker> s_provokers = new();
-    private static readonly HashSet<Lure> s_broadcastingProvokers = new();
-    public static Action BroadcastingProvokerChanged; 
+    private static readonly HashSet<Provoker> s_broadcastingProvokers = new();
+    public static event Action BroadcastingProvokerChanged; 
     
+    [Header("Interactable Components")]   
+    [SerializeField] protected Animator m_animator;
+
+    [Header("Interactable Settings")]   
     [SerializeField] private float m_maxRange;
+    [SerializeField] private string m_activeAnimationParam;
     
-    private bool m_isBroadcasting;
+    public bool IsBroadcasting { get; private set; }
     
     // ======== Unity Events ========
 
-    private void Awake()
+    protected virtual void Awake()
     {
         s_provokers.Add(this);
     }
 
-    private void OnDestroy()
+    protected virtual void OnDestroy()
     {
         s_provokers.Remove(this);
     }
     
-    private void OnDrawGizmosSelected()
+    protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         GizmoUtils.DrawCircle(transform.position, m_maxRange);
@@ -33,9 +38,20 @@ public class Provoker : MonoBehaviour
     
     // ======== Effects ========
 
-    public void Broadcast(bool active)
+    public virtual void Broadcast(bool active)
     {
-        m_isBroadcasting = active;
+        if (active)
+        {
+            s_broadcastingProvokers.Add(this);
+        }
+        else
+        {
+            s_broadcastingProvokers.Remove(this);
+        }
+        
+        IsBroadcasting = active;
+        m_animator.SetBool(m_activeAnimationParam, active);
+        
         BroadcastingProvokerChanged?.Invoke();
     }
 }

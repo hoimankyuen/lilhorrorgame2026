@@ -1,16 +1,20 @@
-using System.Collections.Generic;
+using System;
 using QuickerEffects;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private Outline m_highlightOutline;
+    [Header("Components")]
+    [SerializeField] private Outline m_selectionOutline;
     
-    private readonly List<IInteractableComponent> m_components = new();
+    private IInteractableComponent m_component;
     
     public bool AllowInteraction { get; private set; }
     
     public bool Selected { get; private set; }
+    
+    public string SelectionPromptText { get; private set; }
+    public event Action<string> SelectionPromptTextChanged;
     
     // ======== Unity Events ========
     
@@ -23,7 +27,7 @@ public class Interactable : MonoBehaviour
 
     private void RetrieveComponents()
     {
-        m_components.AddRange(GetComponentsInChildren<IInteractableComponent>());
+        m_component = GetComponent<IInteractableComponent>();
     }
     
     // ======== Player Interactions ========
@@ -31,28 +35,44 @@ public class Interactable : MonoBehaviour
     public void SetAllowInteraction(bool allow)
     {
         AllowInteraction = allow;
-        m_highlightOutline.Show = AllowInteraction;
-
-        if (!AllowInteraction)
-        {
-            Select(false);
-        }
+        Select(Selected);
     }
     
     public void Select(bool selected)
     {
-        Selected = selected;
-        foreach (IInteractableComponent component in m_components)
+        if (m_component == null)
+            return;
+        
+        Selected = AllowInteraction && selected;
+        m_selectionOutline.Show = Selected;
+
+        if (m_component != null)
         {
-            component.OnSelected(selected);
+            m_component.OnSelected(selected);
         }
     }
     
     public void Interact()
     {
-        foreach (IInteractableComponent component in m_components)
+        if (!AllowInteraction)
+            return;
+
+        if (m_component != null)
         {
-            component.OnInteract();
+            m_component.OnInteract();
         }
+    }
+    
+    // ======== Appearance ========
+
+    public void SetSelectionOutlineColour(Color colour)
+    {
+        m_selectionOutline.Color = colour;
+    }
+
+    public void SetSelectionPromptText(string promptText)
+    {
+        SelectionPromptText = promptText;
+        SelectionPromptTextChanged?.Invoke(SelectionPromptText);
     }
 }

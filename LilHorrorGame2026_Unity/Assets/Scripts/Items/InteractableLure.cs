@@ -4,38 +4,61 @@ using UnityEngine;
 [RequireComponent(typeof(Interactable))]
 public class InteractableLure : Lure, IInteractableComponent
 {
+    [Header("Interactable Lure Settings")]
+    [SerializeField] private string m_normalSelectionPromptText;
+    [SerializeField] private string m_usedSelectionPromptText;
+    [SerializeField] private Color m_normalSelectionColour;
+    [SerializeField] private Color m_usedSelectionColour;
+    [SerializeField] private string m_cooldownAnimationParam;
+    
+    [Space]
     [SerializeField] private float m_duration;
     [SerializeField] private float m_cooldown;
     
     private Interactable m_interactable;
+    private Coroutine m_broadcastCoroutine;
     
     // ======== Unity Events ========
 
-    private void Awake()
+    protected override void Awake()
     {
-        m_interactable.GetComponent<Interactable>();
+        base.Awake();
+        m_interactable = GetComponent<Interactable>();
+        m_interactable.SetAllowInteraction(true);
+        m_interactable.SetSelectionPromptText(m_normalSelectionPromptText);
+        m_interactable.SetSelectionOutlineColour(m_normalSelectionColour);
     }
     
-    // ======== Player Interactions =======
+    // ======== Selection =======
     
     public void OnSelected(bool selected)
     {
     }
     
+    // ======== Interaction =======
+    
     public void OnInteract()
     {
-        StartCoroutine(BroadcastSequence());
+        if (m_broadcastCoroutine != null)
+            return;
+        
+        m_broadcastCoroutine = StartCoroutine(BroadcastSequence());
     }
     
     private IEnumerator BroadcastSequence()
     {
         Broadcast(true);
-        m_interactable.SetAllowInteraction(false);
-        yield return m_duration;
+        m_interactable.SetSelectionPromptText(m_usedSelectionPromptText);
+        m_interactable.SetSelectionOutlineColour(m_usedSelectionColour);
+        yield return new WaitForSeconds(m_duration);
         
+        m_animator.SetBool(m_cooldownAnimationParam, true);
         Broadcast(false);
-        yield return Mathf.Max(m_duration - m_duration, 0f);
+        yield return new WaitForSeconds(m_cooldown);
         
-        m_interactable.SetAllowInteraction(true);
+        m_animator.SetBool(m_cooldownAnimationParam, false);
+        m_interactable.SetSelectionPromptText(m_normalSelectionPromptText);
+        m_interactable.SetSelectionOutlineColour(m_normalSelectionColour);
+        m_broadcastCoroutine = null;
     }
 }
