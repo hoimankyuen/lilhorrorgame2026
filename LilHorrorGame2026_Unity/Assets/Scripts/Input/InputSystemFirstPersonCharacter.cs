@@ -47,11 +47,6 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         SetBaseFOV(m_cam.fieldOfView);
     }
 
-    private void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
     private void Update()
     {
         DoMovement();
@@ -60,28 +55,18 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         DoCrouch();
     }
     
-    private int m_lookWarmupFrames = 3;
-
-    private void DoLooking()
+    private void OnEnable()
     {
-        if (m_lookWarmupFrames > 0)
-        {
-            m_lookWarmupFrames--;
-            return;
-        }
-        
-        Vector2 looking = GetPlayerLook();
-        float lookX = looking.x * m_lookSensitivity;
-        float lookY = looking.y * m_lookSensitivity;
-
-        m_xRotation -= lookY;
-        m_xRotation = Mathf.Clamp(m_xRotation, -90f, 90f);
-        
-        m_cam.transform.localRotation = Quaternion.Euler(m_xRotation, 0f, 0f);
-        
-        transform.Rotate(Vector3.up * lookX);
+        inputActions.Enable();
     }
-
+    
+    private void OnDisable()
+    {
+        inputActions.Disable();
+    }
+    
+    private int m_lookWarmupFrames = 3;
+    
     private void DoMovement()
     {
         m_grounded = m_controller.isGrounded;
@@ -104,6 +89,26 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
 
         m_velocity.y += m_gravity * Time.deltaTime;
         m_controller.Move(m_velocity * Time.deltaTime);
+    }
+    
+    private void DoLooking()
+    {
+        if (m_lookWarmupFrames > 0)
+        {
+            m_lookWarmupFrames--;
+            return;
+        }
+        
+        Vector2 looking = GetPlayerLook();
+        float lookX = looking.x * m_lookSensitivity;
+        float lookY = looking.y * m_lookSensitivity;
+
+        m_xRotation -= lookY;
+        m_xRotation = Mathf.Clamp(m_xRotation, -90f, 90f);
+        
+        m_cam.transform.localRotation = Quaternion.Euler(m_xRotation, 0f, 0f);
+        
+        transform.Rotate(Vector3.up * lookX);
     }
 
     private void DoZoom()
@@ -155,11 +160,6 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     private void SetBaseFOV(float fov)
     {
         m_baseFOV = fov;
-    }
-
-    private void OnDisable()
-    {
-        inputActions.Disable();
     }
 
     private Vector2 GetPlayerMovement()
