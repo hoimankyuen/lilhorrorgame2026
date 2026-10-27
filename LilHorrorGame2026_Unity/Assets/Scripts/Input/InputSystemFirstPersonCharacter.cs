@@ -65,8 +65,6 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         inputActions.Disable();
     }
     
-    private int m_lookWarmupFrames = 3;
-    
     private void DoMovement()
     {
         m_grounded = m_controller.isGrounded;
@@ -90,6 +88,8 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         m_velocity.y += m_gravity * Time.deltaTime;
         m_controller.Move(m_velocity * Time.deltaTime);
     }
+    
+    private int m_lookWarmupFrames = 3;
     
     private void DoLooking()
     {
