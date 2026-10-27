@@ -12,8 +12,13 @@ public class InteractableSelectionTest : MonoBehaviour
     private void Update()
     {
         Ray mouseRay = m_camera.ScreenPointToRay(Mouse.current.position.value);
+        DetectInteractable(mouseRay);
+    }
+
+    private void DetectInteractable(Ray ray)
+    {
         Interactable newSelectedInteractable = null;
-        if (Physics.Raycast(mouseRay, out RaycastHit hit, 1000f, LayerMask.GetMask("Interactables")))
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Interactables")))
         {
             newSelectedInteractable = hit.collider.GetComponentInParent<Interactable>();
             if (newSelectedInteractable != null && !newSelectedInteractable.AllowInteraction)
