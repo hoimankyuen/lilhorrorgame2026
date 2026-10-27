@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using MoonlightTools.GizmoTools;
 using UnityEngine;
 
@@ -12,6 +11,7 @@ public class Lure : MonoBehaviour
 
     [Header("Lure Components")]   
     [SerializeField] protected Animator m_animator;
+    [SerializeField] protected SoundParticleEffect m_soundParticleEffect;
     
     [Header("Lure Settings")]
     [SerializeField] private float m_maxRange;
@@ -70,6 +70,7 @@ public class Lure : MonoBehaviour
         }
 
         IsBroadcasting = active;
+        m_soundParticleEffect.Play(active);
         m_animator.SetBool(m_activeAnimationParam, active);
         
         BroadcastingLuresChanged?.Invoke();

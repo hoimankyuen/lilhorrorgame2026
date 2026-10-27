@@ -688,12 +688,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455333934}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1390556587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &606036911
 GameObject:
@@ -864,6 +864,10 @@ PrefabInstance:
     - target: {fileID: 7774012007607129557, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9007231546049562743, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.34
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1472,6 +1476,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1848605804}
+  - {fileID: 455333937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1460376692
@@ -1647,6 +1652,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaterCooler
       objectReference: {fileID: 0}
+    - target: {fileID: 6235674295907303053, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.012
+      objectReference: {fileID: 0}
     - target: {fileID: 8197906970501977088, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1
@@ -1755,6 +1764,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9007231546049562743, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.075
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1779,4 +1792,3 @@ SceneRoots:
   - {fileID: 1390556587}
   - {fileID: 621077028}
   - {fileID: 714251063}
-  - {fileID: 455333937}

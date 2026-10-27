@@ -11,6 +11,7 @@ public class Provoker : MonoBehaviour
     
     [Header("Interactable Components")]   
     [SerializeField] protected Animator m_animator;
+    [SerializeField] protected SoundParticleEffect m_soundParticleEffect;
 
     [Header("Interactable Settings")]   
     [SerializeField] private float m_maxRange;
@@ -50,6 +51,7 @@ public class Provoker : MonoBehaviour
         }
         
         IsBroadcasting = active;
+        m_soundParticleEffect.Play(active);
         m_animator.SetBool(m_activeAnimationParam, active);
         
         BroadcastingProvokerChanged?.Invoke();

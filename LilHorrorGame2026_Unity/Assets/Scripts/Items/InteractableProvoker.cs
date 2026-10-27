@@ -15,9 +15,10 @@ public class InteractableProvoker : Provoker, IInteractableComponent
     {
         base.Awake();
         m_interactable = GetComponent<Interactable>();
-        m_interactable.SetAllowInteraction(true);
         m_interactable.SetSelectionPromptText(m_selectionPromptText);
         m_interactable.SetSelectionOutlineColour(m_selectionColour);
+        
+        Broadcast(true);
     }
     
     // ======== Selection =======
@@ -30,7 +31,8 @@ public class InteractableProvoker : Provoker, IInteractableComponent
     
     public void OnInteract()
     {
-        m_interactable.SetAllowInteraction(false);
+        Broadcast(false);
+
     }
     
     // ======== Effects ========
@@ -38,10 +40,6 @@ public class InteractableProvoker : Provoker, IInteractableComponent
     public override void Broadcast(bool active)
     {
         base.Broadcast(active);
-        
-        if (active)
-        {
-            m_interactable.SetAllowInteraction(true);
-        }
+        m_interactable.SetAllowInteraction(active);
     }
 }
