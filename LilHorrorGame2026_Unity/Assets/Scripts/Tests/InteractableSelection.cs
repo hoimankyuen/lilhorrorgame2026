@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class InteractableSelectionTest : MonoBehaviour
+public class InteractableSelection : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float m_maxInteractionDistance = 2f;

@@ -7,7 +7,9 @@ public class Provoker : MonoBehaviour
 {
     private static readonly List<Provoker> s_provokers = new();
     private static readonly HashSet<Provoker> s_broadcastingProvokers = new();
-    public static event Action BroadcastingProvokerChanged; 
+    public static event Action<float> BroadcastingProvokerAdded;
+    public static event Action<float> BroadcastingProvokerRemoved;
+    public static event Action BroadcastingProvokerChanged;
     
     [Header("Interactable Components")]   
     [SerializeField] protected Animator m_animator;
@@ -16,6 +18,9 @@ public class Provoker : MonoBehaviour
     [Header("Interactable Settings")]   
     [SerializeField] private float m_maxRange;
     [SerializeField] private string m_activeAnimationParam;
+
+    [Header("Provoker Settings")] 
+    [SerializeField] private float m_sanityAmount;
     
     public bool IsBroadcasting { get; private set; }
     
@@ -44,10 +49,12 @@ public class Provoker : MonoBehaviour
         if (active)
         {
             s_broadcastingProvokers.Add(this);
+            BroadcastingProvokerAdded?.Invoke(m_sanityAmount);
         }
         else
         {
             s_broadcastingProvokers.Remove(this);
+            BroadcastingProvokerRemoved?.Invoke(m_sanityAmount);
         }
         
         IsBroadcasting = active;
