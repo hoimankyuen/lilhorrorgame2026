@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class SanitySystem : MonoBehaviour
 {
-    public static SanitySystem Instance { get; private set; }
+    public event Action<float> OnSanityChanged;
     
     [Header("Settings")] 
     [SerializeField] private float m_maxSanity;
@@ -16,7 +16,6 @@ public class SanitySystem : MonoBehaviour
     
     private void Start()
     {
-        SingletonSetup();
         Reset();
     }
 
@@ -36,12 +35,12 @@ public class SanitySystem : MonoBehaviour
 
     private void OnProvokerAdded(float amount)
     {
-        m_currentSanity -= amount;
+        ChangeSanity(amount, false);
     }
 
     private void OnProvokerRemoved(float amount)
     {
-        m_currentSanity += amount;
+        ChangeSanity(amount, true);
     }
 
     private void OnProvokersChanged()
@@ -49,26 +48,34 @@ public class SanitySystem : MonoBehaviour
         
     }
 
-    private void SingletonSetup()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void Reset()
     {
-        m_currentSanity = m_maxSanity;
+        SetSanity(m_maxSanity);
         InvokeRepeating(nameof(Tick), m_initialTickDelay, m_decayRate);
     }
 
     private void Tick()
     {
-        m_currentSanity -= m_decayTickAmount;
+        ChangeSanity(m_decayTickAmount, false);
+    }
+
+    private void ChangeSanity(float amount, bool add)
+    {
+        if (add)
+        {
+            m_currentSanity += amount;
+        }
+        else
+        {
+            m_currentSanity -= amount;
+        }
+        
+        OnSanityChanged?.Invoke(m_currentSanity);
+    }
+
+    private void SetSanity(float amount)
+    {
+        m_currentSanity = amount;
+        OnSanityChanged?.Invoke(m_currentSanity);
     }
 }
