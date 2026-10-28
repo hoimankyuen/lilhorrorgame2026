@@ -431,7 +431,6 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateEnter()
         {
-            Debug.Log("HERE");
             m_nextActionTime = Time.time + Behaviour.m_targetLostDuration;
             Monster.HardLookAround(true);
         }

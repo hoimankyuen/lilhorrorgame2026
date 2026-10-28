@@ -2388,6 +2388,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 2443262168019319763, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: forwardDetectionAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265567948205786651, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: m_SpotAngle
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 3265567948205786651, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: m_InnerSpotAngle
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 8533257618477787670, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.21
+      objectReference: {fileID: 0}
     - target: {fileID: 8904908070015712776, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_playerBodyTransform
       value: 
