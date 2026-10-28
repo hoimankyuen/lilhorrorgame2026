@@ -4,6 +4,10 @@ using UnityEngine.InputSystem;
 
 public class InteractableSelectionTest : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] private float m_maxInteractionDistance = 2f;
+    
+    [Header("References")]
     [SerializeField] private Camera m_camera;
     [SerializeField] private TMP_Text promptText;
     
@@ -18,7 +22,7 @@ public class InteractableSelectionTest : MonoBehaviour
     private void DetectInteractable(Ray ray)
     {
         Interactable newSelectedInteractable = null;
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f, LayerMask.GetMask("Interactables")))
+        if (Physics.Raycast(ray, out RaycastHit hit, m_maxInteractionDistance, LayerMask.GetMask("Interactables")))
         {
             newSelectedInteractable = hit.collider.GetComponentInParent<Interactable>();
             if (newSelectedInteractable != null && !newSelectedInteractable.AllowInteraction)

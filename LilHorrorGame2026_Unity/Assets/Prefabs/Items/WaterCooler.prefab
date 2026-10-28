@@ -62,12 +62,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 3583235474313216927}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: ee7db749727683f439daaf2586a8faa1, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: ee7db749727683f439daaf2586a8faa1, type: 3}
       propertyPath: m_LocalScale.y
-      value: 100.000015
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee7db749727683f439daaf2586a8faa1, type: 3}
       propertyPath: m_LocalScale.z
-      value: 100.00004
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ee7db749727683f439daaf2586a8faa1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -133,7 +137,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 621022337755755705, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_Name
-      value: WaterCooler Variant
+      value: WaterCooler
       objectReference: {fileID: 0}
     - target: {fileID: 6235674295907303053, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_LocalPosition.y
