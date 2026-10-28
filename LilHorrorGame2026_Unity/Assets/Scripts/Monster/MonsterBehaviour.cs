@@ -36,7 +36,6 @@ public class MonsterBehaviour : MonoBehaviour
     [SerializeField] private float m_turnChance;
     [SerializeField] private float m_wanderChance;
     [SerializeField] private float m_lookChance;
-    [SerializeField] private float m_screamChance;
     
     [Header("Turn State Settings")]
     [SerializeField] private float m_minTurnAngle;
@@ -53,6 +52,9 @@ public class MonsterBehaviour : MonoBehaviour
     [Header("Suspect State Settings")]
     [SerializeField] private float m_suspectDuration;
     [SerializeField] private float m_easeDuration;
+    
+    [Header("Target Lost State Settings")]
+    [SerializeField] private float m_targetLostDuration;
 
     private Monster m_monster;
     
@@ -162,7 +164,7 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateUpdate()
         {
-            if (Monster.CanDetect(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
                 Behaviour.ChangeState(new SuspectBehaviourState(Behaviour));
             }
@@ -174,8 +176,7 @@ public class MonsterBehaviour : MonoBehaviour
                     Behaviour.m_idleChance,
                     Behaviour.m_turnChance,
                     Behaviour.m_wanderChance,
-                    Behaviour.m_lookChance,
-                    Behaviour.m_screamChance
+                    Behaviour.m_lookChance
                 };
                 switch (GetFromWeightedChances(chances))
                 {
@@ -190,9 +191,6 @@ public class MonsterBehaviour : MonoBehaviour
                         break;
                     case 3:
                         ChangeState(new LookBehaviourState(Behaviour));
-                        break;
-                    case 4:
-                        ChangeState(new ScreamBehaviourState(Behaviour));
                         break;
                     default:
                         ChangeState(new IdleBehaviourState(Behaviour, true));
@@ -223,7 +221,7 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateUpdate()
         {
-            if (Monster.CanDetect(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
                 ChangeState(new SuspectBehaviourState(Behaviour));
             }
@@ -258,7 +256,7 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateUpdate()
         {
-            if (Monster.CanDetect(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
                 ChangeState(new SuspectBehaviourState(Behaviour));
             }
@@ -285,13 +283,13 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateEnter()
         {
             m_nextActionTime = Time.time + Behaviour.m_lookDuration;
-            Monster.LookAround(true);
+            Monster.SoftLookAround(true);
         }
 
         public override void OnStateUpdate()
         {
 
-            if (Monster.CanDetect(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
                 ChangeState(new SuspectBehaviourState(Behaviour));
             }
@@ -303,34 +301,7 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateExit()
         {
-            Monster.LookAround(false);
-        }
-    }
-    
-    // ======== Scream State ========
-    
-    private class ScreamBehaviourState : BehaviourState
-    {
-        private float m_nextActionTime;
-        
-        public ScreamBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
-
-        public override void OnStateEnter()
-        {
-            m_nextActionTime = Time.time + Behaviour.m_screamDuration;
-            Monster.Scream();
-        }
-
-        public override void OnStateUpdate()
-        {
-            if (Time.time > m_nextActionTime)
-            {
-                ChangeState(new IdleBehaviourState(Behaviour, true)); 
-            }
-        }
-
-        public override void OnStateExit()
-        {
+            Monster.SoftLookAround(false);
         }
     }
     
@@ -350,7 +321,7 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateUpdate()
         {
-            if (Monster.CanDetect(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
                 m_suspectProgress += 1f / Behaviour.m_screamDuration * Time.deltaTime;
                 Monster.LookAt(Behaviour.PlayerPosition);
@@ -375,7 +346,7 @@ public class MonsterBehaviour : MonoBehaviour
                     Monster.SetHostileLevel(Monster.HostileLevel.Alert);
                     break;
                 default:
-                    ChangeState(new ChaseBehaviourState(Behaviour));
+                    ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
                     break;
             }
         }
@@ -388,20 +359,99 @@ public class MonsterBehaviour : MonoBehaviour
     
     // ======== Scream State ========
     
-    private class ChaseBehaviourState : BehaviourState
+    private class ScreamBehaviourState : BehaviourState
     {
-        public ChaseBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
+        private readonly Vector3 m_targetPosition;
+        private float m_nextActionTime;
+
+        public ScreamBehaviourState(MonsterBehaviour behaviour, Vector3 targetPosition) : base(behaviour)
+        {
+            m_targetPosition = targetPosition;
+        }
 
         public override void OnStateEnter()
         {
+            m_nextActionTime = Time.time + Behaviour.m_screamDuration;
+            Monster.Scream();
+            Monster.SetHostileLevel(Monster.HostileLevel.Hostile);
         }
 
         public override void OnStateUpdate()
         {
+            if (Time.time > m_nextActionTime)
+            {
+                ChangeState(new ChaseBehaviourState(Behaviour, m_targetPosition)); 
+            }
         }
 
         public override void OnStateExit()
         {
+        }
+    }
+
+    
+    // ======== Chase State ========
+    
+    private class ChaseBehaviourState : BehaviourState
+    {
+        private readonly Vector3 m_initialTargetPosition;
+        
+        public ChaseBehaviourState(MonsterBehaviour behaviour, Vector3 targetPosition) : base(behaviour) {}
+
+        public override void OnStateEnter()
+        {
+            Monster.ChaseTo(m_initialTargetPosition);
+        }
+
+        public override void OnStateUpdate()
+        {
+            if (Monster.WithinPeripheralSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            {
+                Monster.ChaseTo(Behaviour.PlayerPosition);
+            }
+            else if (Monster.HasArrivedToTarget())
+            {
+                ChangeState(new TargetLostBehaviourState(Behaviour)); 
+            }
+        }
+
+        public override void OnStateExit()
+        {
+            Monster.CancelNavigation();
+        }
+    }
+    
+    // ======== Target Lost State ========
+    
+    private class TargetLostBehaviourState : BehaviourState
+    {
+        private float m_nextActionTime;
+        
+        public TargetLostBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
+
+        public override void OnStateEnter()
+        {
+            Debug.Log("HERE");
+            m_nextActionTime = Time.time + Behaviour.m_targetLostDuration;
+            Monster.HardLookAround(true);
+        }
+
+        public override void OnStateUpdate()
+        {
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            {
+                ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
+            }
+            else if (Time.time > m_nextActionTime)
+            {
+                ChangeState(new IdleBehaviourState(Behaviour, true));
+            }
+        }
+
+        public override void OnStateExit()
+        {
+            Monster.HardLookAround(false);
+            Monster.SetHostileLevel(Monster.HostileLevel.Calm);
         }
     }
 }

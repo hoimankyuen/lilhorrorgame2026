@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -21,7 +22,8 @@ public class Monster : MonoBehaviour
     
     private static readonly int MovementSpeedAnimParam = Animator.StringToHash("MovementSpeed");
     private static readonly int HostilityAnimParam = Animator.StringToHash("Hostility");
-    private static readonly int LookingAnimParam = Animator.StringToHash("Looking");
+    private static readonly int SoftLookingAnimParam = Animator.StringToHash("SoftLooking");
+    private static readonly int HardLookingAnimParam = Animator.StringToHash("HardLooking");
     private static readonly int ScreamingAnimParam = Animator.StringToHash("Screaming");
 
     [Header("Components")]
@@ -30,6 +32,7 @@ public class Monster : MonoBehaviour
     [SerializeField] private Animator m_rigAnimator;
     [SerializeField] private Animator m_tvAnimator;
     [SerializeField] private SpriteRenderer m_tvSpriteRenderer;
+    [SerializeField] private Light m_tvLight;
 
     [Header("Facing Settings")]
     [SerializeField] private float m_facingSpeed;
@@ -40,14 +43,21 @@ public class Monster : MonoBehaviour
     [SerializeField] private float m_chaseSpeed;
     
     [Header("Detection Settings")] 
-    [SerializeField] private float detectionAngle;
-    [SerializeField] private float detectionRange;
+    [SerializeField] private float forwardDetectionAngle;
+    [SerializeField] private float forwardDetectionRange;
+    [SerializeField] private float peripheralDetectionAngle;
+    [SerializeField] private float peripheralDetectionRange;
     
     [Header("TV Display Settings")] 
     [SerializeField] private int m_tvFPS;
     [SerializeField] private List<Sprite> m_blankTVSprites;
     [SerializeField] private List<Sprite> m_eyeTVSprites;
     [SerializeField] private List<Sprite> m_earTVSprites;
+    [SerializeField] private Color m_calmLightColour;
+    [SerializeField] private Color m_cautionLightColour;
+    [SerializeField] private Color m_alertLightColour;
+    [SerializeField] private Color m_hostileLightColour;
+
 
     private bool m_isFacing;
     private bool m_facingCompleted;
@@ -77,12 +87,12 @@ public class Monster : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        DrawDetectionGizmos();
+        Gizmos.color = Color.red;
+        DrawDetectionGizmos(forwardDetectionAngle, forwardDetectionRange);
+        DrawDetectionGizmos(peripheralDetectionAngle, peripheralDetectionRange);
     }
     
-    
     // ======== Facing ========
-
     
     public void LookAt(Vector3 target)
     {
@@ -157,16 +167,26 @@ public class Monster : MonoBehaviour
     
     // ======== Detection ========
     
-    public bool CanDetect(Vector3 characterPosition, float characterHeight)
+    public bool WithinForwardSight(Vector3 targetPosition, float targetHeight)
     {
-        if (Vector3.Distance(transform.position, characterPosition) > detectionRange)
+        return WithinSight(targetPosition, targetHeight, forwardDetectionAngle, forwardDetectionRange);
+    }
+
+    public bool WithinPeripheralSight(Vector3 targetPosition, float targetHeight)
+    {
+        return WithinSight(targetPosition, targetHeight, peripheralDetectionAngle, peripheralDetectionRange);
+    }
+
+    private bool WithinSight(Vector3 targetPosition, float targetHeight, float angle, float range)
+    {
+        if (Vector3.Distance(transform.position, targetPosition) > range)
             return false;
         
         Vector3 viewForward = Vector3.ProjectOnPlane(m_TVTransform.forward, Vector3.up).normalized;
-        if (Vector3.Angle(viewForward, characterPosition - transform.position) > detectionAngle)
+        if (Vector3.Angle(viewForward, targetPosition - transform.position) > angle)
             return false;
         
-        Vector3 characterHeadPosition = characterPosition + Vector3.up * characterHeight - m_TVTransform.position;
+        Vector3 characterHeadPosition = targetPosition + Vector3.up * targetHeight;
         Vector3 sightLine = characterHeadPosition - m_TVTransform.position;
         if (Physics.Raycast(m_TVTransform.position, sightLine.normalized, sightLine.magnitude))
             return false;
@@ -174,38 +194,42 @@ public class Monster : MonoBehaviour
         return true;
     }
     
-    private void DrawDetectionGizmos()
+    private void DrawDetectionGizmos(float angle, float range)
     {
-        Gizmos.color = Color.red;
         Vector3 forward = Vector3.ProjectOnPlane(m_TVTransform.forward, Vector3.up).normalized;
         Vector3 right = Vector3.ProjectOnPlane(m_TVTransform.right, Vector3.up).normalized;
         for (int i = -5; i < 5; i++)
         {
-            float angle1 = detectionAngle / 10f * i * Mathf.Deg2Rad;
-            float angle2 = detectionAngle / 10f * (i + 1) * Mathf.Deg2Rad;
+            float angle1 = angle / 10f * i * Mathf.Deg2Rad;
+            float angle2 = angle / 10f * (i + 1) * Mathf.Deg2Rad;
             if (i == -5)
             {
                 Gizmos.DrawLine(
                     transform.position,
-                    transform.position + forward * detectionRange * Mathf.Cos(angle1) + right * detectionRange * Mathf.Sin(angle1));
+                    transform.position + forward * range * Mathf.Cos(angle1) + right * range * Mathf.Sin(angle1));
             }
             Gizmos.DrawLine(
-                transform.position + forward * detectionRange * Mathf.Cos(angle1) + right * detectionRange * Mathf.Sin(angle1),
-                transform.position + forward * detectionRange * Mathf.Cos(angle2) + right * detectionRange * Mathf.Sin(angle2));
+                transform.position + forward * range * Mathf.Cos(angle1) + right * range * Mathf.Sin(angle1),
+                transform.position + forward * range * Mathf.Cos(angle2) + right * range * Mathf.Sin(angle2));
             if (i == 4)
             {
                 Gizmos.DrawLine(
                     transform.position,
-                    transform.position + forward * detectionRange * Mathf.Cos(angle2) + right * detectionRange * Mathf.Sin(angle2));
+                    transform.position + forward * range * Mathf.Cos(angle2) + right * range * Mathf.Sin(angle2));
             }
         }
     }
     
     // ======== Special Action ========
 
-    public void LookAround(bool look)
+    public void SoftLookAround(bool look)
     {
-        m_rigAnimator.SetBool(LookingAnimParam, look);
+        m_rigAnimator.SetBool(SoftLookingAnimParam, look);
+    }
+    
+    public void HardLookAround(bool look)
+    {
+        m_rigAnimator.SetBool(HardLookingAnimParam, look);
     }
     
     public void Scream()
@@ -264,5 +288,13 @@ public class Monster : MonoBehaviour
     public void SetHostileLevel(HostileLevel hostileLevel)
     {
         m_tvAnimator.SetInteger(HostilityAnimParam, (int)hostileLevel);
+        m_tvLight.DOColor(hostileLevel switch
+        {
+            HostileLevel.Calm => m_calmLightColour,
+            HostileLevel.Caution => m_cautionLightColour,
+            HostileLevel.Alert => m_alertLightColour,
+            HostileLevel.Hostile => m_hostileLightColour,
+            _ => m_calmLightColour
+        }, 0.25f);
     }
 }
