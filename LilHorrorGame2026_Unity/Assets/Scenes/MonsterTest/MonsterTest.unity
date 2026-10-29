@@ -978,6 +978,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableSelectionTest
   m_maxInteractionDistance: 1000
+  m_freeCast: 1
+  m_fpCharacter: {fileID: 0}
   m_camera: {fileID: 330585545}
   promptText: {fileID: 1234881547}
 --- !u!4 &698662720
@@ -1595,7 +1597,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 3aec30b3aba48584bb71da8724f76621, type: 2}
   m_BuildHeightMesh: 0
@@ -2388,6 +2390,14 @@ PrefabInstance:
     - target: {fileID: 1547603157307458434, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_Name
       value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626521924033727128, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0030349754
+      objectReference: {fileID: 0}
+    - target: {fileID: 1626521924033727128, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.27130884
       objectReference: {fileID: 0}
     - target: {fileID: 8904908070015712776, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_playerBodyTransform

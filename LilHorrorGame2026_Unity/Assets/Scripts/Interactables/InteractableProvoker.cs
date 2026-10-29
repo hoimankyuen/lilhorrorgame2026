@@ -17,8 +17,7 @@ public class InteractableProvoker : Provoker, IInteractableComponent
         m_interactable = GetComponent<Interactable>();
         m_interactable.SetSelectionPromptText(m_selectionPromptText);
         m_interactable.SetSelectionOutlineColour(m_selectionColour);
-        
-        Broadcast(true);
+        //Broadcast(true);
     }
     
     // ======== Selection =======

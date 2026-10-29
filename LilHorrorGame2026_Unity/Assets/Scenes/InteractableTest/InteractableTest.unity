@@ -302,7 +302,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 951
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -779,8 +779,9 @@ GameObject:
   m_Component:
   - component: {fileID: 698662720}
   - component: {fileID: 698662719}
+  - component: {fileID: 698662721}
   m_Layer: 0
-  m_Name: InteractableSelectionTest
+  m_Name: InteractableSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,6 +799,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3703c7f6c950eb43a792b9a6173d23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableSelectionTest
+  m_maxInteractionDistance: 1000
+  m_freeCast: 1
+  m_fpCharacter: {fileID: 0}
   m_camera: {fileID: 330585545}
   promptText: {fileID: 1234881547}
 --- !u!4 &698662720
@@ -815,6 +819,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 621077028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &698662721
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 698662718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997fb91078c36744c88115bf2adb6ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugProvokerActivator
+  m_camera: {fileID: 330585545}
 --- !u!1 &714251062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1374,7 +1391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8610882425564993601, guid: b9b1a2b1eea189b4cae3e9e365157bde, type: 3}
       propertyPath: m_Name
-      value: Phone
+      value: PhoneA
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
