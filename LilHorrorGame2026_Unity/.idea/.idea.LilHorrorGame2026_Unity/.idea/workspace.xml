@@ -10,30 +10,7 @@
     <configurations />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="650a6b3b-67d5-422b-8d32-629a507c533e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LilHorrorGame2026_Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LilHorrorGame2026_Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase_Active.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase_Active.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase_Cooldown.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase_Cooldown.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase_Idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/LureBase_Idle.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/ProvokerBase.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/ProvokerBase.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/ProvokerBase_Active.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/ProvokerBase_Active.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/ProvokerBase_Idle.anim" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animations/Items/ProvokerBase_Idle.anim.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PSX-Style Shader/HDRP.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/PSX-Style Shader/URP.unitypackage.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Phone.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/Phone.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/InteractableTest/InteractableTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/InteractableTest/InteractableTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/MonsterTest/MonsterTest.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MonsterTest/MonsterTest.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactables/InteractableProvoker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactables/InteractableProvoker.cs" afterDir="false" />
-    </list>
+    <list default="true" id="650a6b3b-67d5-422b-8d32-629a507c533e" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -139,7 +116,7 @@
       <workItem from="1793034464557" duration="3670000" />
       <workItem from="1793113532642" duration="375000" />
       <workItem from="1793188585215" duration="1501000" />
-      <workItem from="1793291852127" duration="1125000" />
+      <workItem from="1793291852127" duration="2150000" />
     </task>
     <servers />
   </component>

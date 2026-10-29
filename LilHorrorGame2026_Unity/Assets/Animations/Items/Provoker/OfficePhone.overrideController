@@ -6,7 +6,7 @@ AnimatorOverrideController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Phone
+  m_Name: OfficePhone
   m_Controller: {fileID: 9100000, guid: cc46935d1e1ec96428573f373f3dcbce, type: 2}
   m_Clips:
   - m_OriginalClip: {fileID: 7400000, guid: 3a53a9722a39fb047be7e2adaa53a413, type: 2}
