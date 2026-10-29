@@ -2388,10 +2388,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
-    - target: {fileID: 2443262168019319763, guid: 6f950c906df80274a80dc85508794aef, type: 3}
-      propertyPath: forwardDetectionAngle
-      value: 60
-      objectReference: {fileID: 0}
     - target: {fileID: 3265567948205786651, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_SpotAngle
       value: 60

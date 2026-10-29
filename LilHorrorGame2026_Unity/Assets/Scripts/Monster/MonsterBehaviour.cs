@@ -1,3 +1,5 @@
+using System.Text.RegularExpressions;
+using MoonlightTools.AttributeUtils;
 using MoonlightTools.MathTools;
 using UnityEngine;
 using UnityEngine.InputSystem.OnScreen;
@@ -23,8 +25,16 @@ public class MonsterBehaviour : MonoBehaviour
         {
             Behaviour.ChangeState(newState);
         }
+
+        public override string ToString()
+        {
+            return Regex.Replace(base.ToString().Replace("MonsterBehaviour+", ""), "(\\B[A-Z])", " $1");
+        }
     }
 
+    [Header("Status")] 
+    [SerializeField, Locked] private string m_currentStateName = "None";
+    
     [Header("Shared Settings")]
     [SerializeField] private Transform m_playerBodyTransform; // to be changed
     [SerializeField] private Transform m_playerHeadTransform; // to be changed
@@ -42,6 +52,10 @@ public class MonsterBehaviour : MonoBehaviour
     
     [Header("Wander State Settings")]
     [SerializeField] private MonsterPatrolPointSet m_wanderPatrolPointSet;
+    
+        
+    [Header("Investigate Completed State Settings")]
+    [SerializeField] private float m_investigateCompletedDuration;
     
     [Header("Look State Settings")]
     [SerializeField] private float m_lookDuration;
@@ -93,9 +107,11 @@ public class MonsterBehaviour : MonoBehaviour
             m_currentState?.OnStateEnter();
             m_nextState = null;
             m_changingState = false;
+
+            m_currentStateName = m_currentState != null ? m_currentState.ToString() : "None";
         }
     }
-
+    
     private void ChangeState(BehaviourState nextState)
     {
         m_nextState = nextState;
@@ -166,11 +182,14 @@ public class MonsterBehaviour : MonoBehaviour
         {
             if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
-                Behaviour.ChangeState(new SuspectBehaviourState(Behaviour));
+                ChangeState(new SuspectBehaviourState(Behaviour));
+            }
+            else if (Monster.CanHearLure(out Vector3 nearestLurePosition))
+            {
+                ChangeState(new InvestigateBehaviourState(Behaviour, nearestLurePosition));
             }
             else if (Time.time > m_nextActionTime)
             {
-                // note: require refactoring
                 float[] chances =
                 {
                     Behaviour.m_idleChance,
@@ -225,6 +244,10 @@ public class MonsterBehaviour : MonoBehaviour
             {
                 ChangeState(new SuspectBehaviourState(Behaviour));
             }
+            else if (Monster.CanHearLure(out Vector3 nearestLurePosition))
+            {
+                ChangeState(new InvestigateBehaviourState(Behaviour, nearestLurePosition));
+            }
             else if (Monster.HasLookedAt())
             {
                 ChangeState(new IdleBehaviourState(Behaviour)); 
@@ -260,6 +283,10 @@ public class MonsterBehaviour : MonoBehaviour
             {
                 ChangeState(new SuspectBehaviourState(Behaviour));
             }
+            else if (Monster.CanHearLure(out Vector3 nearestLurePosition))
+            {
+                ChangeState(new InvestigateBehaviourState(Behaviour, nearestLurePosition));
+            }
             else if (Monster.HasArrivedToTarget())
             {
                 ChangeState(new IdleBehaviourState(Behaviour)); 
@@ -293,6 +320,10 @@ public class MonsterBehaviour : MonoBehaviour
             {
                 ChangeState(new SuspectBehaviourState(Behaviour));
             }
+            else if (Monster.CanHearLure(out Vector3 nearestLurePosition))
+            {
+                ChangeState(new InvestigateBehaviourState(Behaviour, nearestLurePosition));
+            }
             else if (Time.time > m_nextActionTime)
             {
                 ChangeState(new IdleBehaviourState(Behaviour, true)); 
@@ -305,17 +336,89 @@ public class MonsterBehaviour : MonoBehaviour
         }
     }
     
+    // ======== Investigate State ========
+    
+    private class InvestigateBehaviourState : BehaviourState
+    {
+        private readonly Vector3 m_targetPosition;
+
+        public InvestigateBehaviourState(MonsterBehaviour behaviour, Vector3 targetPosition) : base(behaviour)
+        {
+            m_targetPosition = targetPosition;
+        }
+
+        public override void OnStateEnter()
+        {
+            Monster.RunTo(m_targetPosition);
+            Monster.SetHostileLevel(Monster.HostileLevel.Caution);
+        }
+
+        public override void OnStateUpdate()
+        {
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            {
+                ChangeState(new SuspectBehaviourState(Behaviour, true));
+            }
+            else if (Monster.HasArrivedToTarget())
+            {
+                ChangeState(new InvestigateCompletedBehaviourState(Behaviour)); 
+            }
+        }
+
+        public override void OnStateExit()
+        {
+            Monster.CancelNavigation();
+        }
+    }
+
+    // ======== Investigation Completed State ========
+    
+    private class InvestigateCompletedBehaviourState : BehaviourState
+    {
+        private float m_nextActionTime;
+        
+        public InvestigateCompletedBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
+
+        public override void OnStateEnter()
+        {
+            m_nextActionTime = Time.time + Behaviour.m_investigateCompletedDuration;
+            Monster.HardLookAround(true);
+        }
+
+        public override void OnStateUpdate()
+        {
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            {
+                ChangeState(new SuspectBehaviourState(Behaviour, true));
+            }
+            else if (Time.time > m_nextActionTime)
+            {
+                ChangeState(new IdleBehaviourState(Behaviour, true));
+            }
+        }
+
+        public override void OnStateExit()
+        {
+            Monster.HardLookAround(false);
+            Monster.SetHostileLevel(Monster.HostileLevel.Calm);
+        }
+    }
+    
     // ======== Suspect State ========
     
     private class SuspectBehaviourState : BehaviourState
     {
+        private readonly bool m_fromCaution;
         private float m_suspectProgress;
-        
-        public SuspectBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
+
+        public SuspectBehaviourState(MonsterBehaviour behaviour, bool fromCaution = false) : base(behaviour)
+        {
+            m_fromCaution = fromCaution;
+        }
 
         public override void OnStateEnter()
         {
-            m_suspectProgress = 0f;
+            m_suspectProgress = m_fromCaution ? 0.5f : 0f;
             Monster.LookAt(Behaviour.PlayerPosition);
         }
 
@@ -354,6 +457,39 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateExit()
         {
             Monster.CancelLookAt();
+        }
+    }
+    
+    // ======== Investigate Completed State ========
+    
+    private class InvestigateCompleteBehaviourState : BehaviourState
+    {
+        private float m_nextActionTime;
+        
+        public InvestigateCompleteBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
+
+        public override void OnStateEnter()
+        {
+            m_nextActionTime = Time.time + Behaviour.m_targetLostDuration;
+            Monster.HardLookAround(true);
+        }
+
+        public override void OnStateUpdate()
+        {
+            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
+            {
+                ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
+            }
+            else if (Time.time > m_nextActionTime)
+            {
+                ChangeState(new IdleBehaviourState(Behaviour, true));
+            }
+        }
+
+        public override void OnStateExit()
+        {
+            Monster.HardLookAround(false);
+            Monster.SetHostileLevel(Monster.HostileLevel.Calm);
         }
     }
     
@@ -411,7 +547,7 @@ public class MonsterBehaviour : MonoBehaviour
             }
             else if (Monster.HasArrivedToTarget())
             {
-                ChangeState(new TargetLostBehaviourState(Behaviour)); 
+                ChangeState(new TargetLostBehaviourState(Behaviour, false)); 
             }
         }
 
@@ -426,20 +562,40 @@ public class MonsterBehaviour : MonoBehaviour
     private class TargetLostBehaviourState : BehaviourState
     {
         private float m_nextActionTime;
-        
-        public TargetLostBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
+        private readonly bool m_directlyHostile;
+
+        public TargetLostBehaviourState(MonsterBehaviour behaviour, bool directlyHostile) : base(behaviour)
+        {
+            m_directlyHostile = directlyHostile;
+        }
 
         public override void OnStateEnter()
         {
             m_nextActionTime = Time.time + Behaviour.m_targetLostDuration;
             Monster.HardLookAround(true);
+            if (m_directlyHostile)
+            {
+                Monster.SetHostileLevel(Monster.HostileLevel.Hostile);
+            }
+            else
+            {
+                Monster.SetHostileLevel(Monster.HostileLevel.Calm);
+            }
         }
 
         public override void OnStateUpdate()
         {
             if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
-                ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
+                if (m_directlyHostile)
+                {
+                    ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
+                }
+                else
+                {
+                    ChangeState(new SuspectBehaviourState(Behaviour));
+
+                }
             }
             else if (Time.time > m_nextActionTime)
             {

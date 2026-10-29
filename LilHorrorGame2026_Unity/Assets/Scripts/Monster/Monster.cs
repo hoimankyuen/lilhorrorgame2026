@@ -57,12 +57,13 @@ public class Monster : MonoBehaviour
     [SerializeField] private Color m_cautionLightColour;
     [SerializeField] private Color m_alertLightColour;
     [SerializeField] private Color m_hostileLightColour;
-
-
+    
     private bool m_isFacing;
     private bool m_facingCompleted;
     private Quaternion m_targetRotation;
     private float m_facingVelocity;
+
+    private Lure m_nearestBroadcastingLure;
     
     private readonly List<int> m_tvSpriteIndices = new();
     private List<Sprite> m_CurrentTVSprites;
@@ -76,6 +77,14 @@ public class Monster : MonoBehaviour
         SetupTVSpriteIndices();
         SetTVSpriteSet(TVSpriteSet.Eye);
         SetHostileLevel(HostileLevel.Calm);
+
+        Lure.BroadcastingLuresChanged += OnBroadcastingLuresChanged;
+    }
+
+    private void OnDestroy()
+    {
+        Lure.BroadcastingLuresChanged -= OnBroadcastingLuresChanged;
+
     }
     
     private void Update()
@@ -218,6 +227,19 @@ public class Monster : MonoBehaviour
                     transform.position + forward * range * Mathf.Cos(angle2) + right * range * Mathf.Sin(angle2));
             }
         }
+    }
+    
+    // ======== Listening ========
+
+    private void OnBroadcastingLuresChanged()
+    {
+        m_nearestBroadcastingLure = Lure.GetNearestBroadcastingLure(transform.position);
+    }
+    
+    public bool CanHearLure(out Vector3 nearestLurePosition)
+    {
+        nearestLurePosition = m_nearestBroadcastingLure != null ? m_nearestBroadcastingLure.transform.position : Vector3.zero;
+        return m_nearestBroadcastingLure != null;
     }
     
     // ======== Special Action ========

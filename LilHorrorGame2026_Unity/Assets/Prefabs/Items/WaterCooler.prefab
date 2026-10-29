@@ -133,7 +133,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 621022337755755705, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_Name
-      value: WaterCooler Variant
+      value: WaterCooler
       objectReference: {fileID: 0}
     - target: {fileID: 6235674295907303053, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_LocalPosition.y

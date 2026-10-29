@@ -149,7 +149,7 @@ MonoBehaviour:
   m_walkSpeed: 1
   m_runSpeed: 4
   m_chaseSpeed: 6
-  forwardDetectionAngle: 40
+  forwardDetectionAngle: 60
   forwardDetectionRange: 15
   peripheralDetectionAngle: 160
   peripheralDetectionRange: 14
@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1f020622f608f41aa69f1e0a0373d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterBehaviour
+  m_currentStateName: NONE
   m_playerBodyTransform: {fileID: 0}
   m_playerHeadTransform: {fileID: 0}
   m_idleDuration:
@@ -199,6 +200,7 @@ MonoBehaviour:
   m_lookChance: 2
   m_minTurnAngle: 45
   m_wanderPatrolPointSet: {fileID: 0}
+  m_investigateCompletedDuration: 4
   m_lookDuration: 5
   m_screamDuration: 1.5
   m_suspectDuration: 1.5
