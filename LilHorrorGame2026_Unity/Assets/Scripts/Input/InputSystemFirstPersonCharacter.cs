@@ -70,7 +70,7 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         m_grounded = m_controller.isGrounded;
         if (m_grounded && m_velocity.y < 0)
         {
-            m_velocity.y = -2f;
+            m_velocity.y = 0f;
         }
 
         Vector2 movement = GetPlayerMovement();

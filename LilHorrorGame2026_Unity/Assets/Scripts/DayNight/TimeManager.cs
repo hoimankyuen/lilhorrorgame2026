@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class TimeManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI m_timeText;
@@ -39,12 +40,14 @@ public class TimeManager : MonoBehaviour {
     private void Update() {
         UpdateTimeOfDay();
         
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        /*
+        if (Keyboard.current.spaceKey.wasPressedThisFrame) {
             m_timeSettings.timeMultiplier *= 2;
         }
-        if (Input.GetKeyDown(KeyCode.LeftShift)) {
+        if (Keyboard.current.leftShiftKey.wasPressedThisFrame) {
             m_timeSettings.timeMultiplier /= 2;
         }
+        */
     }
 
     private void UpdateTimeOfDay() {
