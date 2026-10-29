@@ -63,14 +63,29 @@ public class SanitySystem : MonoBehaviour
     {
         if (add)
         {
+            if (m_currentSanity + amount > m_maxSanity)
+            {
+                return;
+            }
+
             m_currentSanity += amount;
         }
         else
         {
+            if (m_currentSanity == 0)
+            {
+                return;
+            }
+
             m_currentSanity -= amount;
         }
         
         OnSanityChanged?.Invoke(m_currentSanity);
+
+        if (m_currentSanity <= 0)
+        {
+            GameManager.Instance.LoseGame();
+        }
     }
 
     private void SetSanity(float amount)
