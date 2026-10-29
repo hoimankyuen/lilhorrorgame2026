@@ -24,6 +24,7 @@ public class SanitySystem : MonoBehaviour
         Provoker.BroadcastingProvokerAdded += OnProvokerAdded;
         Provoker.BroadcastingProvokerRemoved += OnProvokerRemoved;
         Provoker.BroadcastingProvokerChanged += OnProvokersChanged;
+        InteractableLure.OnLureInteracted += OnLureInteracted;
     }
 
     private void OnDisable()
@@ -31,6 +32,7 @@ public class SanitySystem : MonoBehaviour
         Provoker.BroadcastingProvokerAdded -= OnProvokerAdded;
         Provoker.BroadcastingProvokerRemoved -= OnProvokerRemoved;
         Provoker.BroadcastingProvokerChanged -= OnProvokersChanged;
+        InteractableLure.OnLureInteracted -= OnLureInteracted;
     }
 
     private void OnProvokerAdded(float amount)
@@ -46,6 +48,11 @@ public class SanitySystem : MonoBehaviour
     private void OnProvokersChanged()
     {
         
+    }
+
+    private void OnLureInteracted(float amount)
+    {
+        ChangeSanity(amount, true);
     }
 
     private void Reset()
@@ -65,6 +72,7 @@ public class SanitySystem : MonoBehaviour
         {
             if (m_currentSanity + amount > m_maxSanity)
             {
+                SetSanity(m_maxSanity);
                 return;
             }
 
@@ -77,7 +85,14 @@ public class SanitySystem : MonoBehaviour
                 return;
             }
 
-            m_currentSanity -= amount;
+            if (m_currentSanity - amount < 0)
+            {
+                SetSanity(0);
+            }
+            else
+            {
+                m_currentSanity -= amount;
+            }
         }
         
         OnSanityChanged?.Invoke(m_currentSanity);
