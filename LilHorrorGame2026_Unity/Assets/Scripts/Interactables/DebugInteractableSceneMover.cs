@@ -8,6 +8,7 @@ public class DebugInteractableSceneMover : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] private float m_moveSpeed;
+    [SerializeField] private float m_rotateSpeed;
     
     void Update()
     {
@@ -28,6 +29,15 @@ public class DebugInteractableSceneMover : MonoBehaviour
         {
             m_camera.transform.Translate(Vector3.back * (m_moveSpeed * Time.deltaTime));
         }
-        
+
+        if (Keyboard.current.qKey.isPressed)
+        {
+            m_camera.transform.Rotate(Vector3.down, m_rotateSpeed * Time.deltaTime);
+        }
+        else if (Keyboard.current.eKey.isPressed)
+        {
+            m_camera.transform.Rotate(Vector3.up, m_rotateSpeed * Time.deltaTime);
+
+        }
     }
 }

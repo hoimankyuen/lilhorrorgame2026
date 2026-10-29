@@ -1171,6 +1171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DebugInteractableSceneMover
   m_camera: {fileID: 330585545}
   m_moveSpeed: 5
+  m_rotateSpeed: 90
 --- !u!1 &1848605803
 GameObject:
   m_ObjectHideFlags: 0
