@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class WallClock : MonoBehaviour
 {
-    [Header("References")] 
+    [Header("References")]
+    [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioClip m_minuteHandTick;
+    [SerializeField] private AudioClip m_hourChime;
     [SerializeField] private Transform m_minuteHand;
     [SerializeField] private Transform m_hourHand;
     [SerializeField] private TimeManager m_timeManager;
+    
+    [Header("Settings")]
     [SerializeField] private float m_minuteHandOffset;
     [SerializeField] private float m_hourHandOffset;
 
@@ -28,6 +33,8 @@ public class WallClock : MonoBehaviour
 
     private void OnMinuteChanged()
     {
+        m_audioSource.PlayOneShot(m_minuteHandTick);
+        
         DateTime currentTime = m_timeManager.GetTimeOfDay();
         
         float minutes = currentTime.Minute;
@@ -42,7 +49,7 @@ public class WallClock : MonoBehaviour
 
     private void OnHourChanged()
     {
-        
+        m_audioSource.PlayOneShot(m_hourChime);
     }
 
     private void SubscribeEvents()
