@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class SoundParticleEffect : MonoBehaviour
 {
-     [SerializeField] private ParticleSystem m_particle;
+     [SerializeField] private ParticleSystem m_normalParticle;
+     [SerializeField] private ParticleSystem m_enlargedParticle;
      [SerializeField] private float m_billboardOffset;
 
      private Camera m_camera;
@@ -14,7 +15,8 @@ public class SoundParticleEffect : MonoBehaviour
      private void Awake()
      {
           m_camera = Camera.main;
-          m_particle.transform.localPosition = Vector3.forward * m_billboardOffset;
+          m_normalParticle.transform.localPosition = Vector3.forward * m_billboardOffset;
+          m_enlargedParticle.transform.localPosition = Vector3.forward * m_billboardOffset;
      }
      
      private void Update()
@@ -40,11 +42,13 @@ public class SoundParticleEffect : MonoBehaviour
           m_isPlaying = play;
           if (play)
           {
-               m_particle.Play();
+               m_normalParticle.Play();
+               m_enlargedParticle.Play();
           }
           else
           {
-               m_particle.Stop();
+               m_normalParticle.Stop();
+               m_enlargedParticle.Stop();
           }
      }
 }

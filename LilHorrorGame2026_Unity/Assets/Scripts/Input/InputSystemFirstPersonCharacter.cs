@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharacterController))]
 public class InputSystemFirstPersonCharacter : MonoBehaviour
 {
-    private InputSystemFirstPersonControls m_inputActions;
+    public InputSystemFirstPersonControls InputActions { get; private set; }
 
     [Header("References")]
     [SerializeField] private CharacterController m_controller;
@@ -36,7 +36,7 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
 
     private void Awake()
     {
-        m_inputActions = new InputSystemFirstPersonControls();
+        InputActions = new InputSystemFirstPersonControls();
     }
     private void Start()
     {
@@ -57,12 +57,12 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     
     private void OnEnable()
     {
-        m_inputActions.Enable();
+        InputActions.Enable();
     }
     
     private void OnDisable()
     {
-        m_inputActions.Disable();
+        InputActions.Disable();
     }
     
     private void DoMovement()
@@ -78,7 +78,7 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
 
         float totalMoveSpeed = m_movementSpeed;
         
-        if (m_inputActions.FPSController.Run.ReadValue<float>() > 0 && Mathf.Approximately(m_controller.height, m_initHeight))
+        if (InputActions.FPSController.Run.ReadValue<float>() > 0 && Mathf.Approximately(m_controller.height, m_initHeight))
         {
             totalMoveSpeed = m_movementSpeed * 2;
         }
@@ -113,13 +113,13 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
 
     private void DoZoom()
     {
-        m_targetFOV = m_inputActions.FPSController.Zoom.ReadValue<float>() > 0 ? m_zoomFOV : m_baseFOV;
+        m_targetFOV = InputActions.FPSController.Zoom.ReadValue<float>() > 0 ? m_zoomFOV : m_baseFOV;
         UpdateZoom();
     }
     
     private void DoCrouch()
     {
-        bool wantToCrouch = m_inputActions.FPSController.Crouch.ReadValue<float>() > 0;
+        bool wantToCrouch = InputActions.FPSController.Crouch.ReadValue<float>() > 0;
         float targetHeight = wantToCrouch || IsCeilingBlocked() ? m_crouchHeight : m_initHeight;
 
         float newHeight = Mathf.MoveTowards(m_controller.height, targetHeight, m_crouchSpeed * Time.deltaTime);
@@ -164,11 +164,11 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
 
     private Vector2 GetPlayerMovement()
     {
-        return m_inputActions.FPSController.Move.ReadValue<Vector2>();
+        return InputActions.FPSController.Move.ReadValue<Vector2>();
     }
 
     private Vector2 GetPlayerLook()
     {
-        return m_inputActions.FPSController.Look.ReadValue<Vector2>();
+        return InputActions.FPSController.Look.ReadValue<Vector2>();
     }
 }

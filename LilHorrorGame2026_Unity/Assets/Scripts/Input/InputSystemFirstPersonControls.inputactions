@@ -37,9 +37,29 @@
                     "priority": 0
                 },
                 {
+                    "name": "Listen",
+                    "type": "Button",
+                    "id": "366dc6ad-729f-4a1c-900c-36ad3de340b2",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
                     "name": "Crouch",
                     "type": "Button",
                     "id": "c863efc0-5558-4bfd-9e1f-2f090a5f5683",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false,
+                    "priority": 0
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "97521d18-f170-4660-878c-e9625d7529f4",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -224,6 +244,28 @@
                 },
                 {
                     "name": "",
+                    "id": "8681e61e-74f7-4325-956e-cb819ed8bbb1",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FPSControllerInputs;Gamepad",
+                    "action": "Listen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "88b6482b-2d4b-4b60-8e6e-6248f0d0f1d3",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FPSControllerInputs;K + M",
+                    "action": "Listen",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "50e54fa5-3989-4d41-8bca-89dbd9160957",
                     "path": "<Gamepad>/leftTrigger",
                     "interactions": "",
@@ -241,6 +283,39 @@
                     "processors": "",
                     "groups": "FPSControllerInputs;K + M",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4dfe25fc-eb27-40ca-9eb0-86521928aa43",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FPSControllerInputs;Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97e1414b-c999-4b55-aea8-a11572e5c31e",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FPSControllerInputs;K + M",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1de85ed8-ac00-4edc-a302-c175c5ce360c",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "FPSControllerInputs;K + M",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

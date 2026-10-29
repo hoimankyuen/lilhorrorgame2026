@@ -6,19 +6,29 @@ public class InteractableSelection : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] private float m_maxInteractionDistance = 2f;
+    [SerializeField] private bool m_freeCast;
     
     [Header("References")]
+    [SerializeField] private InputSystemFirstPersonCharacter m_fpCharacter;
     [SerializeField] private Camera m_camera;
     [SerializeField] private TMP_Text promptText;
     
     private Interactable m_selectedInteractable;
+
+    private InputSystemFirstPersonControls InputActions => m_fpCharacter != null ? m_fpCharacter.InputActions : null;
+
+    // ======== Unity Events ========
     
     private void Update()
     {
-        Ray mouseRay = m_camera.ScreenPointToRay(Mouse.current.position.value);
-        DetectInteractable(mouseRay);
+        Ray ray = m_freeCast
+            ? m_camera.ScreenPointToRay(Mouse.current.position.value)
+            : m_camera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 1f));
+        DetectInteractable(ray);
     }
 
+    // ======== Detection ========
+    
     private void DetectInteractable(Ray ray)
     {
         Interactable newSelectedInteractable = null;
@@ -53,13 +63,15 @@ public class InteractableSelection : MonoBehaviour
 
         if (m_selectedInteractable != null)
         {
-            if (Mouse.current.leftButton.isPressed)
+            if (InputActions != null ? InputActions.FPSController.Interact.WasPressedThisFrame() : Mouse.current.leftButton.isPressed)
             {
                 m_selectedInteractable.Interact();
                 m_selectedInteractable.Select(true);
             }
         }
     }
+    
+    // ======== Appearance ========
 
     private void ChangePromptText(string text)
     {

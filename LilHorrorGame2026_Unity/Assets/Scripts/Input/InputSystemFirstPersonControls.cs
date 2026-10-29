@@ -123,9 +123,29 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                     ""priority"": 0
                 },
                 {
+                    ""name"": ""Listen"",
+                    ""type"": ""Button"",
+                    ""id"": ""366dc6ad-729f-4a1c-900c-36ad3de340b2"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
                     ""name"": ""Crouch"",
                     ""type"": ""Button"",
                     ""id"": ""c863efc0-5558-4bfd-9e1f-2f090a5f5683"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""97521d18-f170-4660-878c-e9625d7529f4"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -310,6 +330,28 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8681e61e-74f7-4325-956e-cb819ed8bbb1"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;Gamepad"",
+                    ""action"": ""Listen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""88b6482b-2d4b-4b60-8e6e-6248f0d0f1d3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;K + M"",
+                    ""action"": ""Listen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""50e54fa5-3989-4d41-8bca-89dbd9160957"",
                     ""path"": ""<Gamepad>/leftTrigger"",
                     ""interactions"": """",
@@ -327,6 +369,39 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                     ""processors"": """",
                     ""groups"": ""FPSControllerInputs;K + M"",
                     ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4dfe25fc-eb27-40ca-9eb0-86521928aa43"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""97e1414b-c999-4b55-aea8-a11572e5c31e"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;K + M"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1de85ed8-ac00-4edc-a302-c175c5ce360c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;K + M"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -412,7 +487,9 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
         m_FPSController_Move = m_FPSController.FindAction("Move", throwIfNotFound: true);
         m_FPSController_Look = m_FPSController.FindAction("Look", throwIfNotFound: true);
         m_FPSController_Zoom = m_FPSController.FindAction("Zoom", throwIfNotFound: true);
+        m_FPSController_Listen = m_FPSController.FindAction("Listen", throwIfNotFound: true);
         m_FPSController_Crouch = m_FPSController.FindAction("Crouch", throwIfNotFound: true);
+        m_FPSController_Interact = m_FPSController.FindAction("Interact", throwIfNotFound: true);
         m_FPSController_PauseMenu = m_FPSController.FindAction("PauseMenu", throwIfNotFound: true);
         m_FPSController_Run = m_FPSController.FindAction("Run", throwIfNotFound: true);
     }
@@ -498,7 +575,9 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
     private readonly InputAction m_FPSController_Move;
     private readonly InputAction m_FPSController_Look;
     private readonly InputAction m_FPSController_Zoom;
+    private readonly InputAction m_FPSController_Listen;
     private readonly InputAction m_FPSController_Crouch;
+    private readonly InputAction m_FPSController_Interact;
     private readonly InputAction m_FPSController_PauseMenu;
     private readonly InputAction m_FPSController_Run;
     /// <summary>
@@ -525,9 +604,17 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
         /// </summary>
         public InputAction @Zoom => m_Wrapper.m_FPSController_Zoom;
         /// <summary>
+        /// Provides access to the underlying input action "FPSController/Listen".
+        /// </summary>
+        public InputAction @Listen => m_Wrapper.m_FPSController_Listen;
+        /// <summary>
         /// Provides access to the underlying input action "FPSController/Crouch".
         /// </summary>
         public InputAction @Crouch => m_Wrapper.m_FPSController_Crouch;
+        /// <summary>
+        /// Provides access to the underlying input action "FPSController/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_FPSController_Interact;
         /// <summary>
         /// Provides access to the underlying input action "FPSController/PauseMenu".
         /// </summary>
@@ -571,9 +658,15 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
             @Zoom.started += instance.OnZoom;
             @Zoom.performed += instance.OnZoom;
             @Zoom.canceled += instance.OnZoom;
+            @Listen.started += instance.OnListen;
+            @Listen.performed += instance.OnListen;
+            @Listen.canceled += instance.OnListen;
             @Crouch.started += instance.OnCrouch;
             @Crouch.performed += instance.OnCrouch;
             @Crouch.canceled += instance.OnCrouch;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
             @PauseMenu.started += instance.OnPauseMenu;
             @PauseMenu.performed += instance.OnPauseMenu;
             @PauseMenu.canceled += instance.OnPauseMenu;
@@ -600,9 +693,15 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
             @Zoom.started -= instance.OnZoom;
             @Zoom.performed -= instance.OnZoom;
             @Zoom.canceled -= instance.OnZoom;
+            @Listen.started -= instance.OnListen;
+            @Listen.performed -= instance.OnListen;
+            @Listen.canceled -= instance.OnListen;
             @Crouch.started -= instance.OnCrouch;
             @Crouch.performed -= instance.OnCrouch;
             @Crouch.canceled -= instance.OnCrouch;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
             @PauseMenu.started -= instance.OnPauseMenu;
             @PauseMenu.performed -= instance.OnPauseMenu;
             @PauseMenu.canceled -= instance.OnPauseMenu;
@@ -697,12 +796,26 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnZoom(InputAction.CallbackContext context);
         /// <summary>
+        /// Method invoked when associated input action "Listen" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnListen(InputAction.CallbackContext context);
+        /// <summary>
         /// Method invoked when associated input action "Crouch" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnCrouch(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "PauseMenu" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
