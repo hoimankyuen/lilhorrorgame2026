@@ -197,10 +197,7 @@ public class Monster : MonoBehaviour
         
         Vector3 characterHeadPosition = targetPosition + Vector3.up * targetHeight;
         Vector3 sightLine = characterHeadPosition - m_TVTransform.position;
-        if (Physics.Raycast(m_TVTransform.position, sightLine.normalized, sightLine.magnitude))
-            return false;
-
-        return true;
+        return !Physics.Raycast(m_TVTransform.position, sightLine.normalized, sightLine.magnitude);
     }
     
     private void DrawDetectionGizmos(float angle, float range)

@@ -33,7 +33,6 @@ public class WallClock : MonoBehaviour
         float minutes = currentTime.Minute;
         float hours = currentTime.Hour;
         
-        Debug.Log("Hour: " + hours + " Minutes: " + minutes);
         m_minuteHand.localRotation = Quaternion.Euler(m_minuteHand.rotation.x, m_minuteHand.rotation.y, minutes * 6f);
 
         float targetRot = hours * (360f / 12f) - m_hourHandOffset;
