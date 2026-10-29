@@ -185,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d1f020622f608f41aa69f1e0a0373d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterBehaviour
-  m_currentStateName: NONE
+  m_currentStateName: None
   m_playerBodyTransform: {fileID: 0}
   m_playerHeadTransform: {fileID: 0}
   m_idleDuration:
