@@ -97,7 +97,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableLure
   m_animator: {fileID: 2300920928055717237}
   m_soundParticleEffect: {fileID: 6968182686081424143}
-  m_maxRange: 10
+  m_maxRange: 30
   m_activeAnimationParam: Active
   m_normalSelectionPromptText: Use
   m_usedSelectionPromptText: Item in used
