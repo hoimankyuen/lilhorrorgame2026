@@ -1,7 +1,9 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class Monster : MonoBehaviour
 {
@@ -343,6 +345,14 @@ public class Monster : MonoBehaviour
         if (m_tvLightRotations.Count > 20)
         {
             m_tvLightRotations.Dequeue();
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.LoseGame();
         }
     }
 }
