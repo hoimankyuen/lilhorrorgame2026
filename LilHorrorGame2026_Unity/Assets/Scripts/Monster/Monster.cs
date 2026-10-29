@@ -32,6 +32,7 @@ public class Monster : MonoBehaviour
     [SerializeField] private Animator m_rigAnimator;
     [SerializeField] private Animator m_tvAnimator;
     [SerializeField] private SpriteRenderer m_tvSpriteRenderer;
+    [SerializeField] private Transform m_tvLightTransform;
     [SerializeField] private Light m_tvLight;
 
     [Header("Facing Settings")]
@@ -69,6 +70,7 @@ public class Monster : MonoBehaviour
     private List<Sprite> m_CurrentTVSprites;
     private int m_currentTVSpriteIndicesIndex = 0;
     private float m_lastTVSpriteTime;
+    private readonly Queue<Quaternion> m_tvLightRotations = new();
 
     // ======== Unity Events ========
 
@@ -92,6 +94,7 @@ public class Monster : MonoBehaviour
         UpdateFacing();
         UpdateMovementAnimation();
         ShowNextTVSprite();
+        StabilizeTVLight();
     }
 
     private void OnDrawGizmos()
@@ -201,7 +204,7 @@ public class Monster : MonoBehaviour
         {
             return hit.collider.gameObject.layer == LayerMask.NameToLayer("Player");
         }
-        return false;
+        return true;
     }
     
     private void DrawDetectionGizmos(float angle, float range)
@@ -319,5 +322,27 @@ public class Monster : MonoBehaviour
             HostileLevel.Hostile => m_hostileLightColour,
             _ => m_calmLightColour
         }, 0.25f);
+    }
+
+    private void StabilizeTVLight()
+    {
+        if (m_tvLightRotations.Count > 0)
+        {
+            Quaternion average = m_tvLightTransform.rotation;
+            int i = 0;
+            foreach (Quaternion rotation in m_tvLightRotations)
+            {
+                i++;
+                float weight = 1.0f / i;
+                average = Quaternion.Slerp(average, rotation, weight);
+            }
+            m_tvLight.transform.rotation = average;
+        }
+        
+        m_tvLightRotations.Enqueue(m_tvLightTransform.rotation);
+        if (m_tvLightRotations.Count > 20)
+        {
+            m_tvLightRotations.Dequeue();
+        }
     }
 }

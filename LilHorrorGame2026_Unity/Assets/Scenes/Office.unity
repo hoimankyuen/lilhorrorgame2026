@@ -16448,11 +16448,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1626521924033727128, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.005594954
+      value: -0.003035292
       objectReference: {fileID: 0}
     - target: {fileID: 1626521924033727128, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.22300003
+      value: 0.27130887
       objectReference: {fileID: 0}
     - target: {fileID: 2490479888693471332, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalPosition.z
@@ -24927,7 +24927,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 311
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
@@ -24936,7 +24936,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.06666667
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 670131bd0d01909edb18e179ab076737, type: 2}
   m_BuildHeightMesh: 0
