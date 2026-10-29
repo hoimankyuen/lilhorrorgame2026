@@ -9,7 +9,7 @@ public class CharacterRigidbodyPush : MonoBehaviour
     [Tooltip("Only push objects on these layers (e.g. a 'Door' layer).")]
     [SerializeField] LayerMask m_pushLayers = ~0;
  
-    void OnControllerColliderHit(ControllerColliderHit hit)
+    private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody rb = hit.collider.attachedRigidbody;
         if (rb == null || rb.isKinematic) return;

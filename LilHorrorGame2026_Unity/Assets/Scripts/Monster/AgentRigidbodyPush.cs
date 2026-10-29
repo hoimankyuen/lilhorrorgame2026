@@ -13,12 +13,12 @@ public class AgentRigidbodyPush : MonoBehaviour
     [Tooltip("Below this speed the agent counts as stationary and doesn't push.")]
     [SerializeField] float m_minSpeed = 0.1f;
  
-    void Reset()
+    private void Reset()
     {
         m_agent = GetComponentInParent<NavMeshAgent>();
     }
  
-    void OnTriggerStay(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         Rigidbody rb = other.attachedRigidbody;
         if (rb == null || rb.isKinematic) return;
