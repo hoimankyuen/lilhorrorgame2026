@@ -959,7 +959,7 @@ GameObject:
   - component: {fileID: 698662720}
   - component: {fileID: 698662719}
   m_Layer: 0
-  m_Name: InteractableSelectionTest
+  m_Name: InteractableSelection
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -977,6 +977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3703c7f6c950eb43a792b9a6173d23d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractableSelectionTest
+  m_maxInteractionDistance: 1000
   m_camera: {fileID: 330585545}
   promptText: {fileID: 1234881547}
 --- !u!4 &698662720
