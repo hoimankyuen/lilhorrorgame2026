@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RotaryPhone
+  m_Controller: {fileID: 9100000, guid: cc46935d1e1ec96428573f373f3dcbce, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3a53a9722a39fb047be7e2adaa53a413, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: e44207f4f37e30e49a567e7438622ae1, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 482da30f2bd7acc47b1c60de68ef1e43, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 773d6d2eab24c1146940912a33a8b7cc, type: 2}

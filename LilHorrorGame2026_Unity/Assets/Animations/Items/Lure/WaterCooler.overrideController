@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: WaterCooler
+  m_Controller: {fileID: 9100000, guid: ac4a4f920a394ae4b9e85f60ec08e4fb, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: 3f8fef3419295c64d8fae65f1ef5a2d6, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 04dee4e92b0b2914cb2f80f02abe8ad9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 1406f0ef6a839e741abd282c69b3ed4d, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 14493fa99d110cf41875952e443ec5ae, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 154c66b869f336248bb094c4365c597b, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a4250aa88da95ea419e0fdfe1f579243, type: 2}
