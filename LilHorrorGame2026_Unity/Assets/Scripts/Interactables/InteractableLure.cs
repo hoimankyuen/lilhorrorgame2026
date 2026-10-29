@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Interactable))]
 public class InteractableLure : Lure, IInteractableComponent
 {
+    public static event Action<float> OnLureInteracted; 
+    
     [Header("Interactable Lure Settings")]
     [SerializeField] private string m_normalSelectionPromptText;
     [SerializeField] private string m_usedSelectionPromptText;
@@ -14,6 +17,8 @@ public class InteractableLure : Lure, IInteractableComponent
     [Space]
     [SerializeField] private float m_duration;
     [SerializeField] private float m_cooldown;
+
+    [Space] [SerializeField] private float m_sanityAmount = 20f;
     
     private Interactable m_interactable;
     private Coroutine m_broadcastCoroutine;
@@ -43,6 +48,8 @@ public class InteractableLure : Lure, IInteractableComponent
             return;
         
         m_broadcastCoroutine = StartCoroutine(BroadcastSequence());
+        
+        OnLureInteracted?.Invoke(m_sanityAmount);
     }
     
     private IEnumerator BroadcastSequence()
