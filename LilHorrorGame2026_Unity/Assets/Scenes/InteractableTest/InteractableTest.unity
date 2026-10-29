@@ -728,6 +728,8 @@ Transform:
   m_Children:
   - {fileID: 330585546}
   - {fileID: 698662720}
+  - {fileID: 1414042447}
+  - {fileID: 1566591446}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &665186693 stripped
@@ -779,7 +781,6 @@ GameObject:
   m_Component:
   - component: {fileID: 698662720}
   - component: {fileID: 698662719}
-  - component: {fileID: 698662721}
   m_Layer: 0
   m_Name: InteractableSelection
   m_TagString: Untagged
@@ -819,19 +820,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 621077028}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &698662721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 698662718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 997fb91078c36744c88115bf2adb6ce0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DebugProvokerActivator
-  m_camera: {fileID: 330585545}
 --- !u!1 &714251062
 GameObject:
   m_ObjectHideFlags: 0
@@ -1086,6 +1074,97 @@ Transform:
   - {fileID: 455333937}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1414042446
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1414042447}
+  - component: {fileID: 1414042448}
+  m_Layer: 0
+  m_Name: DebugActivator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1414042447
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414042446}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 621077028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414042448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414042446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 997fb91078c36744c88115bf2adb6ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugProvokerActivator
+  m_camera: {fileID: 330585545}
+--- !u!1 &1566591445
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1566591446}
+  - component: {fileID: 1566591447}
+  m_Layer: 0
+  m_Name: DebugSceneMover
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1566591446
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566591445}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 621077028}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1566591447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1566591445}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea0dc72aced85f54cb1e10a8b020e242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugInteractableSceneMover
+  m_camera: {fileID: 330585545}
+  m_moveSpeed: 5
 --- !u!1 &1848605803
 GameObject:
   m_ObjectHideFlags: 0
