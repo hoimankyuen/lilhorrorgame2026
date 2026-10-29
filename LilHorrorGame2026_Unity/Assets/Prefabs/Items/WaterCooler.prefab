@@ -113,6 +113,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: ee7db749727683f439daaf2586a8faa1, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4804d3d2aaa082ebe818dce51aba8cb0, type: 2}
     - target: {fileID: 919132149155446097, guid: ee7db749727683f439daaf2586a8faa1, type: 3}
       propertyPath: m_Name
       value: water_cooler_bottle_attached
@@ -138,6 +142,10 @@ PrefabInstance:
     - target: {fileID: 621022337755755705, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_Name
       value: WaterCooler
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_usedSelectionPromptText
+      value: Item in use
       objectReference: {fileID: 0}
     - target: {fileID: 6235674295907303053, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_LocalPosition.y
@@ -192,7 +200,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8172000257258343549, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1084459659754526576}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 621022337755755705, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6607692645220421639}
   m_SourcePrefab: {fileID: 100100000, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
 --- !u!4 &1416580456920613537 stripped
 Transform:
@@ -204,3 +215,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6015198496373591363, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
   m_PrefabInstance: {fileID: 7115813323660807900}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7664601011495434853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 621022337755755705, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+  m_PrefabInstance: {fileID: 7115813323660807900}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &6607692645220421639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664601011495434853}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 2, z: 0.5}
+  m_Center: {x: 0, y: 1, z: 0}
