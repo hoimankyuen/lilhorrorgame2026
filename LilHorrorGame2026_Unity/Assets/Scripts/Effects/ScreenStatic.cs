@@ -7,9 +7,12 @@ public class ScreenStatic : MonoBehaviour
 {
     [Header("Components")]
     [SerializeField] private SpriteRenderer m_staticSpriteRenderer;
+
+    [Header("Settings")]
+    [SerializeField] private int m_staticFPS = 24;
+    [SerializeField] private int m_staticFrames = 4;
     
-    [Header("Settings")] 
-    [SerializeField] private int m_staticFPS;
+    [Space]
     [SerializeField] private ScreenStaticSpriteSet m_blankSpriteSet;
     [SerializeField] private ScreenStaticSpriteSet m_imageSpriteSet;
     [SerializeField] private RangedFloat m_toImageDuration;
@@ -57,7 +60,7 @@ public class ScreenStatic : MonoBehaviour
     
     private void SetupSpriteIndices()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < m_staticFrames; i++)
         {
             m_spriteIndices.Add(i);
         }
@@ -79,7 +82,7 @@ public class ScreenStatic : MonoBehaviour
             return;
             
         m_currentIndicesIndex++;
-        if (m_currentIndicesIndex >= 4)
+        if (m_currentIndicesIndex >= m_staticFrames)
         {
             m_currentIndicesIndex = 0;
             ShuffleSpriteIndices();

@@ -11,11 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="650a6b3b-67d5-422b-8d32-629a507c533e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.LilHorrorGame2026_Unity/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.LilHorrorGame2026_Unity/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Items/TV.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Items/TV.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Monsters/Monster.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Monsters/Monster.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Office.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Office.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Monster/Monster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Monster/Monster.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Effects/ScreenStatic.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Effects/ScreenStatic.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +121,7 @@
       <workItem from="1793034464557" duration="3670000" />
       <workItem from="1793113532642" duration="375000" />
       <workItem from="1793188585215" duration="1501000" />
-      <workItem from="1793291852127" duration="6564000" />
+      <workItem from="1793291852127" duration="7316000" />
     </task>
     <servers />
   </component>
