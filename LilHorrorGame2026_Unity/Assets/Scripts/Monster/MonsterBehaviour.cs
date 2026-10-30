@@ -34,7 +34,7 @@ public class MonsterBehaviour : MonoBehaviour
 
     [Header("Status")] 
     [SerializeField, Locked] private string m_currentStateName = "None";
-    
+
     [Header("Shared Settings")]
     [SerializeField] private Transform m_playerBodyTransform; // to be changed
     [SerializeField] private Transform m_playerHeadTransform; // to be changed
@@ -351,7 +351,7 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateEnter()
         {
             Monster.RunTo(m_targetPosition);
-            Monster.SetHostileLevel(Monster.HostileLevel.Caution);
+            Monster.SetHostileLevel(HostileLevel.Caution);
         }
 
         public override void OnStateUpdate()
@@ -401,7 +401,7 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateExit()
         {
             Monster.HardLookAround(false);
-            Monster.SetHostileLevel(Monster.HostileLevel.Calm);
+            Monster.SetHostileLevel(HostileLevel.Calm);
         }
     }
     
@@ -441,13 +441,13 @@ public class MonsterBehaviour : MonoBehaviour
                     ChangeState(new IdleBehaviourState(Behaviour, true));
                     break;
                 case > 0f and <= 0.1f:
-                    Monster.SetHostileLevel(Monster.HostileLevel.Calm);
+                    Monster.SetHostileLevel(HostileLevel.Calm);
                     break;
                 case > 0.1f and <= 0.5f:
-                    Monster.SetHostileLevel(Monster.HostileLevel.Caution);
+                    Monster.SetHostileLevel(HostileLevel.Caution);
                     break;
                 case > 0.5f and < 1f:
-                    Monster.SetHostileLevel(Monster.HostileLevel.Alert);
+                    Monster.SetHostileLevel(HostileLevel.Alert);
                     break;
                 default:
                     ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
@@ -477,7 +477,7 @@ public class MonsterBehaviour : MonoBehaviour
         {
             m_nextActionTime = Time.time + Behaviour.m_screamDuration;
             Monster.Scream();
-            Monster.SetHostileLevel(Monster.HostileLevel.Hostile);
+            Monster.SetHostileLevel(HostileLevel.Hostile);
         }
 
         public override void OnStateUpdate()
@@ -498,8 +498,11 @@ public class MonsterBehaviour : MonoBehaviour
     private class ChaseBehaviourState : BehaviourState
     {
         private readonly Vector3 m_initialTargetPosition;
-        
-        public ChaseBehaviourState(MonsterBehaviour behaviour, Vector3 targetPosition) : base(behaviour) {}
+
+        public ChaseBehaviourState(MonsterBehaviour behaviour, Vector3 targetPosition) : base(behaviour)
+        {
+            m_initialTargetPosition = targetPosition;
+        }
 
         public override void OnStateEnter()
         {
@@ -514,7 +517,7 @@ public class MonsterBehaviour : MonoBehaviour
             }
             else if (Monster.HasArrivedToTarget())
             {
-                ChangeState(new TargetLostBehaviourState(Behaviour, false)); 
+                ChangeState(new TargetLostBehaviourState(Behaviour)); 
             }
         }
 
@@ -529,40 +532,30 @@ public class MonsterBehaviour : MonoBehaviour
     private class TargetLostBehaviourState : BehaviourState
     {
         private float m_nextActionTime;
-        private readonly bool m_directlyHostile;
+        private float m_halfActionTime;
+        private bool m_pastHalfTime;
 
-        public TargetLostBehaviourState(MonsterBehaviour behaviour, bool directlyHostile) : base(behaviour)
-        {
-            m_directlyHostile = directlyHostile;
-        }
+        public TargetLostBehaviourState(MonsterBehaviour behaviour) : base(behaviour) { }
 
         public override void OnStateEnter()
         {
             m_nextActionTime = Time.time + Behaviour.m_targetLostDuration;
+            m_halfActionTime = Time.time + Behaviour.m_targetLostDuration / 2f;
             Monster.HardLookAround(true);
-            if (m_directlyHostile)
-            {
-                Monster.SetHostileLevel(Monster.HostileLevel.Hostile);
-            }
-            else
-            {
-                Monster.SetHostileLevel(Monster.HostileLevel.Calm);
-            }
+            Monster.SetHostileLevel(HostileLevel.Alert);
         }
 
         public override void OnStateUpdate()
         {
+            if (!m_pastHalfTime && Time.time > m_halfActionTime)
+            {
+                Monster.SetHostileLevel(HostileLevel.Caution);
+                m_pastHalfTime = true;
+            }
+            
             if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
-                if (m_directlyHostile)
-                {
-                    ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
-                }
-                else
-                {
-                    ChangeState(new SuspectBehaviourState(Behaviour));
-
-                }
+                ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
             }
             else if (Time.time > m_nextActionTime)
             {
@@ -573,7 +566,7 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateExit()
         {
             Monster.HardLookAround(false);
-            Monster.SetHostileLevel(Monster.HostileLevel.Calm);
+            Monster.SetHostileLevel(HostileLevel.Calm);
         }
     }
 }

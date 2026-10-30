@@ -1,7 +1,16 @@
+using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
+
+public enum HostileLevel
+{
+    Calm,
+    Caution,
+    Alert,
+    Hostile
+}
 
 public class Monster : MonoBehaviour
 {
@@ -10,14 +19,6 @@ public class Monster : MonoBehaviour
         Blank,
         Eye,
         Ear
-    }
-    
-    public enum HostileLevel
-    {
-        Calm,
-        Caution,
-        Alert,
-        Hostile
     }
     
     private static readonly int MovementSpeedAnimParam = Animator.StringToHash("MovementSpeed");
@@ -74,6 +75,9 @@ public class Monster : MonoBehaviour
     
     private readonly Queue<Quaternion> m_tvLightRotations = new();
     private Material m_lightConeMaterialInstance;
+
+    public event Action<HostileLevel> CurrentHostilityLevelChanged;
+    public HostileLevel CurrentHostilityLevel { get; private set; }
 
     // ======== Unity Events ========
 
@@ -315,6 +319,9 @@ public class Monster : MonoBehaviour
         {
             m_lightConeMaterialInstance.DOColor(lightColor, 0.25f);
         }
+        
+        CurrentHostilityLevel = hostileLevel;
+        CurrentHostilityLevelChanged?.Invoke(CurrentHostilityLevel);
     }
 
     private void SetupLightCone()
