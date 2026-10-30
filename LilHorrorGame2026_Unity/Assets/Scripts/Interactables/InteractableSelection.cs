@@ -11,7 +11,7 @@ public class InteractableSelection : MonoBehaviour
     [Header("References")]
     [SerializeField] private InputSystemFirstPersonCharacter m_fpCharacter;
     [SerializeField] private Camera m_camera;
-    [SerializeField] private TMP_Text promptText;
+    [SerializeField] private Crosshair m_crosshair;
     
     private Interactable m_selectedInteractable;
 
@@ -46,19 +46,20 @@ public class InteractableSelection : MonoBehaviour
             if (m_selectedInteractable != null)
             {
                 m_selectedInteractable.Select(false);
-                m_selectedInteractable.SelectionPromptTextChanged -= ChangePromptText;
+                m_selectedInteractable.SelectionInfoChanged -= ChangeInfo;
             }
             if (newSelectedInteractable != null)
             {
                 newSelectedInteractable.Select(true);
-                ChangePromptText(newSelectedInteractable.SelectionPromptText);
-                newSelectedInteractable.SelectionPromptTextChanged += ChangePromptText;
+                ChangeInfo(newSelectedInteractable.SelectionInfo);
+                newSelectedInteractable.SelectionInfoChanged += ChangeInfo;
             }
             else
             {
-                ChangePromptText("");
+                ChangeInfo(new InteractableSelectionInfo("", false));
             }
             m_selectedInteractable = newSelectedInteractable;
+            m_crosshair.ShowAsSelected(m_selectedInteractable != null);
         }
 
         if (m_selectedInteractable != null)
@@ -73,8 +74,8 @@ public class InteractableSelection : MonoBehaviour
     
     // ======== Appearance ========
 
-    private void ChangePromptText(string text)
+    private void ChangeInfo(InteractableSelectionInfo info)
     {
-        promptText.text = text;
+        m_crosshair.ChangeInfo(info);
     }
 }
