@@ -151,7 +151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InputSystemFirstPersonCharacter
   m_controller: {fileID: 3660621839138273381}
   m_cam: {fileID: 8971287360188167206}
-  m_movementSpeed: 3
   m_crouchMovementSpeed: 1.5
   m_walkMovementSpeed: 3
   m_runMovementSpeed: 6
@@ -217,22 +216,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InteractableListener
   m_fpCharacter: {fileID: 8141211952419579796}
   m_camera: {fileID: 8971287360188167206}
-  m_eyeLidCanvasGroup: {fileID: 0}
-  m_upperEyelidCurve: {fileID: 0}
-  m_upperEyelidFill: {fileID: 0}
-  m_lowerEyelidCurve: {fileID: 0}
-  m_lowerEyelidFill: {fileID: 0}
-  m_eyeBlockerCanvasGroup: {fileID: 0}
-  m_closeEyeDuration: 4
-  m_openEyeDuration: 1
-  m_animationMidway: 0.125
+  m_eyelidOverlay: {fileID: 0}
+  m_eyeLidDuration:
+    min: 0.2
+    max: 0.5
+  m_darknessDuration:
+    min: 0
+    max: 1.2
+  m_adaptionDuration:
+    min: 0.1
+    max: 2.4
   m_layersToHide:
     serializedVersion: 2
-    m_Bits: 2945
+    m_Bits: 2947
   m_layersToShow:
     serializedVersion: 2
     m_Bits: 1024
-  m_startHearingMidway: 0.33
 --- !u!114 &2141808623470167021
 MonoBehaviour:
   m_ObjectHideFlags: 0

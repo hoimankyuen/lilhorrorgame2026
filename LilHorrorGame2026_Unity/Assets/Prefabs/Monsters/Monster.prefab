@@ -192,7 +192,7 @@ MonoBehaviour:
   m_forwardDetectionAngle: 60
   m_forwardDetectionRange: 15
   m_peripheralDetectionAngle: 160
-  m_peripheralDetectionRange: 14
+  m_peripheralDetectionRange: 15
   m_blankTVSpriteSet: {fileID: 11400000, guid: 8f7c9be67018a5d4fa2b0ed58e97217f, type: 2}
   m_eyeTVSpriteSet: {fileID: 11400000, guid: 0627b5c186fda0a42a884ff8e92490bf, type: 2}
   m_earTVSpriteSet: {fileID: 11400000, guid: a0fd72dcdb518474ca69d5a3667c9ffc, type: 2}
@@ -219,8 +219,8 @@ MonoBehaviour:
     min: 2
     max: 4
   m_idleExtensionDuration:
-    min: 1
-    max: 2
+    min: 0.5
+    max: 1
   m_turnChance: 4
   m_wanderChance: 6
   m_lookChance: 2

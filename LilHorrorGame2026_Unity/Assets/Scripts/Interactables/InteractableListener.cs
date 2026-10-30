@@ -1,44 +1,34 @@
+using System.Runtime.CompilerServices;
 using MoonlightTools.MathTools;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class InteractableListener : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private InputSystemFirstPersonCharacter m_fpCharacter;
     [SerializeField] private Camera m_camera;
-
-    [Space]
-    [SerializeField] private CanvasGroup m_eyeLidCanvasGroup;
-    [SerializeField] private RectTransform m_upperEyelidCurve;
-    [SerializeField] private RectTransform m_upperEyelidFill;
-    [SerializeField] private RectTransform m_lowerEyelidCurve;
-    [SerializeField] private RectTransform m_lowerEyelidFill;
-    [SerializeField] private CanvasGroup m_eyeBlockerCanvasGroup;
+    [SerializeField] private EyelidOverlay m_eyelidOverlay;
     
     [Header("Settings")]
-    [SerializeField] private float m_closeEyeDuration = 1.4f;
-    [SerializeField] private float m_openEyeDuration = 0.2f;
-    [SerializeField, Range(0, 1)] private float m_animationMidway = 0.25f;
+    [SerializeField] private RangedFloat m_eyeLidDuration;
+    [SerializeField] private RangedFloat m_darknessDuration;
+    [SerializeField] private RangedFloat m_adaptionDuration;
+    
+    [Space]
     [SerializeField] private LayerMask m_layersToHide;
     [SerializeField] private LayerMask m_layersToShow;
-    [SerializeField, Range(0, 1)] private float m_startHearingMidway = 0.33f;
     
     private InputSystemFirstPersonControls InputActions => m_fpCharacter != null ? m_fpCharacter.InputActions : null;
 
     private float m_curveHeight;
     private float m_fillHeight;
-        
-    private float m_eyeClosingProgress = 0;
-    private float m_lastEyeClosingProgress = 0;
+
+    private float m_progress; // 0: open, 1: closed 2: not adapted, 3: adapted
+    private float m_prevProgress;
+    //private float m_eyeClosingProgress = 0;
+    //private float m_lastEyeClosingProgress = 0;
     
     // ======== Unity Events ========
-
-    private void Awake()
-    {
-        RetrieveInformation();
-    }
-    
     private void Update()
     {
         DetectEyeClosingProgress();
@@ -47,70 +37,58 @@ public class InteractableListener : MonoBehaviour
     
     // ======== Detect Input ========
 
+    private float GetInterpolateSpeed(RangedFloat duration, bool isPositive)
+    {
+        if (isPositive)
+        {        
+            return duration.max != 0 ? 1f / duration.max : 1000000f;
+        }
+        else
+        {
+            return duration.min != 0 ? 1f/ -duration.min : -1000000f;
+        }
+    }
+    
     private void DetectEyeClosingProgress()
     {
         if (InputActions == null)
             return;
         
-        bool closingEye = InputActions.FPSController.Listen.ReadValue<float>() > 0.5f;
-        if (closingEye)
+        bool isPositive = InputActions.FPSController.Listen.ReadValue<float>() > 0.5f;
+        m_progress = m_progress switch
         {
-            m_eyeClosingProgress += 1 / m_closeEyeDuration * Time.deltaTime;
-        }
-        else
-        {
-            m_eyeClosingProgress -= 1 / m_openEyeDuration * Time.deltaTime;
-        }
-        m_eyeClosingProgress = Mathf.Clamp01(m_eyeClosingProgress);
+            < 0 when isPositive => 0,
+            <= 0 when !isPositive => 0,
+            >= 0 and < 1 when isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_eyeLidDuration, true) * Time.deltaTime, 0f, 1f),
+            > 0 and <= 1 when !isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_eyeLidDuration, false) * Time.deltaTime, 0f, 1f),
+            >= 1 and < 2 when isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_eyeLidDuration, true) * Time.deltaTime, 1f, 2f),
+            > 1 and <= 2 when !isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_eyeLidDuration, false) * Time.deltaTime, 1f, 2f),
+            >= 2 and < 3 when isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_adaptionDuration, true) * Time.deltaTime, 2f, 3f),
+            > 2 and <= 3 when !isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_adaptionDuration, false) * Time.deltaTime, 2f, 3f),
+            _ => 3
+        };
     }
     
     // ======== Behaviour ========
-
-    private void RetrieveInformation()
-    {
-        m_fillHeight = m_upperEyelidFill.sizeDelta.y;
-        m_curveHeight = m_upperEyelidCurve.sizeDelta.y;
-    }
     
     private void ShowAsEyeClosing()
     {
-        if (Mathf.Approximately(m_eyeClosingProgress, m_lastEyeClosingProgress))
+        if (Mathf.Approximately(m_progress, m_prevProgress))
             return;
 
         // hide or show layers
-        if (m_eyeClosingProgress > m_animationMidway && m_lastEyeClosingProgress <= m_animationMidway)
+        if (m_progress > 1f && m_prevProgress <= 1f)
         {
-            m_camera.cullingMask &= ~m_layersToHide;
-            m_camera.cullingMask |= m_layersToShow;
+            m_camera.cullingMask = m_camera.cullingMask & ~m_layersToHide | m_layersToShow;
         }
-        else if (m_lastEyeClosingProgress > m_animationMidway && m_eyeClosingProgress <= m_animationMidway)
+        else if (m_prevProgress > 1f && m_progress <= 1f)
         {
-            m_camera.cullingMask &= ~m_layersToShow;
-            m_camera.cullingMask |= m_layersToHide;
+            m_camera.cullingMask = m_camera.cullingMask & ~m_layersToShow | m_layersToHide;
         }
-        m_lastEyeClosingProgress = m_eyeClosingProgress;
+        m_prevProgress = m_progress;
         
-        // eyelid animation
-        float eyelidInterpolate = Mathf.InverseLerp(0f, m_animationMidway, m_eyeClosingProgress);
-        m_eyeLidCanvasGroup.alpha = eyelidInterpolate < 1f ? 1f : 0f;
-        m_upperEyelidCurve.sizeDelta = new Vector2(m_upperEyelidCurve.sizeDelta.x, Mathf.Lerp(m_curveHeight, 0f, eyelidInterpolate));
-        m_upperEyelidFill.sizeDelta = new Vector2(m_upperEyelidFill.sizeDelta.x, Mathf.Lerp(m_fillHeight, m_fillHeight + m_curveHeight, eyelidInterpolate));
-        m_lowerEyelidCurve.sizeDelta = new Vector2(m_lowerEyelidCurve.sizeDelta.x, Mathf.Lerp(m_curveHeight, 0f, eyelidInterpolate));
-        m_lowerEyelidFill.sizeDelta = new Vector2(m_lowerEyelidFill.sizeDelta.x, Mathf.Lerp(m_fillHeight, m_fillHeight + m_curveHeight, eyelidInterpolate));
-        
-        // blocker animation
-        float blockerInterpolate = Mathf.InverseLerp(m_animationMidway, 1f, m_eyeClosingProgress);
-        if (blockerInterpolate <= 0f)
-        {
-            m_eyeBlockerCanvasGroup.alpha = 0f;
-        }
-        else if (blockerInterpolate <= m_startHearingMidway)
-        {
-            m_eyeBlockerCanvasGroup.alpha = 1f;
-        }
-        else
-        {
-            m_eyeBlockerCanvasGroup.alpha = 1f - Mathfx.Coserp(0f, 1f, Mathf.InverseLerp(m_startHearingMidway, 1f, blockerInterpolate));
-        }
+        // eyelid animations
+        m_eyelidOverlay.ShowEyelidProgress(Mathf.InverseLerp(0f ,1f, m_progress));
+        m_eyelidOverlay.ShowAdaptionProgress(m_progress >= 1f ? Mathf.InverseLerp(2f ,3f, m_progress) : 1f);
     }
 }
