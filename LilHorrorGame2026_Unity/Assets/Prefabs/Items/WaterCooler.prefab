@@ -9516,6 +9516,14 @@ PrefabInstance:
       propertyPath: m_duration
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_usedSelectionPromptText
+      value: Distracting...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_normalSelectionPromptText
+      value: Create distraction
+      objectReference: {fileID: 0}
     - target: {fileID: 6235674295907303053, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1.012

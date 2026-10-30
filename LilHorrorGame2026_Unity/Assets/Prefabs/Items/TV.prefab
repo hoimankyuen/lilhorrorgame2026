@@ -2610,6 +2610,10 @@ PrefabInstance:
       propertyPath: m_deactivationSound
       value: 
       objectReference: {fileID: 8300000, guid: 897804a4660192fd2a8b37e72f2a9105, type: 3}
+    - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_selectionPromptText
+      value: Turn off
+      objectReference: {fileID: 0}
     - target: {fileID: 7774012007607129557, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
