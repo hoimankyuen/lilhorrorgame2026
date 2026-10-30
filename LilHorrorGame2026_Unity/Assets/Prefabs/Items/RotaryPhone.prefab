@@ -101,6 +101,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b41b414c008feef4f8837197be06ca6a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9846d0d43f641646da62bb4ea74ddb1b, type: 2}
     - target: {fileID: -5754084199372789682, guid: b41b414c008feef4f8837197be06ca6a, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -109,6 +113,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 2429760176416955280, guid: 7c28731ef4b8ac44aa2f7201a6528d0c, type: 3}
+    - target: {fileID: 791765721990466666, guid: b41b414c008feef4f8837197be06ca6a, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 9846d0d43f641646da62bb4ea74ddb1b, type: 2}
     - target: {fileID: 919132149155446097, guid: b41b414c008feef4f8837197be06ca6a, type: 3}
       propertyPath: m_Name
       value: phone
@@ -137,7 +145,7 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: 782bc28dcffcf2f4ba3271f0d387bc5a, type: 2}
     - target: {fileID: 1348923512117589356, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_Name
-      value: RotaryPhone Variant
+      value: RotaryPhone
       objectReference: {fileID: 0}
     - target: {fileID: 1348923512117589356, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_IsActive

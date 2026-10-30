@@ -2433,6 +2433,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 4bf1db186ea85bd4abde08867af46f3f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: b0c6aa9d8660f8828ae7279be8048315, type: 2}
     - target: {fileID: 919132149155446097, guid: 4bf1db186ea85bd4abde08867af46f3f, type: 3}
       propertyPath: m_Name
       value: desk_phone
@@ -2464,7 +2468,7 @@ PrefabInstance:
       objectReference: {fileID: 22100000, guid: d10a762b9abc4ed4aae0e6d3fdd51a40, type: 2}
     - target: {fileID: 1348923512117589356, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_Name
-      value: PhoneA
+      value: OfficePhone
       objectReference: {fileID: 0}
     - target: {fileID: 7774012007607129557, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_LocalPosition.x
