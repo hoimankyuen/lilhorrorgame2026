@@ -54,13 +54,13 @@ public class InteractableLure : Lure, IInteractableComponent
     
     private IEnumerator BroadcastSequence()
     {
-        Broadcast(true);
+        ChangeActiveState(true);
         m_interactable.SetSelectionPromptText(m_usedSelectionPromptText);
         m_interactable.SetSelectionOutlineColour(m_usedSelectionColour);
         yield return new WaitForSeconds(m_duration);
         
         m_animator.SetBool(m_cooldownAnimationParam, true);
-        Broadcast(false);
+        ChangeActiveState(false);
         yield return new WaitForSeconds(m_cooldown);
         
         m_animator.SetBool(m_cooldownAnimationParam, false);

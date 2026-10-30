@@ -21,33 +21,12 @@ public class SanitySystem : MonoBehaviour
 
     private void OnEnable()
     {
-        Provoker.BroadcastingProvokerAdded += OnProvokerAdded;
-        Provoker.BroadcastingProvokerRemoved += OnProvokerRemoved;
-        Provoker.BroadcastingProvokerChanged += OnProvokersChanged;
         InteractableLure.OnLureInteracted += OnLureInteracted;
     }
 
     private void OnDisable()
     {
-        Provoker.BroadcastingProvokerAdded -= OnProvokerAdded;
-        Provoker.BroadcastingProvokerRemoved -= OnProvokerRemoved;
-        Provoker.BroadcastingProvokerChanged -= OnProvokersChanged;
         InteractableLure.OnLureInteracted -= OnLureInteracted;
-    }
-
-    private void OnProvokerAdded(float amount)
-    {
-        ChangeSanity(amount, false);
-    }
-
-    private void OnProvokerRemoved(float amount)
-    {
-        ChangeSanity(amount, true);
-    }
-
-    private void OnProvokersChanged()
-    {
-        
     }
 
     private void OnLureInteracted(float amount)
