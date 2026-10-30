@@ -1,31 +1,19 @@
 using System.Collections.Generic;
+using MoonlightTools.GeneralTools;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ProvokerManager : MonoBehaviour
+public class ProvokerManager : MonoBehaviourSingleton<ProvokerManager>
 {
-    public static ProvokerManager Instance;
-    
     [Header("References")]
     [SerializeField] private TimeManager m_timeManager;
     
-    private static readonly List<Provoker> m_provokers = new();
+    private readonly List<Provoker> m_provokers = new();
     private readonly List<Provoker> m_activeProvokers = new();
 
     [Header("Settings")]
     [SerializeField] private int m_amountOfActiveProvokers = 10;
     
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
-    }
 
     private void Start()
     {
@@ -71,6 +59,6 @@ public class ProvokerManager : MonoBehaviour
     
     public void DeregisterProvoker(Provoker provoker)
     {
-        m_provokers.Add(provoker);
+        m_provokers.Remove(provoker);
     }
 }

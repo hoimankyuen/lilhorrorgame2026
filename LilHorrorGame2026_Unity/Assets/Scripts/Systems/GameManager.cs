@@ -1,28 +1,17 @@
 using System;
+using MoonlightTools.GeneralTools;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-    public static GameManager Instance;
-    
+
     [Header("References")]
     [SerializeField] private TimeManager m_timeManager;
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
+    
     private void Start()
     {
         m_timeManager.OnSunset += OnSunset;
+        Application.targetFrameRate = 60;
     }
 
     private void OnSunset()
