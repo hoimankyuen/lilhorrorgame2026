@@ -67,8 +67,6 @@ public class InteractableListener : MonoBehaviour
             > 2 and <= 3 when !isPositive => Mathf.Clamp(m_progress + GetInterpolateSpeed(m_adaptionDuration, false) * Time.deltaTime, 2f, 3f),
             _ => 3
         };
-        
-        Debug.Log(m_progress);
     }
     
     // ======== Behaviour ========

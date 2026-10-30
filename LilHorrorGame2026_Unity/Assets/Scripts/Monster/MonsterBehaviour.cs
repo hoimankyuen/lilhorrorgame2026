@@ -461,39 +461,6 @@ public class MonsterBehaviour : MonoBehaviour
         }
     }
     
-    // ======== Investigate Completed State ========
-    
-    private class InvestigateCompleteBehaviourState : BehaviourState
-    {
-        private float m_nextActionTime;
-        
-        public InvestigateCompleteBehaviourState(MonsterBehaviour behaviour) : base(behaviour) {}
-
-        public override void OnStateEnter()
-        {
-            m_nextActionTime = Time.time + Behaviour.m_targetLostDuration;
-            Monster.HardLookAround(true);
-        }
-
-        public override void OnStateUpdate()
-        {
-            if (Monster.WithinForwardSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
-            {
-                ChangeState(new ScreamBehaviourState(Behaviour, Behaviour.PlayerPosition));
-            }
-            else if (Time.time > m_nextActionTime)
-            {
-                ChangeState(new IdleBehaviourState(Behaviour, true));
-            }
-        }
-
-        public override void OnStateExit()
-        {
-            Monster.HardLookAround(false);
-            Monster.SetHostileLevel(Monster.HostileLevel.Calm);
-        }
-    }
-    
     // ======== Scream State ========
     
     private class ScreamBehaviourState : BehaviourState
@@ -525,7 +492,6 @@ public class MonsterBehaviour : MonoBehaviour
         {
         }
     }
-
     
     // ======== Chase State ========
     
