@@ -4848,7 +4848,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 621022337755755705, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_Name
-      value: Printer Variant
+      value: Printer
       objectReference: {fileID: 0}
     - target: {fileID: 2300920928055717237, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_Controller
@@ -4861,6 +4861,14 @@ PrefabInstance:
     - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_duration
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_usedSelectionPromptText
+      value: Distracting...
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_normalSelectionPromptText
+      value: Create distraction
       objectReference: {fileID: 0}
     - target: {fileID: 6235674295907303053, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_LocalPosition.y

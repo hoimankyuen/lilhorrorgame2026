@@ -8,15 +8,12 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     [Header("References")]
     [SerializeField] private TimeManager m_timeManager;
     
+    public static event Action OnWinGame;
+    public static event Action OnLoseGame;
+    
     private void Start()
     {
-        m_timeManager.OnSunset += OnSunset;
         Application.targetFrameRate = 60;
-    }
-
-    private void OnSunset()
-    {
-        WinGame();
     }
     
     private void WinGame()
