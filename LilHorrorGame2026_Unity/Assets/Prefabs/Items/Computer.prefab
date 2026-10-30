@@ -244,6 +244,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7066965739069522608}
     - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_sanityAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_activationSound
       value: 
       objectReference: {fileID: 8300000, guid: 6e198c3d6c7e05e6dbfc4218380a1f74, type: 3}

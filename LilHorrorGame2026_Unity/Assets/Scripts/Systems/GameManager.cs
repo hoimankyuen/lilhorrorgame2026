@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void WinGame()
     {
         Debug.Log("Win Game");
+        OnWinGame?.Invoke();
         //Show win UI
         //Kill monster?
         //Brighten scene?
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     public void LoseGame()
     {
         Debug.Log("Lose Game");
-        
+        OnLoseGame?.Invoke();
         //Show loss UI
         //Monster roar
         //Fade to black?
