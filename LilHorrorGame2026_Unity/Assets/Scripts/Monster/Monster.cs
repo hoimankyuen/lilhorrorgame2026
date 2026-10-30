@@ -36,6 +36,7 @@ public class Monster : MonoBehaviour
     [SerializeField] private SpriteRenderer m_tvSpriteRenderer;
     [SerializeField] private Transform m_tvLightTransform;
     [SerializeField] private Light m_tvLight;
+    [SerializeField] private MeshRenderer m_lightConeRenderer;
     [SerializeField] private ScreenStatic m_screenStatic;
 
     [Header("Facing Settings")]
@@ -72,6 +73,7 @@ public class Monster : MonoBehaviour
     private Lure m_nearestBroadcastingLure;
     
     private readonly Queue<Quaternion> m_tvLightRotations = new();
+    private Material m_lightConeMaterialInstance;
 
     // ======== Unity Events ========
 
@@ -83,6 +85,7 @@ public class Monster : MonoBehaviour
         
         SetTVSpriteSet(TVSpriteSet.Eye);
         SetHostileLevel(HostileLevel.Calm);
+        SetupLightCone();
         
         m_obstacleLayerMask = ~LayerMask.GetMask("Player", "Monster");
     }
@@ -92,6 +95,8 @@ public class Monster : MonoBehaviour
         Instances.Remove(this);
         
         Lure.BroadcastingLuresChanged -= OnBroadcastingLuresChanged;
+        
+        ClearLightCone();
     }
     
     private void Update()
@@ -107,6 +112,14 @@ public class Monster : MonoBehaviour
         Gizmos.DrawLine(transform.position, transform.position + transform.forward * m_idleAvoidFacingWallDistance);
         DrawDetectionGizmos(m_forwardDetectionAngle, m_forwardDetectionRange);
         DrawDetectionGizmos(m_peripheralDetectionAngle, m_peripheralDetectionRange);
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameManager.Instance.LoseGame();
+        }
     }
     
     // ======== Facing ========
@@ -289,16 +302,32 @@ public class Monster : MonoBehaviour
     public void SetHostileLevel(HostileLevel hostileLevel)
     {
         m_tvAnimator.SetInteger(HostilityAnimParam, (int)hostileLevel);
-        m_tvLight.DOColor(hostileLevel switch
+        Color lightColor = hostileLevel switch
         {
             HostileLevel.Calm => m_calmLightColour,
             HostileLevel.Caution => m_cautionLightColour,
             HostileLevel.Alert => m_alertLightColour,
             HostileLevel.Hostile => m_hostileLightColour,
             _ => m_calmLightColour
-        }, 0.25f);
+        };
+        m_tvLight.DOColor(lightColor , 0.25f);
+        if (m_lightConeMaterialInstance != null)
+        {
+            m_lightConeMaterialInstance.DOColor(lightColor, 0.25f);
+        }
     }
 
+    private void SetupLightCone()
+    {
+        m_lightConeMaterialInstance = Instantiate(m_lightConeRenderer.material);
+        m_lightConeRenderer.material = m_lightConeMaterialInstance;
+    }
+
+    private void ClearLightCone()
+    {
+        Destroy(m_lightConeMaterialInstance);
+    }
+    
     private void StabilizeTVLight()
     {
         if (m_tvLightRotations.Count > 0)
@@ -318,14 +347,6 @@ public class Monster : MonoBehaviour
         if (m_tvLightRotations.Count > 20)
         {
             m_tvLightRotations.Dequeue();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            GameManager.Instance.LoseGame();
         }
     }
 }
