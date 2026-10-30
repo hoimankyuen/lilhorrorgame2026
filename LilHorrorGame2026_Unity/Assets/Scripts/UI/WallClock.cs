@@ -17,16 +17,10 @@ public class WallClock : MonoBehaviour
 
     private void Start()
     {
-        UnsubscribeEvents();
         SubscribeEvents();
     }
 
-    private void OnEnable()
-    {
-        SubscribeEvents();
-    }
-
-    private void OnDisable()
+    private void OnDestroy()
     {
         UnsubscribeEvents();
     }

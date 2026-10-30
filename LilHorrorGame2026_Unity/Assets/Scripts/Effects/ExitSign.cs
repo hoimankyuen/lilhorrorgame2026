@@ -12,24 +12,13 @@ public class ExitSign : MonoBehaviour
 
     private void Start()
     {
-        Reset();
-    }
-
-    private void OnEnable()
-    {
-        m_timeManager.OnSunset += UnlockExitDoor;
-    }
-
-    private void OnDisable()
-    {
-        m_timeManager.OnSunset -= UnlockExitDoor;
-    }
-
-    private void Reset()
-    {
-        m_timeManager.OnSunset -= UnlockExitDoor;
         m_timeManager.OnSunset += UnlockExitDoor;
         m_signMaterial.SetColor(EmissionColor, m_inactiveExitSignColor);
+    }
+
+    private void OnDestroy()
+    {
+        m_timeManager.OnSunset -= UnlockExitDoor;
     }
 
     private void UnlockExitDoor()
