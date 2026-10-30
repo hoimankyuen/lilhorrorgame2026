@@ -2559,6 +2559,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Workstation
       objectReference: {fileID: 0}
+    - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_audioSource
+      value: 
+      objectReference: {fileID: 2752596151294093621}
+    - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_activationSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e239b2e1daa16198585134a6d0420d7f, type: 3}
+    - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_deactivationSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 897804a4660192fd2a8b37e72f2a9105, type: 3}
     - target: {fileID: 7774012007607129557, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2618,8 +2630,113 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7732329407313579432, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7814038256834708654}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1348923512117589356, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2752596151294093621}
   m_SourcePrefab: {fileID: 100100000, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+--- !u!1 &2847460793045409725 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1348923512117589356, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+  m_PrefabInstance: {fileID: 3836046847812709073}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &2752596151294093621
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2847460793045409725}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -5668271656869296773, guid: 159ea03c7677d79c6b574615b30fba48, type: 2}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.25
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 5
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &6805678907092215673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7732329407313579432, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}

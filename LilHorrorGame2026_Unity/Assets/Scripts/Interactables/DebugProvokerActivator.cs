@@ -18,7 +18,7 @@ public class DebugProvokerActivator : MonoBehaviour
                 Provoker provoker = hit.collider.GetComponentInParent<Provoker>();
                 if (provoker != null)
                 {
-                    provoker.Broadcast(true);
+                    provoker.ChangeActiveState(true);
                 }
             }
         }

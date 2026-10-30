@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class TimeManager : MonoBehaviour {
     [SerializeField] private TextMeshProUGUI m_timeText;

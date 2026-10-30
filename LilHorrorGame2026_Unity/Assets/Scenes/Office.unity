@@ -3749,6 +3749,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc1078346bfeb3b4cb68ef4c7813c54b, type: 3}
+--- !u!4 &136938367 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7138064871597353041, guid: cd482f8dc22e5cb41bc4fc619d406dc9, type: 3}
+  m_PrefabInstance: {fileID: 273378734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &138283392 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7342694561649854805, guid: c120a9e6604413a9da64de108192d0f1, type: 3}
@@ -4310,8 +4315,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 379337413}
   - {fileID: 1562815838}
-  - {fileID: 755189381}
   m_Father: {fileID: 48095125}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &164689666
@@ -6290,7 +6295,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 969835825}
     m_Modifications:
     - target: {fileID: 1897423215001241832, guid: cd482f8dc22e5cb41bc4fc619d406dc9, type: 3}
       propertyPath: m_Name
@@ -6733,7 +6738,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1885948674}
+    m_TransformParent: {fileID: 1475970619}
     m_Modifications:
     - target: {fileID: 1370398791948262108, guid: 84c2f75b4c50aa6439667a91900f9774, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8330,6 +8335,7 @@ GameObject:
   - component: {fileID: 340560553}
   - component: {fileID: 340560554}
   - component: {fileID: 340560555}
+  - component: {fileID: 340560556}
   m_Layer: 0
   m_Name: ==Systems==
   m_TagString: Untagged
@@ -8396,6 +8402,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   m_timeManager: {fileID: 340560554}
+--- !u!114 &340560556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 340560551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93ed109f7d7127aa29e7c9bf19a9b529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProvokerManager
+  m_timeManager: {fileID: 340560554}
+  m_amountOfActiveProvokers: 5
 --- !u!1001 &343124910
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9335,6 +9355,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0d333a8b6608b20848e132ca6e584f6d, type: 3}
   m_PrefabInstance: {fileID: 373601928}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &379337412
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 379337413}
+  m_Layer: 0
+  m_Name: Lures
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &379337413
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379337412}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 755189381}
+  m_Father: {fileID: 163433660}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &384300673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: aac5dcf88993c094084323328da24e27, type: 3}
@@ -14887,7 +14939,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1019361093493930232, guid: b9b1a2b1eea189b4cae3e9e365157bde, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.62
+      value: -10.165
       objectReference: {fileID: 0}
     - target: {fileID: 1019361093493930232, guid: b9b1a2b1eea189b4cae3e9e365157bde, type: 3}
       propertyPath: m_LocalPosition.y
@@ -18866,7 +18918,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 163433660}
+    m_TransformParent: {fileID: 379337413}
     m_Modifications:
     - target: {fileID: 1370398791948262108, guid: 84c2f75b4c50aa6439667a91900f9774, type: 3}
       propertyPath: m_LocalPosition.x
@@ -24428,6 +24480,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fd9170c87c5f7158388490f541e74940, type: 3}
+--- !u!1 &969835824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 969835825}
+  m_Layer: 0
+  m_Name: Lures
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &969835825
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969835824}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 493740204}
+  - {fileID: 136938367}
+  m_Father: {fileID: 990171695}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &970891072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24742,8 +24827,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 969835825}
   - {fileID: 328096949}
-  - {fileID: 493740204}
   m_Father: {fileID: 1663264500}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &991084875
@@ -28140,6 +28225,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1133182269}
+  - component: {fileID: 1133182271}
   - component: {fileID: 1133182270}
   m_Layer: 0
   m_Name: Music
@@ -28260,6 +28346,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1133182271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1133182268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37285bfd9ffe164198f8af8db3c601d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MusicManager
+  m_audioSource: {fileID: 1133182270}
+  m_normalVolume: 1
+  m_listeningVolume: 0.1
 --- !u!1001 &1135964225
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -36479,6 +36580,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ce9aa38f67b37624eb069995f1b02b53, type: 3}
   m_PrefabInstance: {fileID: 1475615548}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1475970618
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1475970619}
+  m_Layer: 0
+  m_Name: Lures
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1475970619
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1475970618}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 287768641}
+  m_Father: {fileID: 1885948674}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1479079645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -37281,7 +37414,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 990171695}
+    m_TransformParent: {fileID: 969835825}
     m_Modifications:
     - target: {fileID: 1370398791948262108, guid: 84c2f75b4c50aa6439667a91900f9774, type: 3}
       propertyPath: m_LocalPosition.x
@@ -47085,8 +47218,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1475970619}
   - {fileID: 293812424}
-  - {fileID: 287768641}
   m_Father: {fileID: 35492887}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1887571157
@@ -52988,4 +53121,3 @@ SceneRoots:
   - {fileID: 2034331649}
   - {fileID: 551768583}
   - {fileID: 1133182269}
-  - {fileID: 273378734}
