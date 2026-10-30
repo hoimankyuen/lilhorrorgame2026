@@ -32,7 +32,7 @@ public class InteractableSelection : MonoBehaviour
     private void DetectInteractable(Ray ray)
     {
         Interactable newSelectedInteractable = null;
-        if (Physics.Raycast(ray, out RaycastHit hit, m_maxInteractionDistance, LayerMask.GetMask("Interactables")))
+        if (Physics.Raycast(ray, out RaycastHit hit, m_maxInteractionDistance))
         {
             newSelectedInteractable = hit.collider.GetComponentInParent<Interactable>();
             if (newSelectedInteractable != null && !newSelectedInteractable.AllowInteraction)
