@@ -1,9 +1,7 @@
-using System;
 using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
-using Random = UnityEngine.Random;
 
 public class Monster : MonoBehaviour
 {
@@ -27,7 +25,9 @@ public class Monster : MonoBehaviour
     private static readonly int SoftLookingAnimParam = Animator.StringToHash("SoftLooking");
     private static readonly int HardLookingAnimParam = Animator.StringToHash("HardLooking");
     private static readonly int ScreamingAnimParam = Animator.StringToHash("Screaming");
-
+    
+    public static readonly List<Monster> Instances = new();
+    
     [Header("Components")]
     [SerializeField] private NavMeshAgent m_agent;
     [SerializeField] private Transform m_TVTransform;
@@ -74,16 +74,19 @@ public class Monster : MonoBehaviour
 
     private void Awake()
     {
+        Instances.Add(this);
+        
+        Lure.BroadcastingLuresChanged += OnBroadcastingLuresChanged;
+        
         SetTVSpriteSet(TVSpriteSet.Eye);
         SetHostileLevel(HostileLevel.Calm);
-
-        Lure.BroadcastingLuresChanged += OnBroadcastingLuresChanged;
     }
 
     private void OnDestroy()
     {
+        Instances.Remove(this);
+        
         Lure.BroadcastingLuresChanged -= OnBroadcastingLuresChanged;
-
     }
     
     private void Update()

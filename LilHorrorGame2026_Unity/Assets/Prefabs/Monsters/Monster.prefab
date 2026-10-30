@@ -228,8 +228,8 @@ MonoBehaviour:
   m_investigateCompletedDuration: 4
   m_lookDuration: 5
   m_screamDuration: 1.5
-  m_suspectDuration: 1.5
-  m_easeDuration: 3
+  m_suspectDuration: 2
+  m_easeDuration: 4
   m_targetLostDuration: 4
 --- !u!195 &9109700005513110622
 NavMeshAgent:
@@ -556,7 +556,7 @@ Transform:
   m_GameObject: {fileID: 4557182581405884370}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.0030349754, y: 1.9005979, z: 0.27130884}
+  m_LocalPosition: {x: -0.003035292, y: 1.9005979, z: 0.27130887}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
