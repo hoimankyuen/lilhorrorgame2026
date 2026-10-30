@@ -2407,7 +2407,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 65e36c4cc642ec5e0beb52ce4481ea65, type: 3}
     - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_loopActivationSound
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_selectionPromptText
@@ -2489,7 +2489,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 0.1
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -2498,9 +2498,9 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 5
+  MaxDistance: 15
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -2533,7 +2533,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
