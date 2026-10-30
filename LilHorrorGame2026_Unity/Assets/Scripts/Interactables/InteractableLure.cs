@@ -7,6 +7,9 @@ public class InteractableLure : Lure, IInteractableComponent
 {
     public static event Action<float> OnLureInteracted; 
     
+    [Header("Interactable Lure References")]
+    [SerializeField] private AudioSource m_audioSource;
+    
     [Header("Interactable Lure Settings")]
     [SerializeField] private string m_normalSelectionPromptText;
     [SerializeField] private string m_usedSelectionPromptText;
@@ -50,8 +53,15 @@ public class InteractableLure : Lure, IInteractableComponent
         m_broadcastCoroutine = StartCoroutine(BroadcastSequence());
         
         OnLureInteracted?.Invoke(m_sanityAmount);
+        m_audioSource.Play();
+        Invoke(nameof(StopAudio), m_duration);
     }
-    
+
+    private void StopAudio()
+    {
+        m_audioSource.Stop();
+    }
+
     private IEnumerator BroadcastSequence()
     {
         ChangeActiveState(true);
