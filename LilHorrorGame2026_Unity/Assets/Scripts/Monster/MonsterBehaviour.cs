@@ -42,7 +42,6 @@ public class MonsterBehaviour : MonoBehaviour
     [Header("Idle State Settings")]
     [SerializeField] private RangedFloat m_idleDuration;
     [SerializeField] private RangedFloat m_idleExtensionDuration;
-    [SerializeField] private float m_idleChance;
     [SerializeField] private float m_turnChance;
     [SerializeField] private float m_wanderChance;
     [SerializeField] private float m_lookChance;
@@ -167,6 +166,7 @@ public class MonsterBehaviour : MonoBehaviour
     {
         private readonly bool m_isExtension;
         private float m_nextActionTime;
+        private bool m_facingWall;
 
         public IdleBehaviourState(MonsterBehaviour behaviour, bool isExtension = false) : base(behaviour)
         {
@@ -176,6 +176,7 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateEnter()
         {
             m_nextActionTime = Time.time + (m_isExtension ? Behaviour.m_idleDuration.Random() : Behaviour.m_idleExtensionDuration.Random());
+            m_facingWall = Monster.IsFacingWall();
         }
 
         public override void OnStateUpdate()
@@ -188,11 +189,14 @@ public class MonsterBehaviour : MonoBehaviour
             {
                 ChangeState(new InvestigateBehaviourState(Behaviour, nearestLurePosition));
             }
+            else if (m_facingWall)
+            {
+                ChangeState(new TurnBehaviourState(Behaviour));
+            }
             else if (Time.time > m_nextActionTime)
             {
                 float[] chances =
                 {
-                    Behaviour.m_idleChance,
                     Behaviour.m_turnChance,
                     Behaviour.m_wanderChance,
                     Behaviour.m_lookChance
@@ -200,19 +204,16 @@ public class MonsterBehaviour : MonoBehaviour
                 switch (GetFromWeightedChances(chances))
                 {
                     case 0:
-                        ChangeState(new IdleBehaviourState(Behaviour, true));
-                        break;
-                    case 1:
                         ChangeState(new TurnBehaviourState(Behaviour));
                         break;
-                    case 2:
+                    case 1:
                         ChangeState(new WanderBehaviourState(Behaviour));
                         break;
-                    case 3:
+                    case 2:
                         ChangeState(new LookBehaviourState(Behaviour));
                         break;
                     default:
-                        ChangeState(new IdleBehaviourState(Behaviour, true));
+                        ChangeState(new LookBehaviourState(Behaviour));
                         break;
                 }
             }

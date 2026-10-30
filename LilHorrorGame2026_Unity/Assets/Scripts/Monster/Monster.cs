@@ -47,10 +47,11 @@ public class Monster : MonoBehaviour
     [SerializeField] private float m_chaseSpeed;
     
     [Header("Detection Settings")] 
-    [SerializeField] private float forwardDetectionAngle;
-    [SerializeField] private float forwardDetectionRange;
-    [SerializeField] private float peripheralDetectionAngle;
-    [SerializeField] private float peripheralDetectionRange;
+    [SerializeField] private float m_idleAvoidFacingWallDistance;
+    [SerializeField] private float m_forwardDetectionAngle;
+    [SerializeField] private float m_forwardDetectionRange;
+    [SerializeField] private float m_peripheralDetectionAngle;
+    [SerializeField] private float m_peripheralDetectionRange;
     
     [Header("TV Display Settings")] 
     [SerializeField] private ScreenStaticSpriteSet m_blankTVSpriteSet;
@@ -60,6 +61,8 @@ public class Monster : MonoBehaviour
     [SerializeField] private Color m_cautionLightColour;
     [SerializeField] private Color m_alertLightColour;
     [SerializeField] private Color m_hostileLightColour;
+
+    private int m_obstacleLayerMask;
     
     private bool m_isFacing;
     private bool m_facingCompleted;
@@ -80,6 +83,8 @@ public class Monster : MonoBehaviour
         
         SetTVSpriteSet(TVSpriteSet.Eye);
         SetHostileLevel(HostileLevel.Calm);
+        
+        m_obstacleLayerMask = ~LayerMask.GetMask("Player", "Monster");
     }
 
     private void OnDestroy()
@@ -96,11 +101,12 @@ public class Monster : MonoBehaviour
         StabilizeTVLight();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
-        DrawDetectionGizmos(forwardDetectionAngle, forwardDetectionRange);
-        DrawDetectionGizmos(peripheralDetectionAngle, peripheralDetectionRange);
+        Gizmos.DrawLine(transform.position, transform.position + transform.forward * m_idleAvoidFacingWallDistance);
+        DrawDetectionGizmos(m_forwardDetectionAngle, m_forwardDetectionRange);
+        DrawDetectionGizmos(m_peripheralDetectionAngle, m_peripheralDetectionRange);
     }
     
     // ======== Facing ========
@@ -177,15 +183,21 @@ public class Monster : MonoBehaviour
     }
     
     // ======== Detection ========
+
+    public bool IsFacingWall()
+    {
+        Ray viewRay = new Ray(m_TVTransform.position, Vector3.ProjectOnPlane(m_TVTransform.forward, Vector3.up).normalized);
+        return Physics.Raycast(viewRay, m_idleAvoidFacingWallDistance, m_obstacleLayerMask);
+    }
     
     public bool WithinForwardSight(Vector3 targetPosition, float targetHeight)
     {
-        return WithinSight(targetPosition, targetHeight, forwardDetectionAngle, forwardDetectionRange);
+        return WithinSight(targetPosition, targetHeight, m_forwardDetectionAngle, m_forwardDetectionRange);
     }
 
     public bool WithinPeripheralSight(Vector3 targetPosition, float targetHeight)
     {
-        return WithinSight(targetPosition, targetHeight, peripheralDetectionAngle, peripheralDetectionRange);
+        return WithinSight(targetPosition, targetHeight, m_peripheralDetectionAngle, m_peripheralDetectionRange);
     }
 
     private bool WithinSight(Vector3 targetPosition, float targetHeight, float angle, float range)
