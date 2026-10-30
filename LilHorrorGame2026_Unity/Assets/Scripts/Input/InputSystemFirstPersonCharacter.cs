@@ -8,9 +8,11 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     [Header("References")]
     [SerializeField] private CharacterController m_controller;
     [SerializeField] private Camera m_cam;
-    
-    [Header("Movement")]
-    [SerializeField] private float m_movementSpeed = 2.0f;
+
+    [Header("Movement")] 
+    [SerializeField] private float m_crouchMovementSpeed = 1.0f;
+    [SerializeField] private float m_walkMovementSpeed = 2.0f;
+    [SerializeField] private float m_runMovementSpeed = 4.0f;
     [SerializeField] private float m_lookSensitivity = 1.0f;
     
     [Header("Crouch")]
@@ -76,11 +78,15 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         Vector2 movement = GetPlayerMovement();
         Vector3 move = transform.right * movement.x + transform.forward * movement.y;
 
-        float totalMoveSpeed = m_movementSpeed;
+        float totalMoveSpeed = m_walkMovementSpeed;
         
         if (InputActions.FPSController.Run.ReadValue<float>() > 0 && Mathf.Approximately(m_controller.height, m_initHeight))
         {
-            totalMoveSpeed = m_movementSpeed * 2;
+            totalMoveSpeed = m_runMovementSpeed;
+        }
+        else if (InputActions.FPSController.Crouch.ReadValue<float>() > 0)
+        {
+            totalMoveSpeed = m_crouchMovementSpeed;
         }
 
         m_controller.Move(move * (totalMoveSpeed * Time.deltaTime));

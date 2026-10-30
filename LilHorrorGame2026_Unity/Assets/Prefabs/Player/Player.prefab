@@ -152,6 +152,9 @@ MonoBehaviour:
   m_controller: {fileID: 3660621839138273381}
   m_cam: {fileID: 8971287360188167206}
   m_movementSpeed: 3
+  m_crouchMovementSpeed: 1.5
+  m_walkMovementSpeed: 3
+  m_runMovementSpeed: 6
   m_lookSensitivity: 0.05
   m_crouchHeight: 0.5
   m_crouchSpeed: 6
