@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
 using MoonlightTools.GizmoTools;
 using UnityEngine;
 
 public class Provoker : MonoBehaviour
 {
-    
-    
-    
     [Header("Interactable Components")]   
     [SerializeField] protected Animator m_animator;
     [SerializeField] protected SoundParticleEffect m_soundParticleEffect;
@@ -23,9 +18,20 @@ public class Provoker : MonoBehaviour
 
     private void Start()
     {
-        ProvokerManager.Instance.RegisterProvoker(this);
+        if (ProvokerManager.Instance != null)
+        {
+            ProvokerManager.Instance.RegisterProvoker(this);
+        }
     }
 
+    private void OnDestroy()
+    {
+        if (ProvokerManager.Instance != null)
+        {
+            ProvokerManager.Instance.DeregisterProvoker(this);
+        }
+    }
+    
     // ======== Unity Events ========
     
     protected virtual void OnDrawGizmosSelected()

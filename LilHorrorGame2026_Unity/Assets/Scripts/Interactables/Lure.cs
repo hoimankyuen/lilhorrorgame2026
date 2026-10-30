@@ -58,7 +58,7 @@ public class Lure : MonoBehaviour
     
     // ======== Effects ========
 
-    public virtual void Broadcast(bool active)
+    public virtual void ChangeActiveState(bool active)
     {
         if (active)
         {

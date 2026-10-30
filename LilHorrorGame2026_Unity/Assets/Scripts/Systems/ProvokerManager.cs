@@ -68,4 +68,9 @@ public class ProvokerManager : MonoBehaviour
     {
         m_provokers.Add(provoker);
     }
+    
+    public void DeregisterProvoker(Provoker provoker)
+    {
+        m_provokers.Add(provoker);
+    }
 }
