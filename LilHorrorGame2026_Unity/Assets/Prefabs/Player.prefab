@@ -55,6 +55,7 @@ GameObject:
   - component: {fileID: 3660621839138273381}
   - component: {fileID: 3567199990126580593}
   - component: {fileID: 4956011213739097765}
+  - component: {fileID: 2141808623470167021}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -221,13 +222,30 @@ MonoBehaviour:
   m_eyeBlockerCanvasGroup: {fileID: 0}
   m_closeEyeDuration: 4
   m_openEyeDuration: 1
-  m_animationMidway: 0.25
+  m_animationMidway: 0.125
   m_layersToHide:
     serializedVersion: 2
-    m_Bits: 897
+    m_Bits: 2945
   m_layersToShow:
     serializedVersion: 2
     m_Bits: 1024
+  m_startHearingMidway: 0.33
+--- !u!114 &2141808623470167021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5863124586798390509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c961110bb82bc006d802327f9c71eb60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RigidbodyPush
+  m_pushForce: 25
+  m_pushLayers:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!1 &5883399172717583175
 GameObject:
   m_ObjectHideFlags: 0
