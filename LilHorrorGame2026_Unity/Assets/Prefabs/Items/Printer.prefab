@@ -4867,10 +4867,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2048800798861679096}
     - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
-      propertyPath: m_usedSelectionColour.g
-      value: 0.034552082
-      objectReference: {fileID: 0}
-    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_usedSelectionPromptText
       value: Distracting...
       objectReference: {fileID: 0}
