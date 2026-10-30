@@ -22386,14 +22386,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
-    - target: {fileID: 1626521924033727128, guid: 6f950c906df80274a80dc85508794aef, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.003035292
-      objectReference: {fileID: 0}
-    - target: {fileID: 1626521924033727128, guid: 6f950c906df80274a80dc85508794aef, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.27130887
-      objectReference: {fileID: 0}
     - target: {fileID: 8904908070015712776, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_playerBodyTransform
       value: 
