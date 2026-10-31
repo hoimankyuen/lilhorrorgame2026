@@ -22,7 +22,7 @@ public class ExitSign : MonoBehaviour
     private void Start()
     {
         m_timeManager.OnSunset += UnlockExitDoor;
-        m_signMaterial.SetColor(EmissionColor, m_inactiveExitSignColor);
+        m_signMaterialInstance.SetColor(EmissionColor, m_inactiveExitSignColor);
     }
 
     private void OnDestroy()
@@ -35,6 +35,6 @@ public class ExitSign : MonoBehaviour
 
     private void UnlockExitDoor()
     {
-        m_signMaterial.SetColor(EmissionColor, m_activeExitSignColor);
+        m_signMaterialInstance.SetColor(EmissionColor, m_activeExitSignColor);
     }
 }

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -26,32 +27,37 @@ public class ControlDisplay : MonoBehaviour
     }
     
     [Header("Components")]
-    [SerializeField] private CanvasGroup m_canvasGroup;
+    [SerializeField] private CanvasGroup m_mainCanvasGroup;
     
     [Header("Data")]
     [SerializeField] private ControlData m_crouchData;
     [SerializeField] private ControlData m_runData;
     [SerializeField] private ControlData m_listenData;
     [SerializeField] private ControlData m_zoomData;
-
-    //[Header("Settings")]
-    //[SerializeField] private float m_hideDelay;
-    //[SerializeField] private float m_hideDuration;
     
     private bool m_isGamepad;
-    //private bool m_isHidden;
     
     // ======== Unity Events ========
-
-    private void Awake()
+    
+    private void Start()
     {
         InputSystem.onEvent += OnEvent;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
     }
-    
+
     private void OnDestroy()
     {
         InputSystem.onEvent -= OnEvent;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
     }
+    
+    // ======== Input System Events ========
     
     private void OnEvent(InputEventPtr ptr, InputDevice device)
     {
@@ -61,6 +67,13 @@ public class ControlDisplay : MonoBehaviour
         m_isGamepad = isGamePad;
         
         ChangeDisplay(m_isGamepad);
+    }
+
+    // ======== Game Manager Events ========
+    
+    private void OnGameEnded()
+    {
+        m_mainCanvasGroup.DOFade(0, 0.5f);
     }
     
     // ======== Appearance ========

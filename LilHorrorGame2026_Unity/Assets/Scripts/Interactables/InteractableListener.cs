@@ -20,19 +20,43 @@ public class InteractableListener : MonoBehaviour
     
     private InputSystemFirstPersonControls InputActions => m_fpCharacter != null ? m_fpCharacter.InputActions : null;
 
+    private bool m_controlDisable;
+    
     private float m_curveHeight;
     private float m_fillHeight;
 
     private float m_progress; // 0: open, 1: closed 2: not adapted, 3: adapted
     private float m_prevProgress;
-    //private float m_eyeClosingProgress = 0;
-    //private float m_lastEyeClosingProgress = 0;
     
     // ======== Unity Events ========
+    
+    private void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
+    }
+    
     private void Update()
     {
         DetectEyeClosingProgress();
         ShowAsEyeClosing();
+    }
+    
+    // ======== Game Manager Events ========
+    
+    private void OnGameEnded()
+    {
+        m_controlDisable = true;
     }
     
     // ======== Detect Input ========
@@ -51,6 +75,9 @@ public class InteractableListener : MonoBehaviour
     
     private void DetectEyeClosingProgress()
     {
+        if (m_controlDisable)
+            return;
+        
         if (InputActions == null)
             return;
         

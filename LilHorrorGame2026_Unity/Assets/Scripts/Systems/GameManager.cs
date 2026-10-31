@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-
     [Header("References")]
     [SerializeField] private TimeManager m_timeManager;
     [SerializeField] private AudioSource m_audioSource;
     [SerializeField] private AudioClip m_winStinger;
     [SerializeField] private AudioClip m_loseStinger;
-    
-    public static event Action OnWinGame;
-    public static event Action OnLoseGame;
+
+    public event Action GameEnded;
+    public event Action GameWon;
+    public event Action GameLostByMonster;
+    public event Action GameLostBySanity;
     
     private void Start()
     {
@@ -22,7 +23,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void WinGame()
     {
         Debug.Log("Win Game");
-        OnWinGame?.Invoke();
+        GameEnded?.Invoke();
+        GameWon?.Invoke();
         m_audioSource.PlayOneShot(m_winStinger);
         
         //Show win UI
@@ -30,10 +32,22 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         //Brighten scene?
     }
 
-    public void LoseGame()
+    public void LoseGameByMonster()
     {
         Debug.Log("Lose Game");
-        OnLoseGame?.Invoke();
+        GameEnded?.Invoke();
+        GameLostByMonster?.Invoke();
+        m_audioSource.PlayOneShot(m_loseStinger);
+        //Show loss UI
+        //Monster roar
+        //Fade to black?
+    }
+    
+    public void LoseGameBySanity()
+    {
+        Debug.Log("Lose Game");
+        GameEnded?.Invoke();
+        GameLostBySanity?.Invoke();
         m_audioSource.PlayOneShot(m_loseStinger);
         //Show loss UI
         //Monster roar

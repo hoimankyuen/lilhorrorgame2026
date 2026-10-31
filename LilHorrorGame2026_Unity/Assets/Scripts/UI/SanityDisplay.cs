@@ -30,6 +30,7 @@ public class SanityDisplay : MonoBehaviour
     [SerializeField] private SanitySystem m_sanitySystem;
     
     [Header("Components")]
+    [SerializeField] private CanvasGroup m_mainCanvasGroup;
     [SerializeField] private Image m_eyeFrame;
     [SerializeField] private Image m_eyeMask;
     [SerializeField] private Image m_eyeIris;
@@ -45,19 +46,40 @@ public class SanityDisplay : MonoBehaviour
     
     // ======== Unity Events ========
     
-    private void Awake()
-    {
-        m_sanitySystem.OnSanityChanged += OnSanityChanged;
-    }
-
     private void OnDestroy()
     {
-        m_sanitySystem.OnSanityChanged -= OnSanityChanged;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
+        if (m_sanitySystem != null)
+        {
+            m_sanitySystem.OnSanityChanged -= OnSanityChanged;
+        }
+    }
+
+    private void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+        if (m_sanitySystem != null)
+        {
+            m_sanitySystem.OnSanityChanged += OnSanityChanged;
+        }
     }
 
     private void Update()
     {
         EyeAnimation();
+    }
+    
+    // ======== Game Manager Events ========
+    
+    private void OnGameEnded()
+    {
+        m_mainCanvasGroup.DOFade(0, 0.5f);
     }
     
     // ======== Appearance ========

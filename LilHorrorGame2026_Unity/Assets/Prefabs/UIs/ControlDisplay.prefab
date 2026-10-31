@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 835425031755393751}
   - component: {fileID: 7729275536363641865}
   m_Layer: 0
-  m_Name: CanvasGroup
+  m_Name: MainContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2071,7 +2071,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 735e44ad7c6b4e94cb5c1b62612fe49e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlDisplay
-  m_canvasGroup: {fileID: 7729275536363641865}
+  m_mainCanvasGroup: {fileID: 7729275536363641865}
   m_crouchData:
     Frame: {fileID: 1404095988412690408}
     Text: {fileID: 8504251739397315809}

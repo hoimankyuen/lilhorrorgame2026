@@ -75,7 +75,6 @@ public class MonsterBehaviour : MonoBehaviour
     private BehaviourState m_nextState;
     private bool m_changingState;
     
-    
     // ======== Unity Events ========
 
     private void Awake()
@@ -85,7 +84,20 @@ public class MonsterBehaviour : MonoBehaviour
 
     private void Start()
     {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+
         ChangeState(new IdleBehaviourState(this));
+    }
+    
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
     }
     
     private void Update()
@@ -115,6 +127,13 @@ public class MonsterBehaviour : MonoBehaviour
     {
         m_nextState = nextState;
         m_changingState = true;
+    }
+
+    private void OnGameEnded()
+    {
+        ChangeState(null);
+        m_monster.CancelLookAt();
+        m_monster.CancelNavigation();
     }
     
     // ======== Shared Utilities ========

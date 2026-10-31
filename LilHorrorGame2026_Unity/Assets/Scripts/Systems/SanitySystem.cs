@@ -17,21 +17,40 @@ public class SanitySystem : MonoBehaviour
     private void Start()
     {
         Reset();
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
     }
 
     private void OnEnable()
     {
         InteractableLure.OnLureInteracted += OnLureInteracted;
+        
     }
 
     private void OnDisable()
     {
         InteractableLure.OnLureInteracted -= OnLureInteracted;
+ 
     }
 
     private void OnLureInteracted(float amount)
     {
         ChangeSanity(amount, true);
+    }
+
+    private void OnGameEnded()
+    {
+        CancelInvoke(nameof(Tick));
     }
 
     private void Reset()
@@ -78,7 +97,7 @@ public class SanitySystem : MonoBehaviour
 
         if (m_currentSanity <= 0)
         {
-            GameManager.Instance.LoseGame();
+            GameManager.Instance.LoseGameBySanity();
         }
     }
 

@@ -122,7 +122,7 @@ public class Monster : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.LoseGame();
+            GameManager.Instance.LoseGameByMonster();
         }
     }
     

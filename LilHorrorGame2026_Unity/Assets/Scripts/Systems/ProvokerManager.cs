@@ -19,6 +19,7 @@ public class ProvokerManager : MonoBehaviourSingleton<ProvokerManager>
     {
         m_timeManager.OnHourChange -= OnHourChange;
         m_timeManager.OnHourChange += OnHourChange;
+        
     }
 
     private void OnEnable()

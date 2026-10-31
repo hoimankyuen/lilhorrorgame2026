@@ -1,10 +1,7 @@
 using System;
-using TMPro;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour {
-    [SerializeField] private TextMeshProUGUI m_timeText;
-    
     [SerializeField] private TimeSettings m_timeSettings;
     
     public event Action OnSunrise {
@@ -28,6 +25,7 @@ public class TimeManager : MonoBehaviour {
     }    
 
     private TimeService m_service;
+    private bool m_timeSuspended;
 
     private void Awake() {
         m_service = new TimeService(m_timeSettings);
@@ -35,25 +33,39 @@ public class TimeManager : MonoBehaviour {
         OnSunset += () => Debug.Log("Work day ends");
         OnHourChange += () => Debug.Log("Hour change");
     }
+    
+    private void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+    }
+    
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
+    }
 
     private void Update() {
         UpdateTimeOfDay();
-        
-        /*
-        if (Keyboard.current.spaceKey.wasPressedThisFrame) {
-            m_timeSettings.timeMultiplier *= 2;
-        }
-        if (Keyboard.current.leftShiftKey.wasPressedThisFrame) {
-            m_timeSettings.timeMultiplier /= 2;
-        }
-        */
     }
 
-    private void UpdateTimeOfDay() {
+    private void OnGameEnded()
+    {
+        m_timeSuspended = true;
+    }
+    
+    private void UpdateTimeOfDay()
+    {
+        if (m_timeSuspended)
+            return;
+        
         m_service.UpdateTime(Time.deltaTime);
-        if (m_timeText != null) {
-            m_timeText.text = m_service.CurrentTime.ToString("hh:mm");
-        }
+
     }
 
     public DateTime GetTimeOfDay()

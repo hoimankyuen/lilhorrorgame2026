@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class Crosshair : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] private CanvasGroup m_mainCanvasGroup;
     [SerializeField] private RectTransform m_iconRectTransform;
     [SerializeField] private List<Graphic> m_colouredGraphics;
     [SerializeField] private TMP_Text m_promptText;
@@ -40,13 +41,27 @@ public class Crosshair : MonoBehaviour
     private void Awake()
     {
         m_iconHeight = m_iconRectTransform.sizeDelta.y;
+    }
+
+    private void Start()
+    {
         InputSystem.onEvent += OnEvent;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
     }
 
     private void OnDestroy()
     {
         InputSystem.onEvent -= OnEvent;
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
     }
+    
+    // ======== Input System Events ========
     
     private void OnEvent(InputEventPtr ptr, InputDevice device)
     {
@@ -57,6 +72,14 @@ public class Crosshair : MonoBehaviour
         
         ChangeButton(m_isGamepad);
     }
+    
+    // ======== Game Manager Events ========
+    
+    private void OnGameEnded()
+    {
+        m_mainCanvasGroup.DOFade(0, 0.5f);
+    }
+
     
     // ======== Appearance ========
 

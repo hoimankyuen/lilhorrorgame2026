@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using MoonlightTools.GeneralTools;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine;
 public class DialogueDisplay : MonoBehaviour
 {
     [Header("Components")]
+    [SerializeField] private CanvasGroup m_mainCanvasGroup;
     [SerializeField] private TMP_Text m_dialogueText;
     [SerializeField] private CanvasGroup m_canvasGroup;
 
@@ -15,6 +17,31 @@ public class DialogueDisplay : MonoBehaviour
     [SerializeField] private float m_hideDuration;
     
     private Coroutine m_dialogueCoroutine;
+    
+    // ======== Unity Events ========
+    
+    private void Start()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
+    }
+    
+    // ======== Game Manager Events ========
+    
+    private void OnGameEnded()
+    {
+        m_mainCanvasGroup.DOFade(0, 0.5f);
+    }
     
     // ======== Appearance ========
 

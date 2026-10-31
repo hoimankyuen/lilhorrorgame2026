@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DG.Tweening;
 using MoonlightTools.MathTools;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,6 +12,7 @@ public class WarningDisplay : MonoBehaviour
     
     [Header("Components")] 
     [SerializeField] private CanvasGroup m_mainCanvasGroup;
+    [SerializeField] private CanvasGroup m_allWarningCanvasGroup;
     [SerializeField] private CanvasGroup m_leftCanvasGroup;
     [SerializeField] private CanvasGroup m_rightCanvasGroup;
     [SerializeField] private CanvasGroup m_backCanvasGroup;
@@ -34,11 +36,15 @@ public class WarningDisplay : MonoBehaviour
     
     // ======== Unity Events ========
 
-    private void Awake()
+    private void Start()
     {
         if (m_monster != null)
         {
             m_monster.CurrentHostilityLevelChanged += SetHostileLevel;
+        }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
         }
     }
     
@@ -48,6 +54,10 @@ public class WarningDisplay : MonoBehaviour
         {
             m_monster.CurrentHostilityLevelChanged -= SetHostileLevel;
         }
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
     }
     
     private void Update()
@@ -55,7 +65,14 @@ public class WarningDisplay : MonoBehaviour
         BlinkWarnings();
         SelectWarningSets();
     }
+    
+    // ======== Game Manager Events ========
 
+    private void OnGameEnded()
+    {
+        m_mainCanvasGroup.DOFade(0, 0.5f);
+    }
+    
     // ======== Appearance ========
 
     private void SetHostileLevel(HostileLevel hostileLevel)
@@ -121,7 +138,7 @@ public class WarningDisplay : MonoBehaviour
     {
         if (!ShouldShowWarning())
         {
-            m_mainCanvasGroup.alpha = 0f;
+            m_allWarningCanvasGroup.alpha = 0f;
             return;
         }
 
@@ -130,7 +147,7 @@ public class WarningDisplay : MonoBehaviour
         if (Time.time - m_lastBlinkTime < blinkInterval)
             return;
 
-        m_mainCanvasGroup.alpha = m_mainCanvasGroup.alpha > 0.5f ? 0f : 1f;
+        m_allWarningCanvasGroup.alpha = m_allWarningCanvasGroup.alpha > 0.5f ? 0f : 1f;
         m_lastBlinkTime = Time.time;
     }
 }

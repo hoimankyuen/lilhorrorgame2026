@@ -28,6 +28,8 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     [Header("Zoom")]
     [SerializeField] private float m_zoomFOV = 35.0f;
     [SerializeField] private float m_zoomSpeed = 9f;
+
+    private bool m_controlDisable;
     
     private float m_targetFOV;
     private float m_baseFOV;
@@ -40,6 +42,7 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     {
         InputActions = new InputSystemFirstPersonControls();
     }
+    
     private void Start()
     {
         m_initHeight  = m_controller.height;
@@ -47,6 +50,19 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         m_initCamY    = m_cam.transform.localPosition.y;
         Cursor.lockState = CursorLockMode.Locked;
         SetBaseFOV(m_cam.fieldOfView);
+        
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded += OnGameEnded;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameEnded -= OnGameEnded;
+        }
     }
 
     private void Update()
@@ -66,9 +82,17 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     {
         InputActions.Disable();
     }
+
+    private void OnGameEnded()
+    {
+        m_controlDisable = true;
+    }
     
     private void DoMovement()
     {
+        if (m_controlDisable)
+            return;
+        
         m_grounded = m_controller.isGrounded;
         if (m_grounded && m_velocity.y < 0)
         {
@@ -99,6 +123,9 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     
     private void DoLooking()
     {
+        if (m_controlDisable)
+            return;
+        
         if (m_lookWarmupFrames > 0)
         {
             m_lookWarmupFrames--;
@@ -119,12 +146,18 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
 
     private void DoZoom()
     {
+        if (m_controlDisable)
+            return;
+        
         m_targetFOV = InputActions.FPSController.Zoom.ReadValue<float>() > 0 ? m_zoomFOV : m_baseFOV;
         UpdateZoom();
     }
     
     private void DoCrouch()
     {
+        if (m_controlDisable)
+            return;
+        
         bool wantToCrouch = InputActions.FPSController.Crouch.ReadValue<float>() > 0;
         float targetHeight = wantToCrouch || IsCeilingBlocked() ? m_crouchHeight : m_initHeight;
 
