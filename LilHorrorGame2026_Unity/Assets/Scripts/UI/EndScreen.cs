@@ -38,11 +38,12 @@ public class EndScreen : MonoBehaviour
 
     private void Retry()
     {
-        
+       LevelManager.Instance.GotoGame(); 
     }
 
     private void Menu()
     {
-        
+        LevelManager.Instance.GotoMainMenu(); 
+
     }
 }
