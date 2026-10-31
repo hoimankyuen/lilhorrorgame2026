@@ -273,8 +273,16 @@ public class MonsterBehaviour : MonoBehaviour
 
         public override void OnStateEnter()
         {
-            Quaternion rotation = Quaternion.AngleAxis(Random.Range(Behaviour.m_minTurnAngle, 180f) * (Random.Range(0, 2) * 2 - 1), Vector3.up);
-            Vector3 newForward = rotation * Monster.transform.forward;
+            Vector3 newForward = Monster.transform.forward;
+            for (int i = 0; i < 50; i++)
+            {
+                Quaternion rotation = Quaternion.AngleAxis(Random.Range(Behaviour.m_minTurnAngle, 180f) * (Random.Range(0, 2) * 2 - 1), Vector3.up);
+                newForward = rotation * Monster.transform.forward;
+                if (!Monster.WillFaceWall(newForward))
+                {
+                    break;
+                }
+            }
             Monster.LookAt(Monster.transform.position + newForward);
         }
 

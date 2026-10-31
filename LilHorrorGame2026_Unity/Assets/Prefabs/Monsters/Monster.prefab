@@ -190,7 +190,7 @@ MonoBehaviour:
   m_walkSpeed: 1.5
   m_runSpeed: 2.5
   m_chaseSpeed: 5
-  m_idleAvoidFacingWallDistance: 4
+  m_idleAvoidFacingWallDistance: 2.5
   m_forwardDetectionAngle: 60
   m_forwardDetectionRange: 20
   m_peripheralDetectionAngle: 160
@@ -226,9 +226,9 @@ MonoBehaviour:
   m_turnChance: 4
   m_wanderChance: 6
   m_lookChance: 2
-  m_minTurnAngle: 60
+  m_minTurnAngle: 45
   m_wanderPatrolPointSet: {fileID: 0}
-  m_investigateCompletedDuration: 4
+  m_investigateCompletedDuration: 3
   m_lookDuration: 5
   m_screamDuration: 1.5
   m_suspectDuration: 2

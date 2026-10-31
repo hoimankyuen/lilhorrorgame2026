@@ -55248,10 +55248,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1829945309}
     - target: {fileID: 4956011213739097765, guid: acaf2e65e9886fb6db8687f09095d43a, type: 3}
-      propertyPath: m_layersToHide.m_Bits
-      value: 7043
-      objectReference: {fileID: 0}
-    - target: {fileID: 4956011213739097765, guid: acaf2e65e9886fb6db8687f09095d43a, type: 3}
       propertyPath: m_eyeBlockerCanvasGroup
       value: 
       objectReference: {fileID: 1814779434}

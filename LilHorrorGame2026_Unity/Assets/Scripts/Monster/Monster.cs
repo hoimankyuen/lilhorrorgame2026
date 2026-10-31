@@ -207,6 +207,12 @@ public class Monster : MonoBehaviour
         Ray viewRay = new Ray(m_TVTransform.position, Vector3.ProjectOnPlane(m_TVTransform.forward, Vector3.up).normalized);
         return Physics.Raycast(viewRay, m_idleAvoidFacingWallDistance, m_obstacleLayerMask);
     }
+
+    public bool WillFaceWall(Vector3 direction)
+    {
+        Ray viewRay = new Ray(m_TVTransform.position, Vector3.ProjectOnPlane(direction, Vector3.up).normalized);
+        return Physics.Raycast(viewRay, m_idleAvoidFacingWallDistance, m_obstacleLayerMask);
+    }
     
     public bool WithinForwardSight(Vector3 targetPosition, float targetHeight)
     {
