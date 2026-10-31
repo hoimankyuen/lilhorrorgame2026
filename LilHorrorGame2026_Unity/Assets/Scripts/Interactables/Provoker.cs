@@ -12,7 +12,7 @@ public class Provoker : MonoBehaviour
     [SerializeField] private string m_activeAnimationParam;
 
     [Header("Provoker Settings")] 
-    [SerializeField] private float m_sanityAmount;
+    [SerializeField] protected float m_sanityAmount;
 
     private bool IsBroadcasting { get; set; }
     
@@ -31,6 +31,11 @@ public class Provoker : MonoBehaviour
         IsBroadcasting = active;
         m_soundParticleEffect.Play(active);
         m_animator.SetBool(m_activeAnimationParam, active);
+
+        if (!active)
+        {
+            ProvokerManager.Instance.RemoveProvokerFromActive(this);
+        }
     }
     
     public bool GetActiveState()

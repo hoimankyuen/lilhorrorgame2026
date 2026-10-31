@@ -25318,71 +25318,74 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ProvokerManager
   m_timeManager: {fileID: 67962694}
   m_sanitySystem: {fileID: 268818906}
-  m_registeredProvokers:
-  - {fileID: 163617234}
-  - {fileID: 1608350135}
-  - {fileID: 1911068064}
-  - {fileID: 2061004033}
-  - {fileID: 1157029462}
-  - {fileID: 930561523}
-  - {fileID: 912571881}
-  - {fileID: 1909866406}
-  - {fileID: 1495072071}
+  m_registeredProvokersMainRoom:
+  - {fileID: 1942189956}
+  - {fileID: 1332312727}
+  - {fileID: 1699637479}
+  - {fileID: 1685326262}
+  - {fileID: 1351037972}
+  - {fileID: 1624273959}
+  - {fileID: 767537507}
   - {fileID: 2043398014}
-  - {fileID: 2006668755}
-  - {fileID: 1818319327}
+  - {fileID: 2061004033}
+  - {fileID: 1039192283}
+  - {fileID: 2014476158}
+  - {fileID: 912571881}
+  - {fileID: 666391234}
+  - {fileID: 1734289641}
   - {fileID: 1587531771}
-  - {fileID: 1298297478}
+  - {fileID: 1877690964}
+  - {fileID: 1110118572}
+  - {fileID: 1720907838}
+  - {fileID: 1882081436}
+  - {fileID: 991917333}
+  - {fileID: 1909175056}
+  - {fileID: 1353237395}
+  - {fileID: 930561523}
+  - {fileID: 1734230415}
+  - {fileID: 863195310}
+  - {fileID: 1389735683}
+  - {fileID: 1618247201}
   - {fileID: 1722264174}
   - {fileID: 1593092623}
-  - {fileID: 1351037972}
-  - {fileID: 1353237395}
-  - {fileID: 1039192283}
-  - {fileID: 2079369943}
-  - {fileID: 1699637479}
-  - {fileID: 991917333}
-  - {fileID: 1720907838}
-  - {fileID: 1805475519}
-  - {fileID: 1129838938}
-  - {fileID: 535815427}
-  - {fileID: 1882081436}
-  - {fileID: 1942189956}
-  - {fileID: 2014476158}
-  - {fileID: 1818126331}
-  - {fileID: 1389735683}
-  - {fileID: 1136792322}
-  - {fileID: 1618247201}
-  - {fileID: 715740421}
-  - {fileID: 907676197}
-  - {fileID: 1624273959}
-  - {fileID: 2083728034}
-  - {fileID: 863195310}
-  - {fileID: 1525764577}
-  - {fileID: 1332312727}
-  - {fileID: 1932650644}
-  - {fileID: 1532103312}
-  - {fileID: 1877690964}
-  - {fileID: 1622452340}
-  - {fileID: 1988676816}
-  - {fileID: 1501279779}
-  - {fileID: 2039106258}
-  - {fileID: 1685326262}
-  - {fileID: 1734230415}
-  - {fileID: 666391234}
-  - {fileID: 1706179940}
-  - {fileID: 1110118572}
-  - {fileID: 1909175056}
   - {fileID: 1708138165}
-  - {fileID: 1581417281}
-  - {fileID: 767537507}
-  - {fileID: 867876106}
   - {fileID: 1534419508}
-  - {fileID: 1734289641}
-  - {fileID: 1524247291}
-  - {fileID: 1536539264}
+  - {fileID: 1129838938}
+  - {fileID: 1911068064}
+  - {fileID: 1909866406}
+  - {fileID: 1298297478}
+  - {fileID: 1818126331}
+  - {fileID: 1501279779}
+  - {fileID: 2083728034}
+  - {fileID: 2006668755}
+  - {fileID: 535815427}
+  - {fileID: 1532103312}
+  - {fileID: 1157029462}
+  - {fileID: 907676197}
+  - {fileID: 1495072071}
   - {fileID: 1455071488}
+  - {fileID: 163617234}
+  - {fileID: 1524247291}
+  - {fileID: 715740421}
+  - {fileID: 1536539264}
+  - {fileID: 1932650644}
+  - {fileID: 1988676816}
+  - {fileID: 867876106}
+  - {fileID: 1136792322}
+  - {fileID: 2079369943}
+  - {fileID: 2039106258}
+  - {fileID: 1706179940}
+  m_registeredProvokersReception:
+  - {fileID: 1608350135}
+  - {fileID: 1818319327}
+  m_registeredProvokersBossOffice:
+  - {fileID: 1622452340}
+  - {fileID: 1525764577}
+  m_registeredProvokersConferenceRoom:
+  - {fileID: 1581417281}
+  - {fileID: 1805475519}
   m_activeProvokers: []
-  m_amountOfActiveProvokersPerTick: 1
+  m_amountOfActiveProvokersPerTick: 2
   m_maxActiveProvokers: 10
 --- !u!1001 &841947164
 PrefabInstance:

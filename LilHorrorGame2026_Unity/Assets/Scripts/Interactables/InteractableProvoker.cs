@@ -34,6 +34,7 @@ public class InteractableProvoker : Provoker, IInteractableComponent
     public void OnInteract()
     {
         ChangeActiveState(false);
+        SanitySystem.Instance.ChangeSanity(m_sanityAmount, true);
     }
     
     // ======== Effects ========
@@ -67,8 +68,8 @@ public class InteractableProvoker : Provoker, IInteractableComponent
         }
         else
         {
+            m_audioSource.Stop();
             m_audioSource?.PlayOneShot(m_deactivationSound);
         }
-        
     }
 }

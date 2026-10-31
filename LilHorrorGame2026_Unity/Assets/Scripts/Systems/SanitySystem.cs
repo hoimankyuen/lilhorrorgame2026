@@ -1,7 +1,8 @@
 using System;
+using MoonlightTools.GeneralTools;
 using UnityEngine;
 
-public class SanitySystem : MonoBehaviour
+public class SanitySystem : MonoBehaviourSingleton<SanitySystem>
 {
     public event Action<float> OnSanityChanged;
     
@@ -76,7 +77,7 @@ public class SanitySystem : MonoBehaviour
         ChangeSanity(m_decayTickAmount + m_bonusTickAmount, false);
     }
 
-    private void ChangeSanity(float amount, bool add)
+    public void ChangeSanity(float amount, bool add)
     {
         if (add)
         {
