@@ -233,6 +233,7 @@ MonoBehaviour:
   m_screamDuration: 1.5
   m_suspectDuration: 2
   m_easeDuration: 4
+  m_chasePredictionDuration: 0.5
   m_targetLostDuration: 4
 --- !u!195 &9109700005513110622
 NavMeshAgent:
@@ -4980,6 +4981,7 @@ MonoBehaviour:
   m_monster: {fileID: 2443262168019319763}
   m_audioSource: {fileID: 8308427279913116660}
   m_animator: {fileID: 7866994976352193621}
+  m_attack: {fileID: 0}
   m_roar: {fileID: 8300000, guid: 30fae8453c52c1e1d85f28fa897ca58e, type: 3}
   m_alert: {fileID: 8300000, guid: de746244d3c092e5d971d2f4c24971a2, type: 3}
   m_caution: {fileID: 8300000, guid: 5e797839206452030a50c31f1cdd1bbe, type: 3}

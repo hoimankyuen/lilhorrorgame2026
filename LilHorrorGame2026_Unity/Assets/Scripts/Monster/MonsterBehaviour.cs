@@ -52,7 +52,6 @@ public class MonsterBehaviour : MonoBehaviour
     [Header("Wander State Settings")]
     [SerializeField] private MonsterPatrolPointSet m_wanderPatrolPointSet;
     
-        
     [Header("Investigate Completed State Settings")]
     [SerializeField] private float m_investigateCompletedDuration;
     
@@ -65,6 +64,9 @@ public class MonsterBehaviour : MonoBehaviour
     [Header("Suspect State Settings")]
     [SerializeField] private float m_suspectDuration;
     [SerializeField] private float m_easeDuration;
+    
+    [Header("Chase State Settings")]
+    [SerializeField] private float m_chasePredictionDuration;
     
     [Header("Target Lost State Settings")]
     [SerializeField] private float m_targetLostDuration;
@@ -535,6 +537,7 @@ public class MonsterBehaviour : MonoBehaviour
     private class ChaseBehaviourState : BehaviourState
     {
         private readonly Vector3 m_initialTargetPosition;
+        private float m_lastSeenTime;
 
         public ChaseBehaviourState(MonsterBehaviour behaviour, Vector3 targetPosition) : base(behaviour)
         {
@@ -544,6 +547,7 @@ public class MonsterBehaviour : MonoBehaviour
         public override void OnStateEnter()
         {
             Monster.ChaseTo(m_initialTargetPosition);
+            m_lastSeenTime = Time.time;
         }
 
         public override void OnStateUpdate()
@@ -551,10 +555,15 @@ public class MonsterBehaviour : MonoBehaviour
             if (Monster.WithinPeripheralSight(Behaviour.PlayerPosition, Behaviour.PlayerHeight))
             {
                 Monster.ChaseTo(Behaviour.PlayerPosition);
+                m_lastSeenTime = Time.time;
             }
             else if (Monster.HasArrivedToTarget())
             {
                 ChangeState(new TargetLostBehaviourState(Behaviour)); 
+            }
+            else if (Time.time - m_lastSeenTime < Behaviour.m_chasePredictionDuration)
+            {
+                Monster.ChaseTo(Behaviour.PlayerPosition);
             }
         }
 
