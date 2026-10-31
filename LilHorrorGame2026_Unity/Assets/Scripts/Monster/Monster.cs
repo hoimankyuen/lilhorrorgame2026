@@ -26,6 +26,7 @@ public class Monster : MonoBehaviour
     private static readonly int SoftLookingAnimParam = Animator.StringToHash("SoftLooking");
     private static readonly int HardLookingAnimParam = Animator.StringToHash("HardLooking");
     private static readonly int ScreamingAnimParam = Animator.StringToHash("Screaming");
+    private static readonly int AttackingAnimParam = Animator.StringToHash("Attacking");
     
     public static readonly List<Monster> Instances = new();
     
@@ -289,6 +290,11 @@ public class Monster : MonoBehaviour
     public void Scream()
     {
         m_rigAnimator.SetTrigger(ScreamingAnimParam);
+    }
+    
+    public void Attack()
+    {
+        m_rigAnimator.SetBool(AttackingAnimParam, true);
     }
     
     // ======== TV ========

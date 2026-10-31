@@ -12,9 +12,11 @@ public class EyelidOverlay : MonoBehaviour
     [SerializeField] private RectTransform m_lowerEyelidFill;
     [SerializeField] private CanvasGroup m_eyeBlockerCanvasGroup;
     
-    
     private float m_curveHeight;
     private float m_fillHeight;
+    
+    public float CurrentEyelidProgress { get; private set; }
+    public float CurrentAdaption { get; private set; }
     
     // ======== Unity Events ========
 
@@ -33,6 +35,8 @@ public class EyelidOverlay : MonoBehaviour
 
     public void ShowEyelidProgress(float interpolate) // 0: open, 1: close
     {
+        CurrentEyelidProgress = interpolate;
+        
         interpolate = Mathf.Clamp01(interpolate);
         m_eyeLidCanvasGroup.alpha = interpolate < 1f ? 1f : 0f;
         m_upperEyelidCurve.sizeDelta = new Vector2(m_upperEyelidCurve.sizeDelta.x, Mathf.Lerp(m_curveHeight, 0f, interpolate));
@@ -43,6 +47,8 @@ public class EyelidOverlay : MonoBehaviour
 
     public void ShowAdaptionProgress(float interpolate) // 0: not adapted, 1: adapted
     {
+        CurrentAdaption = interpolate;
+        
         interpolate = Mathfx.Coserp(0f, 1f, Mathf.Clamp01(interpolate));
         m_eyeBlockerCanvasGroup.alpha = 1f - interpolate;
     }
