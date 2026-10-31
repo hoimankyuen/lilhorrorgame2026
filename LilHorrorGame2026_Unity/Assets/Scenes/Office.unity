@@ -53474,6 +53474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407cae7357ebb379e81e39f2460952ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorDialogue
+  m_collider: {fileID: 1733035813}
   m_dialogueDisplay: {fileID: 720857432}
   m_timeManager: {fileID: 67962694}
 --- !u!65 &1733035813
