@@ -4642,7 +4642,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5840253733811164906}
   - component: {fileID: 7437371888869389160}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SoundParticleEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
