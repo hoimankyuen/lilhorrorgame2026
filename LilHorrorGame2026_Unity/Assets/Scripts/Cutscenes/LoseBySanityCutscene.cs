@@ -6,7 +6,7 @@ using MoonlightTools.MathTools;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LostBySanityCutscene: Cutscene
+public class LoseBySanityCutscene: Cutscene
 {
     [Header("References")]
     [SerializeField] private EyelidOverlay m_eyelidOverlay;

@@ -4,7 +4,7 @@ using MoonlightTools.GeneralTools;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LostByMonsterCutscene : Cutscene
+public class LoseByMonsterCutscene : Cutscene
 {
     [Header("References")]
     [SerializeField] private EyelidOverlay m_eyelidOverlay;

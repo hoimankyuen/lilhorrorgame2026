@@ -38816,7 +38816,7 @@ GameObject:
   - component: {fileID: 1293261075}
   - component: {fileID: 1293261076}
   m_Layer: 0
-  m_Name: LostByMonsterCutscene
+  m_Name: LoseByMonsterCutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54548,7 +54548,7 @@ GameObject:
   - component: {fileID: 1801828766}
   - component: {fileID: 1801828767}
   m_Layer: 0
-  m_Name: LostBySanityCutscene
+  m_Name: LoseBySanityCutscene
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
