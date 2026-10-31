@@ -18,6 +18,7 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     [Header("Crouch")]
     [SerializeField] private float m_crouchHeight = 1.0f;
     [SerializeField] private float m_crouchSpeed = 6f;   // metres of height per second
+    private bool m_crouchToggle = false;
     
     private float m_xRotation = 0f;
     
@@ -157,9 +158,13 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
     {
         if (m_controlDisable)
             return;
-        
-        bool wantToCrouch = InputActions.FPSController.Crouch.ReadValue<float>() > 0;
-        float targetHeight = wantToCrouch || IsCeilingBlocked() ? m_crouchHeight : m_initHeight;
+
+        if (InputActions.FPSController.Crouch.WasPerformedThisFrame())
+        {
+            m_crouchToggle = !m_crouchToggle;
+        }
+
+        float targetHeight = m_crouchToggle || IsCeilingBlocked() ? m_crouchHeight : m_initHeight;
 
         float newHeight = Mathf.MoveTowards(m_controller.height, targetHeight, m_crouchSpeed * Time.deltaTime);
         float shrink = m_initHeight - newHeight;
