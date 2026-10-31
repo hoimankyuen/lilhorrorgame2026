@@ -19,6 +19,11 @@ public class EndScreen : MonoBehaviour
         m_retryButton.onClick.AddListener(Retry);
         m_menuButton.onClick.AddListener(Menu);
     }
+
+    private void Start()
+    {
+        m_retryButton.Select();
+    }
     
     // ======== Menu Functions ========
     
