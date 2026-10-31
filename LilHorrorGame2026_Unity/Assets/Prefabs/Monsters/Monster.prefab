@@ -234,7 +234,7 @@ MonoBehaviour:
   m_suspectDuration: 2
   m_easeDuration: 4
   m_chasePredictionDuration: 0.5
-  m_targetLostDuration: 4
+  m_targetLostDuration: 2
 --- !u!195 &9109700005513110622
 NavMeshAgent:
   m_ObjectHideFlags: 0
