@@ -8,6 +8,7 @@ public class MonsterSFX : MonoBehaviour
     [SerializeField] private AudioSource m_audioSource;
     [SerializeField] private Animator m_animator;
     
+    [SerializeField] private AudioClip m_attack;
     [SerializeField] private AudioClip m_roar;
     [SerializeField] private AudioClip m_alert;
     [SerializeField] private AudioClip m_caution;
@@ -28,6 +29,12 @@ public class MonsterSFX : MonoBehaviour
                 Caution();
                 break;
         }
+    }
+
+    public void Attack()
+    {
+        m_audioSource.Stop();
+        m_audioSource.PlayOneShot(m_attack);
     }
 
     public void Roar()

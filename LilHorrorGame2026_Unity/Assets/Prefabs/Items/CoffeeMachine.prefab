@@ -27975,6 +27975,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2108064916499171082}
     - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
+      propertyPath: m_sanityAmount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3475529797896089438, guid: 184037bac939f674da979b1cb95d50c2, type: 3}
       propertyPath: m_usedSelectionPromptText
       value: Distracting...
       objectReference: {fileID: 0}
