@@ -7,59 +7,57 @@ public class ProvokerManager : MonoBehaviourSingleton<ProvokerManager>
 {
     [Header("References")]
     [SerializeField] private TimeManager m_timeManager;
+    [SerializeField] private SanitySystem m_sanitySystem;
     
-    private readonly List<Provoker> m_provokers = new();
-    private readonly List<Provoker> m_activeProvokers = new();
+    [Header("Debug")]
+    [SerializeField] private List<Provoker> m_registeredProvokers = new();
+    [SerializeField] private List<Provoker> m_activeProvokers = new();
 
     [Header("Settings")]
-    [SerializeField] private int m_amountOfActiveProvokers = 10;
+    [SerializeField] private int m_amountOfActiveProvokersPerTick = 1;
+    [SerializeField] private int m_maxActiveProvokers = 10;
     
 
     private void Start()
     {
-        m_timeManager.OnHourChange -= OnHourChange;
-        m_timeManager.OnHourChange += OnHourChange;
-        
+        m_timeManager.OnMinuteChange += OnMinuteChange;
     }
 
-    private void OnEnable()
+    private new void OnDestroy()
     {
-        m_timeManager.OnHourChange += OnHourChange;
-    }
-
-    private void OnDisable()
-    {
-        m_timeManager.OnHourChange -= OnHourChange;
+        m_timeManager.OnMinuteChange -= OnMinuteChange;
     }
     
-    private void OnHourChange()
+    private void OnMinuteChange()
     {
-        m_activeProvokers.Clear();
-        
-        for (int i = 0; i < m_amountOfActiveProvokers; i++)
+        if (m_registeredProvokers.Count == 0)
         {
-            Provoker randomProvoker = m_provokers[Random.Range(0, m_provokers.Count)]; 
-            
-            m_activeProvokers.Add(randomProvoker);
+            return;
         }
 
-        foreach (Provoker activeProvoker in m_activeProvokers)
+        if (m_activeProvokers.Count >= m_maxActiveProvokers)
         {
-            if (activeProvoker.GetActiveState())
+            return;
+        }
+
+        if (m_timeManager.GetTimeOfDay().Minute == 15 || m_timeManager.GetTimeOfDay().Minute == 30 ||  m_timeManager.GetTimeOfDay().Minute == 45)
+        {
+            for (int i = 0; i < m_amountOfActiveProvokersPerTick; i++)
             {
-                break;
-            }
-            activeProvoker.ChangeActiveState(true);
-        }
-    }
+                Provoker randomProvoker = m_registeredProvokers[Random.Range(0, m_registeredProvokers.Count)];
 
-    public void RegisterProvoker(Provoker provoker)
-    {
-        m_provokers.Add(provoker);
-    }
-    
-    public void DeregisterProvoker(Provoker provoker)
-    {
-        m_provokers.Remove(provoker);
+                if (!randomProvoker.GetActiveState())
+                {
+                    m_activeProvokers.Add(randomProvoker);
+                }
+            }
+
+            foreach (Provoker activeProvoker in m_activeProvokers)
+            {
+                activeProvoker.ChangeActiveState(true);
+            }
+        }
+        
+        m_sanitySystem.SetBonusTickAmount(m_activeProvokers.Count * 0.1f);
     }
 }

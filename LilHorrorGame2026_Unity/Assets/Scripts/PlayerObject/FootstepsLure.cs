@@ -6,7 +6,6 @@ public class FootstepsLure : Lure
     {
         if (other.CompareTag("Monster"))
         {
-            Debug.Log("Monster entered");
             ChangeActiveState(true);
         }
     }
@@ -15,7 +14,6 @@ public class FootstepsLure : Lure
     {
         if (other.CompareTag("Monster"))
         {
-            Debug.Log("Monster exited");
             ChangeActiveState(false);
         }
     }

@@ -5,21 +5,30 @@ public class SanitySystem : MonoBehaviour
 {
     public event Action<float> OnSanityChanged;
     
+    [Header("References")]
+    [SerializeField] private TimeManager m_timeManager;
+    
     [Header("Settings")] 
     [SerializeField] private float m_maxSanity;
-    [SerializeField] private float m_decayRate;
     [SerializeField] private float m_decayTickAmount;
-    [SerializeField] private float m_initialTickDelay = 5f;
     
     [Header("Stats")]
     [SerializeField] private float m_currentSanity;
+
+    private float m_bonusTickAmount;
     
     private void Start()
     {
         Reset();
+        
         if (GameManager.Instance != null)
         {
             GameManager.Instance.GameEnded += OnGameEnded;
+        }
+
+        if (m_timeManager != null)
+        {
+            m_timeManager.OnMinuteChange += Tick;
         }
     }
 
@@ -28,6 +37,10 @@ public class SanitySystem : MonoBehaviour
         if (GameManager.Instance != null)
         {
             GameManager.Instance.GameEnded -= OnGameEnded;
+        }
+        if (m_timeManager != null)
+        {
+            m_timeManager.OnMinuteChange -= Tick;
         }
     }
 
@@ -50,18 +63,17 @@ public class SanitySystem : MonoBehaviour
 
     private void OnGameEnded()
     {
-        CancelInvoke(nameof(Tick));
+        m_timeManager.OnMinuteChange -= Tick;
     }
 
     private void Reset()
     {
         SetSanity(m_maxSanity);
-        InvokeRepeating(nameof(Tick), m_initialTickDelay, m_decayRate);
     }
 
     private void Tick()
     {
-        ChangeSanity(m_decayTickAmount, false);
+        ChangeSanity(m_decayTickAmount + m_bonusTickAmount, false);
     }
 
     private void ChangeSanity(float amount, bool add)
@@ -105,5 +117,10 @@ public class SanitySystem : MonoBehaviour
     {
         m_currentSanity = amount;
         OnSanityChanged?.Invoke(m_currentSanity);
+    }
+    
+    public void SetBonusTickAmount(float amount)
+    {
+        m_bonusTickAmount = amount;
     }
 }
