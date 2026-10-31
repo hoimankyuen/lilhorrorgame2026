@@ -325,11 +325,11 @@ MonoBehaviour:
       min: 0
       max: 13
     Radius: 32
-    MovementDuration: 0.05
-    CenteringChance: 0.3
+    MovementDuration: 0.03
+    CenteringChance: 0.2
     StayDuration:
-      min: 0.2
-      max: 0.4
+      min: 0.1
+      max: 0.2
     EyeFrameSprite: {fileID: 21300000, guid: b3a55e8feec04a24e9692815890c7b2c, type: 3}
     EyeMaskSprite: {fileID: 21300000, guid: 4e64178982426c949877ab054c724709, type: 3}
     EyeIrisSprite: {fileID: 21300000, guid: 51b9a92f8f476984da0601d7aaff7f97, type: 3}
@@ -339,36 +339,36 @@ MonoBehaviour:
       max: 31
     Radius: 24
     MovementDuration: 0.05
-    CenteringChance: 0.4
+    CenteringChance: 0.3
     StayDuration:
-      min: 0.3
-      max: 0.6
+      min: 0.2
+      max: 0.4
     EyeFrameSprite: {fileID: 21300000, guid: b3a55e8feec04a24e9692815890c7b2c, type: 3}
     EyeMaskSprite: {fileID: 21300000, guid: 4e64178982426c949877ab054c724709, type: 3}
     EyeIrisSprite: {fileID: 21300000, guid: 51b9a92f8f476984da0601d7aaff7f97, type: 3}
     FillBarColour: {r: 1, g: 0.5, b: 0, a: 1}
   - AmountRange:
       min: 31
-      max: 60
+      max: 65
     Radius: 16
-    MovementDuration: 0.1
-    CenteringChance: 0.6
+    MovementDuration: 0.05
+    CenteringChance: 0.4
     StayDuration:
-      min: 0.4
-      max: 0.8
+      min: 0.3
+      max: 0.6
     EyeFrameSprite: {fileID: 21300000, guid: 27918735425e2054f86557f95479324d, type: 3}
     EyeMaskSprite: {fileID: 21300000, guid: 6f2bec2e4f30231498f3342969d05765, type: 3}
     EyeIrisSprite: {fileID: 21300000, guid: 4e7b03faf1a6dab48b387186a3a684da, type: 3}
     FillBarColour: {r: 1, g: 0.7882353, b: 0, a: 1}
   - AmountRange:
-      min: 60
+      min: 65
       max: 100
     Radius: 8
     MovementDuration: 0.1
-    CenteringChance: 0.8
+    CenteringChance: 0.6
     StayDuration:
       min: 0.4
-      max: 0.9
+      max: 0.8
     EyeFrameSprite: {fileID: 21300000, guid: 27918735425e2054f86557f95479324d, type: 3}
     EyeMaskSprite: {fileID: 21300000, guid: 6f2bec2e4f30231498f3342969d05765, type: 3}
     EyeIrisSprite: {fileID: 21300000, guid: 4e7b03faf1a6dab48b387186a3a684da, type: 3}
