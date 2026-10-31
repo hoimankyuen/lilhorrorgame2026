@@ -67,7 +67,7 @@ public class SanityDisplay : MonoBehaviour
         m_settings = GetApplicableSettings(amount);
         foreach (Image fill in m_fills)
         {
-            fill.fillAmount = amount / 100f;
+            fill.DOFillAmount(amount / 100f, 0.5f);
             fill.color = m_settings.FillBarColour;
         }
     }
