@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
-    [Header("References")]
-    [SerializeField] private TimeManager m_timeManager;
+    [Header("References")] 
+    [SerializeField] private Cutscene m_winCutscene;
+    [SerializeField] private Cutscene m_lostByMonsterCutscene;
+    [SerializeField] private Cutscene m_lostBySanityCutscene;
+    
+    [Space]
     [SerializeField] private AudioSource m_audioSource;
     [SerializeField] private AudioClip m_winStinger;
     [SerializeField] private AudioClip m_loseStinger;
@@ -25,6 +29,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Debug.Log("Win Game");
         GameEnded?.Invoke();
         GameWon?.Invoke();
+
+        m_winCutscene.PlayCutscene();
         m_audioSource.PlayOneShot(m_winStinger);
         
         //Show win UI
@@ -37,6 +43,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Debug.Log("Lose Game");
         GameEnded?.Invoke();
         GameLostByMonster?.Invoke();
+        
+        m_lostByMonsterCutscene.PlayCutscene();
         m_audioSource.PlayOneShot(m_loseStinger);
         //Show loss UI
         //Monster roar
@@ -48,6 +56,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         Debug.Log("Lose Game");
         GameEnded?.Invoke();
         GameLostBySanity?.Invoke();
+        
+        m_lostBySanityCutscene.PlayCutscene();
         m_audioSource.PlayOneShot(m_loseStinger);
         //Show loss UI
         //Monster roar
