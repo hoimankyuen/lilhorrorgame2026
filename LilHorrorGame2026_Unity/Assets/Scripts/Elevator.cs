@@ -28,12 +28,13 @@ public class Elevator : MonoBehaviour
         m_indicator.SetText("O");
         m_indicator.color = Color.green;
         m_audioSource.PlayOneShot(m_arrivalDing);
+        m_audioSource.PlayOneShot(m_openDoors);
         m_animator.Play("Open");
     }
 
     private void CloseDoors()
     {
-        m_audioSource.Play();
+        m_audioSource.PlayOneShot(m_closeDoors);
         m_animator.Play("Close");
     }
 

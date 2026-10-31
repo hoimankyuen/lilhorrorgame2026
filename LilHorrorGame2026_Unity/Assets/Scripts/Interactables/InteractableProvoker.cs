@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Interactable))]
 public class InteractableProvoker : Provoker, IInteractableComponent
@@ -7,6 +8,7 @@ public class InteractableProvoker : Provoker, IInteractableComponent
     [SerializeField] private string m_selectionPromptText;
     [SerializeField] private Color m_selectionColour;
     [SerializeField] private AudioSource m_audioSource;
+    [SerializeField] private AudioResource m_randomContainer;
     [SerializeField] private AudioClip m_activationSound;
     [SerializeField] private AudioClip m_deactivationSound;
     [SerializeField] private bool m_loopActivationSound;
@@ -52,7 +54,15 @@ public class InteractableProvoker : Provoker, IInteractableComponent
             else
             {
                 m_audioSource.loop = false;
-                m_audioSource?.PlayOneShot(m_activationSound);
+                if (m_randomContainer != null)
+                {
+                    m_audioSource.resource =  m_randomContainer;
+                    m_audioSource.Play();
+                }
+                else
+                {
+                    m_audioSource?.PlayOneShot(m_activationSound);
+                }
             }
         }
         else
