@@ -13,24 +13,8 @@ public class Provoker : MonoBehaviour
 
     [Header("Provoker Settings")] 
     [SerializeField] private float m_sanityAmount;
-    
-    public bool IsBroadcasting { get; private set; }
 
-    private void Start()
-    {
-        if (ProvokerManager.Instance != null)
-        {
-            ProvokerManager.Instance.RegisterProvoker(this);
-        }
-    }
-
-    private void OnDestroy()
-    {
-        if (ProvokerManager.Instance != null)
-        {
-            ProvokerManager.Instance.DeregisterProvoker(this);
-        }
-    }
+    private bool IsBroadcasting { get; set; }
     
     // ======== Unity Events ========
     
