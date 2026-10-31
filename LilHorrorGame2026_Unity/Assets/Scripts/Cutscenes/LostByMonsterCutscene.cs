@@ -1,5 +1,6 @@
 using System.Collections;
 using DG.Tweening;
+using MoonlightTools.GeneralTools;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,6 +20,11 @@ public class LostByMonsterCutscene : Cutscene
         m_monster.SetHostileLevel(HostileLevel.Hostile);
         
         // turn towards monster, cancels zoom and listen
+        Vector3 cameraStartPosition = m_playerCamera.transform.position;
+        StartCoroutine(CoroutineUtils.LerpWithTime(0.6f, t =>
+        {
+            m_playerCamera.transform.position = Vector3.Lerp(cameraStartPosition, m_jumpScareCameraTransform.position, t);
+        }));
         m_playerCamera.transform.DOMove(m_jumpScareCameraTransform.transform.position, 0.6f);
         m_playerCamera.transform.DORotate(m_jumpScareCameraTransform.transform.eulerAngles, 0.6f);
         m_playerCamera.DOFieldOfView(60f, 0.2f);
