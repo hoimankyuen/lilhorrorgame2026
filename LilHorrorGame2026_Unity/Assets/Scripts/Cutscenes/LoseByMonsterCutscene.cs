@@ -13,6 +13,9 @@ public class LoseByMonsterCutscene : Cutscene
     [SerializeField] private Transform m_jumpScareCameraTransform;
     [SerializeField] private Image m_cutsceneOverlay;
     
+    [Space]
+    [SerializeField] private EndScreen m_endScreen;
+    
     protected override IEnumerator CutsceneSequence()
     {
         // change monster to hostile
@@ -42,5 +45,8 @@ public class LoseByMonsterCutscene : Cutscene
         m_cutsceneOverlay.DOColor(Color.black, 2f);
         yield return new WaitForSeconds(2f);
 
+        // show menu
+        m_endScreen.Setup("You Died", "Better luck next time!");
+        m_endScreen.Show();
     }
 }

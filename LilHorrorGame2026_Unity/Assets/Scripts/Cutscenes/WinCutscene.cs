@@ -18,6 +18,9 @@ public class WinCutscene : Cutscene
     [SerializeField] private Elevator m_elevator;
     [SerializeField] private Image m_cutsceneOverlay;
     
+    [Space]
+    [SerializeField] private EndScreen m_endScreen;
+    
     protected override IEnumerator CutsceneSequence()
     {
         // cancels zoom and listen 
@@ -58,13 +61,22 @@ public class WinCutscene : Cutscene
         // elevator shake
         m_monsterLight.enabled = false;
         m_monsterVLight.SetActive(false);
-        m_playerCamera.transform.DOShakePosition(5f, Vector3.up * 0.05f);
-        yield return new WaitForSeconds(3f);
+        m_playerCamera.transform.DOShakePosition(7f, Vector3.up * 0.05f);
+        yield return new WaitForSeconds(5f);
         
         // fade to white
         m_cutsceneOverlay.sprite = null;
         m_cutsceneOverlay.color = new Color(1f, 1f, 1f, 0f);
         m_cutsceneOverlay.DOColor(Color.white, 2f);
         yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2f);
+        
+        // fade to black
+        m_cutsceneOverlay.DOColor(Color.black, 2f);
+        yield return new WaitForSeconds(2f);
+        
+        // show menu
+        m_endScreen.Setup("You Escaped", "But, what next?");
+        m_endScreen.Show();
     }
 }

@@ -16,6 +16,9 @@ public class LoseBySanityCutscene: Cutscene
     [SerializeField] private Image m_cutsceneOverlay;
 
     [Space]
+    [SerializeField] private EndScreen m_endScreen;
+    
+    [Space]
     [SerializeField] private List<Sprite> m_staticSprites;
     
     protected override IEnumerator CutsceneSequence()
@@ -97,6 +100,10 @@ public class LoseBySanityCutscene: Cutscene
         m_cutsceneOverlay.color = new Color(0f, 0f, 0f, 0f);
         m_cutsceneOverlay.DOColor(Color.black, 2f);
         yield return new WaitForSeconds(2f);
+        
+        // show menu
+        m_endScreen.Setup("You Transformed", "Lived long enough to be the villain eh?");
+        m_endScreen.Show();
     }
     
     private void ShuffleSpriteIndices(List<int> list)

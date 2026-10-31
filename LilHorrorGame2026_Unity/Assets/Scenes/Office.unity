@@ -7744,9 +7744,9 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5dcdf77f1edf18fd288ca2f1f6b1619d, type: 3}
   m_PrefabInstance: {fileID: 278769474}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &279287218 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5054652358616562722, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+--- !u!108 &279287221 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 3265567948205786651, guid: 6f950c906df80274a80dc85508794aef, type: 3}
   m_PrefabInstance: {fileID: 897456033}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &284040451
@@ -14828,6 +14828,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4652751210715059860, guid: ec6d03cef57416145b90f83ec11fb6dd, type: 3}
   m_PrefabInstance: {fileID: 3686431777991699960}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &526897663 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3538894118444291940, guid: ec6d03cef57416145b90f83ec11fb6dd, type: 3}
+  m_PrefabInstance: {fileID: 3686431777991699960}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa130a48f36c5a249be7755fdb0c39e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EndScreen
 --- !u!1 &530983669
 GameObject:
   m_ObjectHideFlags: 0
@@ -39296,6 +39307,7 @@ MonoBehaviour:
   m_monster: {fileID: 1809614268}
   m_jumpScareCameraTransform: {fileID: 1871623777}
   m_cutsceneOverlay: {fileID: 2082894238}
+  m_endScreen: {fileID: 526897663}
 --- !u!1001 &1296343485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55103,6 +55115,7 @@ MonoBehaviour:
   m_monster: {fileID: 1809614268}
   m_possessCameraTransform: {fileID: 897456034}
   m_cutsceneOverlay: {fileID: 2082894238}
+  m_endScreen: {fileID: 526897663}
   m_staticSprites:
   - {fileID: 8869252355041222230, guid: 6f26bf8f425341c459da6de246f024f3, type: 3}
   - {fileID: -930624861, guid: 6f26bf8f425341c459da6de246f024f3, type: 3}
@@ -55898,10 +55911,11 @@ MonoBehaviour:
   m_playerCamera: {fileID: 969254928}
   m_monster: {fileID: 1809614268}
   m_exitCameraTransform: {fileID: 1179960822}
-  m_monsterLight: {fileID: 279287218}
+  m_monsterLight: {fileID: 279287221}
   m_monsterVLight: {fileID: 780059503}
   m_elevator: {fileID: 264789027}
   m_cutsceneOverlay: {fileID: 2082894238}
+  m_endScreen: {fileID: 526897663}
 --- !u!1 &1837595662
 GameObject:
   m_ObjectHideFlags: 0
