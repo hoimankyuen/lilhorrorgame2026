@@ -289,7 +289,7 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                     ""id"": ""a4145e3e-192b-4cc8-82eb-ebae065cddae"",
                     ""path"": ""<Gamepad>/rightStick"",
                     ""interactions"": """",
-                    ""processors"": ""ScaleVector2(x=10,y=10)"",
+                    ""processors"": ""ScaleVector2(x=50,y=50)"",
                     ""groups"": ""FPSControllerInputs;Gamepad"",
                     ""action"": ""Look"",
                     ""isComposite"": false,
@@ -309,7 +309,7 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                 {
                     ""name"": """",
                     ""id"": ""af2e03ea-44d0-47e1-af62-ae554b91a1d9"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""FPSControllerInputs;Gamepad"",
@@ -330,8 +330,19 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                 },
                 {
                     ""name"": """",
+                    ""id"": ""1f9722b7-fcd9-41d3-9541-330acad0ddb6"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;K + M"",
+                    ""action"": ""Zoom"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""8681e61e-74f7-4325-956e-cb819ed8bbb1"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""FPSControllerInputs;Gamepad"",
@@ -441,7 +452,7 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                 {
                     ""name"": """",
                     ""id"": ""c57a4713-0474-42ec-ba9c-0098e7132643"",
-                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
