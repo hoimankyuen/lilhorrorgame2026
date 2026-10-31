@@ -1,6 +1,7 @@
 using System;
 using MoonlightTools.GeneralTools;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviourSingleton<GameManager>
 {
@@ -22,6 +23,15 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     private void Start()
     {
         Application.targetFrameRate = 60;
+    }
+
+    private void Update()
+    {
+        // debug: remove later
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
+        {
+            LoseGameBySanity();
+        }
     }
     
     private void WinGame()

@@ -296,6 +296,15 @@ public class Monster : MonoBehaviour
     {
         m_rigAnimator.SetBool(AttackingAnimParam, true);
     }
+
+    public void ResetAnimator()
+    {
+        m_rigAnimator.SetBool(SoftLookingAnimParam, false);
+        m_rigAnimator.SetBool(HardLookingAnimParam, false);
+        m_rigAnimator.SetBool(AttackingAnimParam, false);
+        m_rigAnimator.ResetTrigger(ScreamingAnimParam);
+        m_rigAnimator.Rebind();
+    }
     
     // ======== TV ========
     

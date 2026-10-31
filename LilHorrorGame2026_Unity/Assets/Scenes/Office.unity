@@ -903,6 +903,81 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 0d341c7985069f84488fa2aa527b4de2, type: 3}
   m_PrefabInstance: {fileID: 1735926049}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &25373391
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 25373392}
+  - component: {fileID: 25373394}
+  - component: {fileID: 25373393}
+  m_Layer: 0
+  m_Name: CutsceneOverlay2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &25373392
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25373391}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 69460747}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &25373393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25373391}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 0
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &25373394
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 25373391}
+  m_CullTransparentMesh: 1
 --- !u!1001 &27822849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2363,13 +2438,14 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2082894236}
+  - {fileID: 25373392}
   - {fileID: 2103073971}
   - {fileID: 1232510337}
   - {fileID: 720857431}
   - {fileID: 1888548575}
   - {fileID: 1490802312}
   - {fileID: 1698468295}
-  - {fileID: 2082894236}
   m_Father: {fileID: 226238924}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -26388,7 +26464,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 74701766592040274, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.95
+      value: -5
       objectReference: {fileID: 0}
     - target: {fileID: 74701766592040274, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalPosition.y
@@ -26396,7 +26472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 74701766592040274, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.97
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 74701766592040274, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26429,10 +26505,6 @@ PrefabInstance:
     - target: {fileID: 1547603157307458434, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_Name
       value: Monster
-      objectReference: {fileID: 0}
-    - target: {fileID: 8366067126277944447, guid: 6f950c906df80274a80dc85508794aef, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8904908070015712776, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_playerBodyTransform
@@ -31741,6 +31813,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 5dcdf77f1edf18fd288ca2f1f6b1619d, type: 3}
   m_PrefabInstance: {fileID: 1061946447}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1065186855 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3877600205513442121, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+  m_PrefabInstance: {fileID: 897456033}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1066788430
 PrefabInstance:
@@ -38745,10 +38822,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameLostByMonsterCutscene
   m_eyelidOverlay: {fileID: 3910460614511419503}
-  m_monster: {fileID: 1809614268}
   m_playerCamera: {fileID: 969254928}
+  m_monster: {fileID: 1809614268}
   m_jumpScareCameraTransform: {fileID: 1871623777}
-  m_redOverlay: {fileID: 2082894237}
+  m_cutsceneOverlay: {fileID: 2082894238}
 --- !u!1001 &1296343485
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54473,14 +54550,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 1801828765}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa6c09463373794ea9da124db5151b8, type: 3}
+  m_Script: {fileID: 11500000, guid: dd4a53a294aff3441994fdff9cf78954, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameLostByMonsterCutscene
-  m_eyelidOverlay: {fileID: 0}
-  m_monster: {fileID: 0}
-  m_playerCamera: {fileID: 0}
-  m_jumpScareCameraTransform: {fileID: 0}
-  m_redOverlay: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::LostBySanityCutscene
+  m_eyelidOverlay: {fileID: 3910460614511419503}
+  m_playerCamera: {fileID: 969254928}
+  m_monster: {fileID: 1809614268}
+  m_possessCameraTransform: {fileID: 1065186855}
+  m_cutsceneOverlay: {fileID: 2082894238}
+  m_staticSprites:
+  - {fileID: 8869252355041222230, guid: 6f26bf8f425341c459da6de246f024f3, type: 3}
+  - {fileID: -930624861, guid: 6f26bf8f425341c459da6de246f024f3, type: 3}
+  - {fileID: -115989340, guid: 6f26bf8f425341c459da6de246f024f3, type: 3}
+  - {fileID: -724913029, guid: 6f26bf8f425341c459da6de246f024f3, type: 3}
 --- !u!1001 &1803052038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -55264,14 +55346,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1837404591}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaa6c09463373794ea9da124db5151b8, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cf0eaf71ee9dca41b70b00d91fa5ff5, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GameLostByMonsterCutscene
-  m_eyelidOverlay: {fileID: 0}
-  m_monster: {fileID: 0}
-  m_playerCamera: {fileID: 0}
-  m_jumpScareCameraTransform: {fileID: 0}
-  m_redOverlay: {fileID: 0}
+  m_EditorClassIdentifier: Assembly-CSharp::WinCutscene
 --- !u!1 &1837595662
 GameObject:
   m_ObjectHideFlags: 0
@@ -63071,9 +63148,8 @@ GameObject:
   - component: {fileID: 2082894236}
   - component: {fileID: 2082894239}
   - component: {fileID: 2082894238}
-  - component: {fileID: 2082894237}
   m_Layer: 0
-  m_Name: RedOverlay
+  m_Name: CutsceneOverlay1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63098,18 +63174,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!225 &2082894237
-CanvasGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2082894235}
-  m_Enabled: 1
-  m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
 --- !u!114 &2082894238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63123,10 +63187,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
-  m_Maskable: 1
+  m_Maskable: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []

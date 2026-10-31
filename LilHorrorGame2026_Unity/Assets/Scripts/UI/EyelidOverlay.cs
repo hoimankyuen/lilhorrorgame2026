@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class EyelidOverlay : MonoBehaviour
 {
-    [Header("Components")] [SerializeField]
-    private CanvasGroup m_eyeLidCanvasGroup;
-
+    [Header("Components")] 
+    [SerializeField] private CanvasGroup m_eyeLidCanvasGroup;
+    
+    [Space]
     [SerializeField] private RectTransform m_upperEyelidCurve;
     [SerializeField] private RectTransform m_upperEyelidFill;
     [SerializeField] private RectTransform m_lowerEyelidCurve;
@@ -36,9 +37,8 @@ public class EyelidOverlay : MonoBehaviour
     public void ShowEyelidProgress(float interpolate) // 0: open, 1: close
     {
         CurrentEyelidProgress = interpolate;
-        
         interpolate = Mathf.Clamp01(interpolate);
-        m_eyeLidCanvasGroup.alpha = interpolate < 1f ? 1f : 0f;
+        m_eyeLidCanvasGroup.alpha = interpolate <= 1f ? 1f : 0f;
         m_upperEyelidCurve.sizeDelta = new Vector2(m_upperEyelidCurve.sizeDelta.x, Mathf.Lerp(m_curveHeight, 0f, interpolate));
         m_upperEyelidFill.sizeDelta = new Vector2(m_upperEyelidFill.sizeDelta.x, Mathf.Lerp(m_fillHeight, m_fillHeight + m_curveHeight, interpolate));
         m_lowerEyelidCurve.sizeDelta = new Vector2(m_lowerEyelidCurve.sizeDelta.x, Mathf.Lerp(m_curveHeight, 0f, interpolate));

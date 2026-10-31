@@ -70,7 +70,8 @@ public class MonsterBehaviour : MonoBehaviour
     [SerializeField] private float m_targetLostDuration;
 
     private Monster m_monster;
-    
+
+    private bool m_stateMachineRunning;
     private BehaviourState m_currentState;
     private BehaviourState m_nextState;
     private bool m_changingState;
@@ -89,6 +90,7 @@ public class MonsterBehaviour : MonoBehaviour
             GameManager.Instance.GameEnded += OnGameEnded;
         }
 
+        StartStateMachine();
         ChangeState(new IdleBehaviourState(this));
     }
     
@@ -122,18 +124,32 @@ public class MonsterBehaviour : MonoBehaviour
             m_currentStateName = m_currentState != null ? m_currentState.ToString() : "None";
         }
     }
+
+    private void StartStateMachine()
+    {
+        m_stateMachineRunning = true;
+    }
+
+    private void StopStateMachine()
+    {
+        m_stateMachineRunning = false;
+    }
     
     private void ChangeState(BehaviourState nextState)
     {
+        if (!m_stateMachineRunning)
+            return;
+        
         m_nextState = nextState;
         m_changingState = true;
     }
 
     private void OnGameEnded()
     {
-        ChangeState(null);
+        StopStateMachine();
         m_monster.CancelLookAt();
         m_monster.CancelNavigation();
+        m_monster.ResetAnimator();
     }
     
     // ======== Shared Utilities ========
