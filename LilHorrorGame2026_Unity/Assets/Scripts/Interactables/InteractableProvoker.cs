@@ -17,7 +17,7 @@ public class InteractableProvoker : Provoker, IInteractableComponent
     private void Awake()
     {
         m_interactable = GetComponent<Interactable>();
-        m_interactable.SetSelectionPromptText(m_selectionPromptText);
+        m_interactable.SetSelectionInfo(new InteractableSelectionInfo(m_selectionPromptText, true));
         m_interactable.SetSelectionOutlineColour(m_selectionColour);
     }
     

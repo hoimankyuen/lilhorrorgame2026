@@ -201,7 +201,7 @@ MonoBehaviour:
   m_freeCast: 0
   m_fpCharacter: {fileID: 8141211952419579796}
   m_camera: {fileID: 8971287360188167206}
-  promptText: {fileID: 0}
+  m_crosshair: {fileID: 0}
 --- !u!114 &4956011213739097765
 MonoBehaviour:
   m_ObjectHideFlags: 0

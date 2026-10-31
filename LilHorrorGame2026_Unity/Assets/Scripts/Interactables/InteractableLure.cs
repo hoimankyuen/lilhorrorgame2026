@@ -33,7 +33,7 @@ public class InteractableLure : Lure, IInteractableComponent
         base.Awake();
         m_interactable = GetComponent<Interactable>();
         m_interactable.SetAllowInteraction(true);
-        m_interactable.SetSelectionPromptText(m_normalSelectionPromptText);
+        m_interactable.SetSelectionInfo(new InteractableSelectionInfo(m_normalSelectionPromptText, true));
         m_interactable.SetSelectionOutlineColour(m_normalSelectionColour);
     }
     
@@ -65,7 +65,7 @@ public class InteractableLure : Lure, IInteractableComponent
     private IEnumerator BroadcastSequence()
     {
         ChangeActiveState(true);
-        m_interactable.SetSelectionPromptText(m_usedSelectionPromptText);
+        m_interactable.SetSelectionInfo(new InteractableSelectionInfo(m_usedSelectionPromptText, false));
         m_interactable.SetSelectionOutlineColour(m_usedSelectionColour);
         yield return new WaitForSeconds(m_duration);
         
@@ -74,7 +74,7 @@ public class InteractableLure : Lure, IInteractableComponent
         yield return new WaitForSeconds(m_cooldown);
         
         m_animator.SetBool(m_cooldownAnimationParam, false);
-        m_interactable.SetSelectionPromptText(m_normalSelectionPromptText);
+        m_interactable.SetSelectionInfo(new InteractableSelectionInfo(m_normalSelectionPromptText, true));
         m_interactable.SetSelectionOutlineColour(m_normalSelectionColour);
         m_broadcastCoroutine = null;
     }

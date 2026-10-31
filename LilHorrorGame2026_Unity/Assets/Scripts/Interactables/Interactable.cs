@@ -2,6 +2,17 @@ using System;
 using QuickerEffects;
 using UnityEngine;
 
+public struct InteractableSelectionInfo
+{
+    public string prompt;
+    public bool isValid;
+    public InteractableSelectionInfo(string prompt, bool isValid)
+    {
+        this.prompt = prompt;
+        this.isValid = isValid;
+    }
+}
+
 public class Interactable : MonoBehaviour
 {
     [Header("Components")]
@@ -13,8 +24,8 @@ public class Interactable : MonoBehaviour
     
     public bool Selected { get; private set; }
     
-    public string SelectionPromptText { get; private set; }
-    public event Action<string> SelectionPromptTextChanged;
+    public InteractableSelectionInfo SelectionInfo { get; private set; }
+    public event Action<InteractableSelectionInfo> SelectionInfoChanged;
     
     // ======== Unity Events ========
     
@@ -70,9 +81,9 @@ public class Interactable : MonoBehaviour
         m_selectionOutline.Color = colour;
     }
 
-    public void SetSelectionPromptText(string promptText)
+    public void SetSelectionInfo(InteractableSelectionInfo info)
     {
-        SelectionPromptText = promptText;
-        SelectionPromptTextChanged?.Invoke(SelectionPromptText);
+        SelectionInfo = info;
+        SelectionInfoChanged?.Invoke(SelectionInfo);
     }
 }
