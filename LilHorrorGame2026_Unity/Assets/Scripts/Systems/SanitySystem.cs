@@ -33,7 +33,7 @@ public class SanitySystem : MonoBehaviourSingleton<SanitySystem>
         }
     }
 
-    private void OnDestroy()
+    private new void OnDestroy()
     {
         if (GameManager.Instance != null)
         {
