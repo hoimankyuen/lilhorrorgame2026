@@ -6838,6 +6838,7 @@ Transform:
   - {fileID: 1944861557}
   - {fileID: 409287748}
   - {fileID: 499673027}
+  - {fileID: 2052033591}
   m_Father: {fileID: 311681587}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &264789026
@@ -21175,6 +21176,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2550425499937806912, guid: 09931072cf38fa04ea6e622c1161e276, type: 3}
   m_PrefabInstance: {fileID: 7425866125892333240}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &720857432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3994906247399971813, guid: 09931072cf38fa04ea6e622c1161e276, type: 3}
+  m_PrefabInstance: {fileID: 7425866125892333240}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da32a821ba8f7d84eafcf6e3ff8778a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueDisplay
 --- !u!1001 &721338145
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62266,6 +62278,74 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ce9aa38f67b37624eb069995f1b02b53, type: 3}
   m_PrefabInstance: {fileID: 2052013928}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2052033590
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052033591}
+  - component: {fileID: 2052033592}
+  - component: {fileID: 2052033593}
+  m_Layer: 0
+  m_Name: ElevatorDialogueTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2052033591
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052033590}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 2}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 264789025}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2052033592
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052033590}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2052033593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052033590}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 407cae7357ebb379e81e39f2460952ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ElevatorDialogue
+  m_dialogueDisplay: {fileID: 720857432}
+  m_timeManager: {fileID: 67962694}
 --- !u!1 &2059376236
 GameObject:
   m_ObjectHideFlags: 0
