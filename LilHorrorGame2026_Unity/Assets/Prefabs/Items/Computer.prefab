@@ -250,7 +250,11 @@ PrefabInstance:
     - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_activationSound
       value: 
-      objectReference: {fileID: 8300000, guid: 6e198c3d6c7e05e6dbfc4218380a1f74, type: 3}
+      objectReference: {fileID: 0}
+    - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
+      propertyPath: m_randomContainer
+      value: 
+      objectReference: {fileID: 6418180475301049370, guid: 8cb71571011319b81830449524922756, type: 2}
     - target: {fileID: 3338189811245163089, guid: 11e93a6ee09a839449db80ee3aba4910, type: 3}
       propertyPath: m_deactivationSound
       value: 
