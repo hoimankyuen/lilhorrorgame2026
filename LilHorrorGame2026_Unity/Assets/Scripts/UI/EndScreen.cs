@@ -19,11 +19,6 @@ public class EndScreen : MonoBehaviour
         m_retryButton.onClick.AddListener(Retry);
         m_menuButton.onClick.AddListener(Menu);
     }
-
-    private void Start()
-    {
-        m_retryButton.Select();
-    }
     
     // ======== Menu Functions ========
     
@@ -39,6 +34,8 @@ public class EndScreen : MonoBehaviour
         m_canvasGroup.interactable = true;
         m_canvasGroup.blocksRaycasts = true;
         Cursor.lockState = CursorLockMode.None;
+        
+        m_retryButton.Select();
     }
 
     private void Retry()
