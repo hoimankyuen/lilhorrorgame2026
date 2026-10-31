@@ -26430,6 +26430,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Monster
       objectReference: {fileID: 0}
+    - target: {fileID: 5795377282990340023, guid: 6f950c906df80274a80dc85508794aef, type: 3}
+      propertyPath: m_attack
+      value: 
+      objectReference: {fileID: 8300000, guid: 8c539f7f382c8c294b6bc6e3f018a75d, type: 3}
     - target: {fileID: 8366067126277944447, guid: 6f950c906df80274a80dc85508794aef, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -54476,11 +54480,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aaa6c09463373794ea9da124db5151b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameLostByMonsterCutscene
-  m_eyelidOverlay: {fileID: 0}
-  m_monster: {fileID: 0}
-  m_playerCamera: {fileID: 0}
+  m_eyelidOverlay: {fileID: 3910460614511419503}
+  m_monster: {fileID: 1809614268}
+  m_playerCamera: {fileID: 969254928}
   m_jumpScareCameraTransform: {fileID: 0}
-  m_redOverlay: {fileID: 0}
+  m_redOverlay: {fileID: 2082894237}
 --- !u!1001 &1803052038
 PrefabInstance:
   m_ObjectHideFlags: 0
