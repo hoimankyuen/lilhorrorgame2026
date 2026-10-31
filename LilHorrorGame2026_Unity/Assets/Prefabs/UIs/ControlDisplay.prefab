@@ -2075,8 +2075,8 @@ MonoBehaviour:
   m_crouchData:
     Frame: {fileID: 1404095988412690408}
     Text: {fileID: 8504251739397315809}
-    KeyboardSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
-    KeyboardText: L Ctrl
+    KeyboardSprite: {fileID: 21300000, guid: d7f26882d7156f344ab53762e229cf49, type: 3}
+    KeyboardText: C
     GamepadSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
     GamepadText: LT
   m_runData:

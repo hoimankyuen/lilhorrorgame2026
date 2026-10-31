@@ -67211,6 +67211,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5853927376786579932, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853927376786579932, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_fontSize
+      value: 26.1
+      objectReference: {fileID: 0}
     - target: {fileID: 6198351551453754856, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -67282,6 +67290,14 @@ PrefabInstance:
     - target: {fileID: 7573132783366401437, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946734294192311778, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: Toggle Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016337550627733129, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: Hold to Listen
       objectReference: {fileID: 0}
     - target: {fileID: 8235414740585131598, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_Pivot.x

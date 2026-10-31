@@ -46,6 +46,7 @@ public class ControlDisplay : MonoBehaviour
         {
             GameManager.Instance.GameEnded += OnGameEnded;
         }
+        ChangeDisplay(false);
     }
 
     private void OnDestroy()
