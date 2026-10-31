@@ -76,11 +76,11 @@ public class LoseBySanityCutscene: Cutscene
         
         // look around
         yield return new WaitForSeconds(2f);
-        m_playerCamera.transform.DOLocalRotate(new Vector3(0f, 30f, 0f), 1f).SetEase(Ease.InOutQuad);
+        m_playerCamera.transform.DORotate(new Vector3(0f, 30f, 0f), 1f).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(1f);
-        m_playerCamera.transform.DOLocalRotate(new Vector3(0f, -30f, 0f), 2f).SetEase(Ease.InOutQuad);
+        m_playerCamera.transform.DORotate(new Vector3(0f, -30f, 0f), 2f).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(2f);
-        m_playerCamera.transform.DOLocalRotate(new Vector3(0f, 0f, 0f), 1f).SetEase(Ease.InOutQuad);
+        m_playerCamera.transform.DORotate(new Vector3(0f, 0f, 0f), 1f).SetEase(Ease.InOutQuad);
         yield return new WaitForSeconds(1f);
         yield return new WaitForSeconds(1f);
         
@@ -95,7 +95,7 @@ public class LoseBySanityCutscene: Cutscene
         // fade to black
         m_cutsceneOverlay.sprite = null;
         m_cutsceneOverlay.color = new Color(0f, 0f, 0f, 0f);
-        m_cutsceneOverlay.DOColor(Color.black, 1f);
+        m_cutsceneOverlay.DOColor(Color.black, 2f);
         yield return new WaitForSeconds(2f);
     }
     

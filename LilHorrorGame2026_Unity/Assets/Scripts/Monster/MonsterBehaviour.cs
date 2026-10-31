@@ -89,9 +89,8 @@ public class MonsterBehaviour : MonoBehaviour
         {
             GameManager.Instance.GameEnded += OnGameEnded;
         }
-
-        StartStateMachine();
-        ChangeState(new IdleBehaviourState(this));
+        
+        StartStateMachine(new IdleBehaviourState(this));
     }
     
     private void OnDestroy()
@@ -125,14 +124,17 @@ public class MonsterBehaviour : MonoBehaviour
         }
     }
 
-    private void StartStateMachine()
+    private void StartStateMachine(BehaviourState nextState)
     {
         m_stateMachineRunning = true;
+        ChangeState(nextState);
     }
 
     private void StopStateMachine()
     {
         m_stateMachineRunning = false;
+        m_currentState = null;
+        m_nextState = null;
     }
     
     private void ChangeState(BehaviourState nextState)

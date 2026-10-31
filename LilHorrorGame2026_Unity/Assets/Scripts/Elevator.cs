@@ -31,8 +31,8 @@ public class Elevator : MonoBehaviour
         m_audioSource.PlayOneShot(m_openDoors);
         m_animator.Play("Open");
     }
-
-    private void CloseDoors()
+    
+    public void CloseDoors()
     {
         m_audioSource.PlayOneShot(m_closeDoors);
         m_animator.Play("Close");
@@ -42,7 +42,7 @@ public class Elevator : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            CloseDoors();
+            GameManager.Instance.WinGame();
         }
     }
 }

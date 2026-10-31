@@ -24,17 +24,8 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
     {
         Application.targetFrameRate = 60;
     }
-
-    private void Update()
-    {
-        // debug: remove later
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-        {
-            LoseGameBySanity();
-        }
-    }
     
-    private void WinGame()
+    public void WinGame()
     {
         Debug.Log("Win Game");
         GameEnded?.Invoke();
@@ -42,10 +33,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
 
         m_winCutscene.PlayCutscene();
         m_audioSource.PlayOneShot(m_winStinger);
-        
-        //Show win UI
-        //Kill monster?
-        //Brighten scene?
     }
 
     public void LoseGameByMonster()
@@ -56,9 +43,6 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         
         m_lostByMonsterCutscene.PlayCutscene();
         m_audioSource.PlayOneShot(m_loseStinger);
-        //Show loss UI
-        //Monster roar
-        //Fade to black?
     }
     
     public void LoseGameBySanity()
@@ -69,8 +53,5 @@ public class GameManager : MonoBehaviourSingleton<GameManager>
         
         m_lostBySanityCutscene.PlayCutscene();
         m_audioSource.PlayOneShot(m_loseStinger);
-        //Show loss UI
-        //Monster roar
-        //Fade to black?
     }
 }
