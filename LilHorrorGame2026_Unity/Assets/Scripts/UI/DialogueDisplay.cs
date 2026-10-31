@@ -26,8 +26,11 @@ public class DialogueDisplay : MonoBehaviour
         {
             GameManager.Instance.GameEnded += OnGameEnded;
         }
-    }
 
+        Content1();
+        Invoke(nameof(Content2), 11f);
+    }
+    
     private void OnDestroy()
     {
         if (GameManager.Instance != null)
@@ -81,5 +84,17 @@ public class DialogueDisplay : MonoBehaviour
         }
         
         m_dialogueCoroutine = null;
+    }
+    
+    // ======== Dialogue Content ========
+
+    private void Content1()
+    {
+        ShowDialogue("I hate this place, they don't let you leave until your shift is over.", 10f);
+    }
+    
+    private void Content2()
+    {
+        ShowDialogue("I'm not doing anything for this company. Time to turn off all their equipment!", 10f);
     }
 }

@@ -375,7 +375,7 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                 {
                     ""name"": """",
                     ""id"": ""1fa13f20-80a4-4416-9374-e7b6f4381d11"",
-                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""path"": ""<Keyboard>/c"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""FPSControllerInputs;K + M"",

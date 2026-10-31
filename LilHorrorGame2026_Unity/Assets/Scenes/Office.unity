@@ -53474,6 +53474,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 407cae7357ebb379e81e39f2460952ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ElevatorDialogue
+  m_collider: {fileID: 1733035813}
   m_dialogueDisplay: {fileID: 720857432}
   m_timeManager: {fileID: 67962694}
 --- !u!65 &1733035813
@@ -67014,6 +67015,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 69460747}
     m_Modifications:
+    - target: {fileID: 151862457412376935, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: Hold to Run
+      objectReference: {fileID: 0}
     - target: {fileID: 479956213696520118, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -67206,6 +67211,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5853927376786579932, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5853927376786579932, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_fontSize
+      value: 28
+      objectReference: {fileID: 0}
     - target: {fileID: 6198351551453754856, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -67277,6 +67290,14 @@ PrefabInstance:
     - target: {fileID: 7573132783366401437, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7946734294192311778, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: Toggle Crouch
+      objectReference: {fileID: 0}
+    - target: {fileID: 8016337550627733129, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
+      propertyPath: m_text
+      value: Hold to Listen
       objectReference: {fileID: 0}
     - target: {fileID: 8235414740585131598, guid: 7773de60a5e84704fad190fb7d70b2f7, type: 3}
       propertyPath: m_Pivot.x
