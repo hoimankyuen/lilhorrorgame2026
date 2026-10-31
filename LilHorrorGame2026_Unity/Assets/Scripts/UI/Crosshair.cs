@@ -29,13 +29,11 @@ public class Crosshair : MonoBehaviour
     [SerializeField] private string m_keyboardButtonText;
     [SerializeField] private Sprite m_gamepadButtonSprite;
     [SerializeField] private string m_gamepadButtonText;
-
-
+    
     private float m_iconHeight;
     private bool m_isSelected;
 
     private bool m_isGamepad;
-    
     
     // ======== Unity Events ========
 
