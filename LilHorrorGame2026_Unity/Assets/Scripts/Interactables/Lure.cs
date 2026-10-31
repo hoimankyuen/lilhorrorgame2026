@@ -70,8 +70,16 @@ public class Lure : MonoBehaviour
         }
 
         IsBroadcasting = active;
-        m_soundParticleEffect.Play(active);
-        m_animator.SetBool(m_activeAnimationParam, active);
+        
+        if (m_soundParticleEffect != null)
+        {
+            m_soundParticleEffect.Play(active);
+        }
+
+        if (m_animator != null)
+        {
+            m_animator.SetBool(m_activeAnimationParam, active);
+        }
         
         BroadcastingLuresChanged?.Invoke();
     }
