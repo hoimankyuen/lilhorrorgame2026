@@ -115,7 +115,7 @@ public class InteractableListener : MonoBehaviour
         m_prevProgress = m_progress;
         
         // eyelid animations
-        m_eyelidOverlay.ShowEyelidProgress(Mathf.InverseLerp(0f ,1f, m_progress));
+        m_eyelidOverlay.ShowEyelidProgress(m_progress <= 1f ? Mathf.InverseLerp(0f, 1f, m_progress) : 0f);
         m_eyelidOverlay.ShowAdaptionProgress(m_progress >= 1f ? Mathf.InverseLerp(2f ,3f, m_progress) : 1f);
     }
 }
