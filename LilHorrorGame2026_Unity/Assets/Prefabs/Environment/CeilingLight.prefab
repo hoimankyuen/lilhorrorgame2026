@@ -104,9 +104,9 @@ Light:
   m_Enabled: 1
   serializedVersion: 13
   m_Type: 2
-  m_Color: {r: 1, g: 0.91754156, b: 0.6745283, a: 1}
-  m_Intensity: 4
-  m_Range: 10
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 2
+  m_Range: 15
   m_SpotAngle: 134.09927
   m_InnerSpotAngle: 125.901375
   m_CookieSize2D: {x: 0.5, y: 0.5}
@@ -395,6 +395,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: b713391d2397f13d695f1cfc2aa3f2fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: b713391d2397f13d695f1cfc2aa3f2fb, type: 3}
+      propertyPath: m_CastShadows
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: b713391d2397f13d695f1cfc2aa3f2fb, type: 3}
