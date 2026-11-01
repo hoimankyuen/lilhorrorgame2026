@@ -8,6 +8,7 @@ public class TitleScreen : MonoBehaviour
     [SerializeField] private GameObject m_mainPage;
     [SerializeField] private Button m_playButton;
     [SerializeField] private Button m_creditButton;
+    [SerializeField] private Button m_quitButton;
 
     [Header("Credit Page Components")]
     [SerializeField] private GameObject m_creditPage;
@@ -25,6 +26,7 @@ public class TitleScreen : MonoBehaviour
         m_playButton.onClick.AddListener(Play);
         m_creditButton.onClick.AddListener(ShowCreditPage);
         m_backButton.onClick.AddListener(ShowMainPage);
+        m_quitButton.onClick.AddListener(QuitGame);
     }
 
     private void Start()
@@ -45,6 +47,11 @@ public class TitleScreen : MonoBehaviour
         m_mainPage.SetActive(false);
         m_creditPage.SetActive(true);
         m_backButton.Select();
+    }
+
+    private void QuitGame()
+    {
+        Application.Quit();   
     }
     
     // ======== Credit Page Functions ========
