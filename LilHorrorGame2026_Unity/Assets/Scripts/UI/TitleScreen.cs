@@ -23,6 +23,8 @@ public class TitleScreen : MonoBehaviour
 
     private void Awake()
     {
+        Application.targetFrameRate = 60;
+        
         m_playButton.onClick.AddListener(Play);
         m_creditButton.onClick.AddListener(ShowCreditPage);
         m_backButton.onClick.AddListener(ShowMainPage);
