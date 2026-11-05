@@ -159,10 +159,13 @@ public class InputSystemFirstPersonCharacter : MonoBehaviour
         if (m_controlDisable)
             return;
 
+        /*
         if (InputActions.FPSController.Crouch.WasPerformedThisFrame())
         {
             m_crouchToggle = !m_crouchToggle;
         }
+        */
+        m_crouchToggle = InputActions.FPSController.Crouch.ReadValue<float>() > 0.5f;
 
         float targetHeight = m_crouchToggle || IsCeilingBlocked() ? m_crouchHeight : m_initHeight;
 

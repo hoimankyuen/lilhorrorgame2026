@@ -7,22 +7,39 @@ using UnityEngine.UI;
 
 public class ControlDisplay : MonoBehaviour
 {
+    public enum ControlType
+    {
+        Default,
+        Hold,
+        Toggle
+    }
+    
     [System.Serializable]
     public struct ControlData
     {
         public Image Frame;
         public TMP_Text Text;
+        public TMP_Text Description;
         
         [Space]
         public Sprite KeyboardSprite;
         public string KeyboardText;
         public Sprite GamepadSprite;
         public string GamepadText;
+        public string ActionName;
+        public ControlType ControlType;
 
         public void ChangeDisplay(bool isGamepad)
         {
             Frame.sprite = isGamepad ? GamepadSprite : KeyboardSprite;
             Text.text = isGamepad ? GamepadText : KeyboardText;
+            Description.text = ControlType switch
+            {
+                ControlType.Default => ActionName,
+                ControlType.Hold => $"Hold to {ActionName}",
+                ControlType.Toggle => $"Toggle to {ActionName}",
+                _ => ActionName
+            };
         }
     }
     

@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Listen
+  m_text: Hold to Listen
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
   m_sharedMaterial: {fileID: 5240879941297642202, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
@@ -1154,7 +1154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Zoom In
+  m_text: Hold to Zoom In
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
   m_sharedMaterial: {fileID: 5240879941297642202, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
@@ -1569,7 +1569,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Crouch
+  m_text: Hold to Crouch
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
   m_sharedMaterial: {fileID: 5240879941297642202, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
@@ -1729,7 +1729,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Run
+  m_text: Hold to Run
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
   m_sharedMaterial: {fileID: 5240879941297642202, guid: daac4a7dec023c0409f4e2e04b12533a, type: 2}
@@ -2075,31 +2075,43 @@ MonoBehaviour:
   m_crouchData:
     Frame: {fileID: 1404095988412690408}
     Text: {fileID: 8504251739397315809}
-    KeyboardSprite: {fileID: 21300000, guid: d7f26882d7156f344ab53762e229cf49, type: 3}
-    KeyboardText: C
+    Description: {fileID: 7946734294192311778}
+    KeyboardSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
+    KeyboardText: L Ctrl
     GamepadSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
     GamepadText: LT
+    ActionName: Crouch
+    ControlType: 1
   m_runData:
     Frame: {fileID: 2504323577404276115}
     Text: {fileID: 2469789924678572444}
+    Description: {fileID: 151862457412376935}
     KeyboardSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
     KeyboardText: L Shift
     GamepadSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
     GamepadText: LB
+    ActionName: Run
+    ControlType: 1
   m_listenData:
     Frame: {fileID: 4842362721115011561}
     Text: {fileID: 5853927376786579932}
+    Description: {fileID: 8016337550627733129}
     KeyboardSprite: {fileID: 21300000, guid: cc3475db9ecc2b842b7cefe3bc0dac3b, type: 3}
     KeyboardText: 
     GamepadSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
     GamepadText: RT
+    ActionName: Listen
+    ControlType: 1
   m_zoomData:
     Frame: {fileID: 4745358221148599368}
     Text: {fileID: 777771721370075392}
+    Description: {fileID: 8851926309268966934}
     KeyboardSprite: {fileID: 21300000, guid: d7f26882d7156f344ab53762e229cf49, type: 3}
     KeyboardText: Q
     GamepadSprite: {fileID: 21300000, guid: 5b1a7c6219031934580fc799b8b6f3af, type: 3}
     GamepadText: RB
+    ActionName: Zoom
+    ControlType: 1
 --- !u!1 &9024464327574970081
 GameObject:
   m_ObjectHideFlags: 0

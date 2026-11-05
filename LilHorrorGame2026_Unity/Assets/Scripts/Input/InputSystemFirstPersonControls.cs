@@ -385,6 +385,17 @@ public partial class @InputSystemFirstPersonControls: IInputActionCollection2, I
                 },
                 {
                     ""name"": """",
+                    ""id"": ""e8d61c81-4d3b-4992-87e8-da5c105484ad"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""FPSControllerInputs;K + M"",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4dfe25fc-eb27-40ca-9eb0-86521928aa43"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
